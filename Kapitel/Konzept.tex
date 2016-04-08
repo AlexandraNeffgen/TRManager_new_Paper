@@ -1,22 +1,48 @@
 \subsection{Trainingsraum}
+
 \subsection{Design}
-Abstraktes Konzept  
-Mvc
-Möglichkeiten der Tools
-Unit Tests
-Globale Architektur
+
+Die Applikation besteht im Grunde aus drei Teilen: Dem Frontend, dem Backend und
+der Datenbank. Die Datenbank speichert die Daten, die erfasst werden und
+präsentiert diese dem Backend. Das Backend verarbeitet die Daten, die es vom
+Frontend und Datenbank bekommt, um es an beide weiterzureichen. Das Frontend
+interpretiert die Daten, die es vom Backend geliefert bekommt und zeigt diese
+dem Nutzer an und nimmt Eingaben vom Nutzer entgegen und schickt diese an das
+Backend.\\
+
+\subsection{Datenbank}
+
+Zur Speicherung der Daten wurde ein \ac{ER}-Modell erstellt(REF_TO_PAGE). Dieses
+beschreibt im ungefähren den logischen Aufbau der Klassenstrukturen der Schule.
+So hat jede Klasse einen Lehrer, jede Klasse mehrere Schüler und so weiter. 
+%BILD ER-Modell
+
+
 \subsection{Backend}
+
+Das Backend dient als Schnittstelle zwischen Datenbank und Frontend und bereitet
+die Daten die von Datenbank und Frontend kommen für den jeweils anderen auf.
+Umgesetzt wird das Backend mit Spring. Die Zugriffe erfolgen über einen
+\acs{REST}ful-Service, der laut REST-Spezifikation die normalen HTTP-Methoden
+verwendet (GET, POST etc.). Die Verwendung von \ac{REST} ermöglicht es, die
+Clients unabhängig vom Server zu entwerfen, da die Methoden standardisiert und
+für jeden Client gleich sind. Auch andere Applikationen können so ohne Probleme
+auf diesen Dienst zugreifen, um zum Beispiel die gesammelten Daten andersweitig
+zu verwenden. 
+
 \subsection{Frontends}
-\subsubsection{Native}
-\subsubsection{Web}
-Cordova (apache)
-Bootsraps
-http://v4-alpha.getbootstrap.com/examples/
-\subsubsection{Framework} 
-\paragraph{Zend}
-\subsubsection{Mobile}
-VPN leisten?
-\paragraph{IOS}
-\paragraph{Android}
+
+	\subsubsection{Native}
+
+	\subsubsection{Web}
+		Cordova (apache)
+		Bootsraps
+		http://v4-alpha.getbootstrap.com/examples/
+	\subsubsection{Framework} 
+		\paragraph{Zend}
+	\subsubsection{Mobile}
+	VPN leisten?
+		\paragraph{IOS}
+		\paragraph{Android}
 
 
