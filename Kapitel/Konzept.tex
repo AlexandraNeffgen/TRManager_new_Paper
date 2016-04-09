@@ -12,10 +12,7 @@ Backend.\\
 
 \subsection{Datenbank}
 
-Zur Speicherung der Daten wurde ein \ac{ER}-Modell erstellt(REFTOPAGE). Dieses
-beschreibt im ungefähren den logischen Aufbau der Klassenstrukturen der Schule.
-So hat jede Klasse einen Lehrer, jede Klasse mehrere Schüler und so weiter. 
-%BILD ER-Modell
+
 
 \subsection{Backend}
 
@@ -26,19 +23,28 @@ Umgesetzt wird das Backend mit Spring. Die Zugriffe erfolgen über einen
 verwendet (GET, POST etc.). Die Verwendung von \ac{REST} ermöglicht es, die
 Clients unabhängig vom Server zu entwerfen, da die Methoden standardisiert und
 für jeden Client gleich sind. Auch andere Applikationen können so ohne Probleme
-auf diesen Dienst zugreifen, um zum Beispiel die gesammelten Daten andersweitig
+auf diesen Dienst zugreifen, um zum Beispiel die gesammelten Daten anderweitig
 zu verwenden. 
 
-\subsection{Frontends}
-
+\subsection{Clients}
+	Die Clients haben den Zweck, dem Benutzer die gewünschten Daten
+	anzuzeigen.
+	Der Zugriff auf diese Daten erfolgt generisch über
+	\ac{HTTP}-Requests(\ac{REST}), so dass für jeden Client die gleiche Technik
+	verwendet werden kann. Geplant sind mehrere Clients:
 	\subsubsection{Native}
-
+		Der native Client verwendet die Bibliotheken von Windows Forms und soll in C#
+		programmiert werden. Dem Benutzer soll auf einem Blick angezeigt werden, wer
+		gerade im Trainingsraum ist, wie lange dieser schon darin ist und ob er den
+		Raum verlassen darf. Benutzern mit administrativen Rechten soll auch eine
+		Verwaltung der Datensätze ermöglich werden. Diese Funktionen werden für
+		"`normale"' Benutzer ausgeblendet.
 	\subsubsection{Web}
-		Cordova (apache)
-		Bootsraps
-		http://v4-alpha.getbootstrap.com/examples/
+		Der Web-Client soll ähnlich dem nativen Client dem Benutzer die derzeitig
+		anwesenden Schüler anzeigen, jedoch wird dieser als Webseite bereitgestellt.
+		
 	\subsubsection{Framework} 
-		\paragraph{Zend}
+		\paragraph{Zend(Weg?)}
 	\subsubsection{Mobile}
 	VPN leisten?
 		\paragraph{IOS}
