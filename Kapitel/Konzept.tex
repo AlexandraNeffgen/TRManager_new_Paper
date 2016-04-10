@@ -20,7 +20,7 @@ Verbesserung ihres Verhalten arbeiten und einen konkreten Plan ausarbeiten um
 an der Verbesserung zu arbeiten. 
 Zur Unterstützung ist im Trainingsraum während der Unterrichtszeiten stets ein
 Pädagoge anwesend, welcher vorwurfsfrei die Schüler bei ihren Ausbarbeitungen
-unterstützt und Hilfestellungen bietet. 
+unterstützt und Hilfestellungen bietet.
 \cleardoublepage
 
 
@@ -33,9 +33,6 @@ Frontend und Datenbank bekommt, um es an beide weiterzureichen. Das Frontend
 interpretiert die Daten, die es vom Backend geliefert bekommt und zeigt diese
 dem Nutzer an und nimmt Eingaben vom Nutzer entgegen und schickt diese an das
 Backend.\\
-
-\subsection{Datenbank}
-
 
 
 \subsection{Backend}
@@ -50,6 +47,14 @@ für jeden Client gleich sind. Auch andere Applikationen können so ohne Probleme
 auf diesen Dienst zugreifen, um zum Beispiel die gesammelten Daten anderweitig
 zu verwenden. 
 
+	\subsubsection{Datenbank}
+	
+	Die Datenbank-Struktur wird aus den annotierten Objektklassen generiert.
+	Ermöglicht wird dies durch Spring JPA, dies wird im Kapitel "`Backend"'
+	erläutert. Als Datenbankserver soll MySQL zur Verwendung kommen, da die
+	Datenmengen relativ gering sind und auch Backups Clientseitig realisiert
+	werden.
+	
 \subsection{Clients}
 	Die Clients haben den Zweck, dem Benutzer die gewünschten Daten
 	anzuzeigen.
