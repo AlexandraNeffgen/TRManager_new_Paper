@@ -4,6 +4,10 @@
 % Hier nur Grobaufbau, Text in anderen .tex-files im Ordner Kapitel
 % Initiation 
 \documentclass[a4paper,oneside,12pt]{article}
+\usepackage[backend=biber]{biblatex}
+\addbibresource{./bibtex/rfc.bib}
+\addbibresource{./bibtex/custom.bib}
+\defbibheading{bibliography}[\refname]{}
 \usepackage{a4wide}                        	%Ermöglicht eine bessere Ausnutzung von A4 Seiten
 \setlength{\textwidth}{15.5cm}				%Textbreite setzen
 \setlength\oddsidemargin{0.5cm}		 		%Linken Seitenrand setzen (ungerade Seiten)
@@ -35,10 +39,7 @@
 pdfauthor={Alexandra Neffgen & Florian Baier},  
 hidelinks]{hyperref}
 \setcounter{secnumdepth}{4}
-\usepackage[citestyle=verbose, bibstyle=numeric, backend=biber]{biblatex}
-\addbibresource{bibtex/rfc.bib}
-\addbibresource{bibtex/custom.bib}
-\defbibheading{bibliography}[\refname]{}
+
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -337,7 +338,7 @@ Ort, Datum \hspace*{4cm}& & Alexandra Neffgen & & Florian Baier\\
 \pagestyle{fancy}
 \section{Literaturverzeichnis}
 \label{sec:literatur}
-\input{./Kapitel/Literaturverzeichnis}
+\printbibliography
 %\newpage
 %\pagestyle{empty}
 %\cleardoublepage
