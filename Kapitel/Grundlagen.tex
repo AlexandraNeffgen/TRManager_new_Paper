@@ -10,16 +10,107 @@ Zum einen wird auf grundlegende Techniken eingegangen, welche
 		\paragraph{Rest}
 \subsection{Windows Forms}
 	\subsubsection{.Net Bibliothek} 
-\subsection{Web}
+ASP.NET ist eine von Microsoft entwickelte Technologie, welche auf dem .NET
+Framework basiert. Dieses Framework besteht aus einer Vielzahl von 
+Klassenbibliotheken und Schnittstellen. Von den vielen unterstützen 
+Programmiersprachen sind C\# und VB.NET die meist verwendeten. Aufgrund des
+Projektes wird im Rahmen dieser Arbeit nur ASP.NET in Zusammenhang mit C\#
+betrachtet.
+ASP.NET löste 2002 den Vorgänger ASP (Active Server Page) ab. Der Markanteil von
+Webseiten, die mit ASP.NET realisiert wurden, liegt derzeit bei ca. 16\% (2)
+(Stand 2016). Damit belegt ASP.NET den zweiten Platz der meistverwendeten
+Websprachen nach PHP, die ca. 81\% der Webseiten verwenden.
+Das .NET Framework ist die Schnittstelle zwischen dem Programmcode und dem
+Betriebssystem, auf dem das Projekt läuft. Viele Funktionen, welche man
+ansonsten selbst schreiben musste, sind im Framework bereits enthalten und
+lassen sich nutzen. Durch diesen Umstand wird beim Kompilieren der Programmcode
+in eine Zwischensprache umgewandelt, welche sich Microsoft Intermediate Language
+(MSIL) genannt wird. So lassen sich auch in einem Projekt unterschiedliche
+Programmiersprachen verwenden.
+	
+\subsubsection{Model View Controller (MVC)} 
+Der Begriff MVC steht für ein Architekturmuster zum strukturierten und dennoch
+flexiblen Programmentwurf. So soll eine spätere Änderung oder Erweiterung
+erleichtert und eine Wiederverwendbarkeit der einzelnen Komponenten ermöglicht
+werden. Die einzelnen Programmaspekte werden dabei den folgenden drei
+Komponenten zugeordnet (3). Abbildung 3 zeigt die Interaktionen in einer MVC -
+Anwendung.
+
+\paragraph{Model (Modell)}
+Zu den Modellen gehören die Klassen welche die Daten repräsentieren. In diesen
+Klassen ist auch die Validierungslogik implementiert welche zur Einhaltung der
+Geschäftsregeln dient. Dieser Abschnitt ist von der Präsentation und der
+Steuerung unabhängig. 
+\paragraph{View (Präsentation)} 
+Im Allgemeinen stellt eine View Teile der Daten aus den Modellen in einer
+Benutzeroberfläche zu Verfügung. Bei ASP.Net sind dies die Vorlagen - Dateien
+welche von der Anwendung benutzt werden um dynamisch HTML-Antworten zu
+generieren.
+\paragraph{Controller (Steuerung)}
+Die Controller Klassen analysieren die eingehenden Anfragen und rufen aufgrund
+dieser Daten aus der Model - Schicht ab. Daraus bestimmt der Controller welche
+View - Vorlage die Antwort an den Browser gibt.
+	
+\subsection{Logischer Aufbau einer Webseite}
+Konventionen helfen Menschen sich zu orientieren und so haben sich auch einige
+Konventionen im Web Design entwickelt, die eingehalten werden sollten, um die
+Nutzbarkeit einer Seite zu erhöhen. Dazu gehört zum Beispiel, dass ein
+abspielbares Video das bekannte Dreieck das Abspiel-Knopfes enthält, damit der
+Nutzer dieses anklicken kann.
+Es muss für den Nutzer erkennbar sein, welche Elemente klickbar sind. Dies muss
+nicht wie auf alten Webseiten mit blauer Schriftfarbe und unterstrichenem Text
+passieren, aber für den Nutzer muss es erkennbar sein.
+Weiterhin muss Inhalt entfernt werden, der die Person davon ablenkt ihre Aufgabe
+zu erledigen. So fällt es beispielsweise schwer Angebote auf einer
+Produktwebseite zu erkennen, wenn alle Produkte mit großen Texten versehen sind,
+die sagen "`Klick hier für dein Sonderangebot"', da der Nutzer dann nicht mehr
+weiß wo er anfangen soll und vielleicht die Seite sogar wieder verlässt.
+Und zum Schluss hilft eine gute Navigation. So sollte im Kopfbereich der Seite
+oder seitlich immer die Hauptnavigation klar erkenntlich sein und immer gleich
+beziehungsweise sehr ähnlich aussehen, um dem Nutzer auch die Sicherheit zu
+geben, dass er sich noch immer auf der gleichen Seite befindet.
+	
+\subsection{Web Applikationen}
+Als Grundlage für dieses Kapitel ist die Definition von Matthias Rohr aus seinem
+Buch "`Sicherheit von Webanwendungen in der Praxis"' gewählt. Diese besagt: "`Eine
+Webanwendung ist eine Client-Server-Anwendung, die auf Webtechnologien (HTTP,
+HTML etc.) aufsetzt."' (1).
+Eine Webanwendung wird in der Regel über einen Webbrowser aufgerufen, in dem die
+serverseitige Anwendung dargestellt wird. Es ist aber auch möglich auf andere
+Weise auf eine Webanwendung zuzugreifen, etwa über eine Kommandozeile. Daher
+wird in der Regel vom Client oder aber User Agent gesprochen.
+
+Abbildung 2: 3 - Schichtenarchitektur einer Webanwendung
+
+Serverseitig wird die Anwendung auf einem Webserver oder Applikationsserver
+ausgeführt. Um dies nicht unnötig kompliziert zu gestalten wird im Rahmen dieser
+Arbeit verallgemeinert von einem Webserver gesprochen. Dieser kann in der Praxis
+unter anderem auch für ganze Cluster aus Webservern und Applikationsservern
+bestehen. Dieser Webserver greift nun seinerseits in der Regel auf
+Hintergrundysteme wie etwa Datenbanken zu. So entsteht die so genannte 3 -
+Schichtenarchitektur welche in Abbildung 2 dargestellt ist. Zur
+Veranschaulichung wurden exemplarisch Technologien den einzelnen Schichten
+zugeordnet.
+Mittlerweile reicht diese Darstellung kaum mehr aus, da deutlich mehr Schichten
+benötigt werden, etwa weil auf deutlich mehr als ein Hintergrundsystem
+zugegriffen wird und auch der Serverseitige Teil der Anwendung separat
+gegliedert ist. Für dieses doch recht strukturierte Projekt der
+Trailerabfertigung reicht das 3 Schichten Modell allerdings zum Verständnis.
+
 Framework
 
 Bootstrap
-The Visual Studio 2013 project templates use Bootstrap, a layout and theming
-framework created by Twitter. Bootstrap uses CSS3 to provide responsive design,
-which means layouts can dynamically adapt to different browser window sizes. 
-You can also use Bootstrap's theming feature to easily effect a change in the
-application's look and feel. By default, the ASP.NET Web Application template in
-Visual Studio 2013 includes Bootstrap as a NuGet package.
-
+Bei Bootstrap handelt es sich um ein freies CSS\/HTML\/JavaScript - Framework.
+Bootstrap wurde ursprünglich von Twitter als internes Tool zu Vereinheitlichung
+der Oberflächenprogrammierung entwickelt. In Rahmen dieses Projektes merke
+Twitter, dass sich mit diesem Tool deutlich mehr gestalten lässt. So sorgt
+dieses Tool nicht nur für ein einheitliches Aussehen, sondern auch für eine
+Reduzierung der Entwicklungszeit, da die Toolkits das Design erheblich
+vereinfachten.
+Die Vorlagen in den neueren Versionen von Visual Studio enthalten bereits von
+vornherein Bootstrap. Die wesentlichen Eigenschaften des Designs wie etwa die
+Text- und Hintergrundfarben oder aber auch die einzelnen Größen sind in der
+"`config.json"' - Datei festgelegt. Diese Datei lässt sich auf der Webseite von
+Bootstrap  eigenhändig zusammenstellen.
 
 \subsection{Mobile}
