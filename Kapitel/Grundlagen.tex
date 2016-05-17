@@ -16,15 +16,26 @@ verwaltet. Ein Datenbankobjekt, wie beispielsweise eine Tabelle, ist immer einem
 Tablespace zu geordnet. Ein Tablespace kann aus einer oder mehreren Dateien
 bestehen.
  
-\subsection{Rest} 
+\subsection{REST}
+\ac{REST} bezeichnet ein Paradigma für verteilte Systeme. Grundgedanke von
+\ac{REST} ist es, einen Service über eine bereits genormte und universelle
+Schnittstelle (\ac{HTTP}) anzubieten. Der Vorteil von \ac{REST} liegt darin,
+dass Webseiten, die ihren Inhalt über HTTP bereitstellen, meistens REST-Konform
+sind (Dynamische Webseiten ausgenommen, da sie ihr Format ändern).  
 \subsection{Spring}
 Das Spring-Framework ist ein quelloffenens Framework für die Java-Plattform. Es
-soll die Entwicklung mit Java/JavaEE vereinfachen und gu
+soll die Entwicklung mit Java/JavaEE vereinfachen und gute Programmierpraktiken
+fördern. Es wird zur Entwicklung von modernen, Java-basierten
+Enterprise-Anwendungen genutzt und bietet eine leicht verständliches
+Programmier- und Konfigurationsmodell. Dabei sind die meisten Komponenten
+voneinander entkoppelt, dies führt zu einer guten Trennung von zum Beispiel
+Geschäftslogik und der darunter verwendeten Umgebung.
 	\subsubsection{Spring Boot}
-	
-		\paragraph{Data}
-		\paragraph{Rest}
-	\subusbsection{Hibernate}
+	Spring Boot bietet eine vollständige, lauffähige Umgebung für einfache
+	Anwendungen, die ohne Konfiguration auskommen und alle Bibliotheken enthält. Es
+	eignet sich gut für kleinere, überschaubare Anwendungen, in denen keine
+	komplexen Konfigurationsmöglichkeiten benötigt werden.
+	\subsubsection{Hibernate}
 	Hibernate ist ein Persistenz und \ac{ORM}-Framework für Java. Es wird verwendet
 	um objektrelationale Abbildungen in relationalen Datenbanksystemen umzusetzen.
 	Hierzu bildet es eine Abstraktionsschickt zwischen der Datenbank und dem
