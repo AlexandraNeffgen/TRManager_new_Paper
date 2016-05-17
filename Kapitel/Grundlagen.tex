@@ -36,8 +36,9 @@ Geschäftslogik und der darunter verwendeten Umgebung.
 	eignet sich gut für kleinere, überschaubare Anwendungen, in denen keine
 	komplexen Konfigurationsmöglichkeiten benötigt werden.
 	\subsubsection{Hibernate}
-	Hibernate ist ein Persistenz und \ac{ORM}-Framework für Java. Es wird verwendet
-	um objektrelationale Abbildungen in relationalen Datenbanksystemen umzusetzen.
+	Hibernate ist ein Persistenz- und \acs{ORM}-Framework für Java. Es wird
+	verwendet, um objektrelationale Abbildungen in relationalen Datenbanksystemen
+	umzusetzen.
 	Hierzu bildet es eine Abstraktionsschickt zwischen der Datenbank und dem
 	Benutzer. So muss sich der Benutzer zum größtenteil nicht mehr mit dem Mapping
 	und der Datenbank an sich beschäftigen und kann gegen die Schnittstelle von
@@ -68,8 +69,16 @@ Der Begriff MVC steht für ein Architekturmuster zum strukturierten und dennoch
 flexiblen Programmentwurf. So soll eine spätere Änderung oder Erweiterung
 erleichtert und eine Wiederverwendbarkeit der einzelnen Komponenten ermöglicht
 werden. Die einzelnen Programmaspekte werden dabei den folgenden drei
-Komponenten zugeordnet (3). Abbildung MARKIERUNG zeigt die Interaktionen in
-einer MVC - Anwendung.
+Komponenten zugeordnet. Abbildung \ref{fig:mvc_basic} auf Seite
+\pageref{fig:mvc_basic} zeigt die Interaktionen in einer MVC - Anwendung.
+ \begin{figure}[H]
+\begin{minipage}{\linewidth}
+ \includegraphics[width=0.9\linewidth]{grafx/MVC_grundlage}
+ \caption[Interaktionen im MVC-Modell]{Interaktionen im
+ MVC-Modell\footnote{https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/MVC-Process.svg/2000px-MVC-Process.svg.png}}
+  \label{fig:mvc_basic}
+\end{minipage}
+\end{figure}
  
 \paragraph{Model (Modell)}
 Zu den Modellen gehören die Klassen welche die Daten repräsentieren. In diesen
@@ -105,7 +114,7 @@ oder seitlich immer die Hauptnavigation klar erkenntlich sein und immer gleich
 beziehungsweise sehr ähnlich aussehen, um dem Nutzer auch die Sicherheit zu
 geben, dass er sich noch immer auf der gleichen Seite befindet.
 	
-\subsection{Web Applikationen}
+\subsection{Web-Applikationen}
 Als Grundlage für dieses Kapitel ist die Definition von Matthias Rohr aus seinem
 Buch "`Sicherheit von Webanwendungen in der Praxis"' gewählt. Diese besagt: "`Eine
 Webanwendung ist eine Client-Server-Anwendung, die auf Webtechnologien (HTTP,
@@ -114,29 +123,39 @@ Eine Webanwendung wird in der Regel über einen Webbrowser aufgerufen, in dem die
 serverseitige Anwendung dargestellt wird. Es ist aber auch möglich auf andere
 Weise auf eine Webanwendung zuzugreifen, etwa über eine Kommandozeile. Daher
 wird in der Regel vom Client oder aber User Agent gesprochen.
-
-MARKIERUNG
-Abbildung 2: 3 - Schichtenarchitektur einer Webanwendung
-
+\pageref{fig:webapp_layers}
+ \begin{figure}[H]
+\begin{minipage}{\linewidth}
+ \includegraphics[width=0.9\linewidth]{grafx/Web_3_Schichten}
+ \caption[Schichtenarchitektur einer Webanwendung]{Schichtenarchitektur einer
+ Webanwendung}
+  \label{fig:webapp_layers}
+\end{minipage}
+\end{figure}
 Serverseitig wird die Anwendung auf einem Webserver oder Applikationsserver
 ausgeführt. Um dies nicht unnötig kompliziert zu gestalten wird im Rahmen dieser
 Arbeit verallgemeinert von einem Webserver gesprochen. Dieser kann in der Praxis
 unter anderem auch für ganze Cluster aus Webservern und Applikationsservern
 bestehen. Dieser Webserver greift nun seinerseits in der Regel auf
-Hintergrundysteme wie etwa Datenbanken zu. So entsteht die so genannte 3 -
-Schichtenarchitektur welche in Abbildung 2 dargestellt ist. Zur
-Veranschaulichung wurden exemplarisch Technologien den einzelnen Schichten
-zugeordnet.
+Hintergrundysteme wie etwa Datenbanken zu. So entsteht die so genannte
+3-Schichtenarchitektur, welche in Abbildung \ref{fig:webapp_layers} auf Seite
+\pageref{fig:webapp_layers} dargestellt ist. Zur Veranschaulichung wurden
+exemplarisch Technologien den einzelnen Schichten zugeordnet.
 Mittlerweile reicht diese Darstellung kaum mehr aus, da deutlich mehr Schichten
 benötigt werden, etwa weil auf deutlich mehr als ein Hintergrundsystem
 zugegriffen wird und auch der Serverseitige Teil der Anwendung separat
-gegliedert ist. Für dieses doch recht strukturierte Projekt des TRManager reicht
-das 3 Schichten Modell allerdings zum Verständnis.
+gegliedert ist. Für dieses doch recht strukturierte Projekt des TRManagers
+reicht das 3-Schichten-Modell allerdings zum Verständnis.
 
 \subsection{Framework}
-
+Ein Framework ist eine Art Rahmen, die Programmieren ein Grundgerüst für
+bestimmte Funktionen bietet. Dabei ist ein Framework selbst kein eigenständiges
+Programm, es bietet Funktionen und gibt eine bestimmte Struktur vor, die
+eigentliche Anwendung wird unter Verwendung dieses Gerüsts implementiert.
+Frameworks unterstützen den Programmierer auch bei der Umsetzung des
+\ac{DRY}-Prinzips, so dass Wiederholungen vermieden werden.
 \paragraph{Bootstrap}
-Bei Bootstrap handelt es sich um ein freies CSS\/HTML\/JavaScript - Framework.
+Bei Bootstrap handelt es sich um ein freies CSS/HTML/JavaScript-Framework.
 Bootstrap wurde ursprünglich von Twitter als internes Tool zu Vereinheitlichung
 der Oberflächenprogrammierung entwickelt. In Rahmen dieses Projektes merke
 Twitter, dass sich mit diesem Tool deutlich mehr gestalten lässt. So sorgt
