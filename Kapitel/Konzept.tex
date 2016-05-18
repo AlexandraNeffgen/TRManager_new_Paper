@@ -72,8 +72,7 @@ für jeden Client gleich sind. Auch andere Applikationen können so ohne Probleme
 auf diesen Dienst zugreifen, um zum Beispiel die gesammelten Daten anderweitig
 zu verwenden. 
 
-	\subsubsection{Datenbank}
-	
+\subsubsection{Datenbank}
 	Die Datenbank-Struktur wird aus den annotierten Objektklassen generiert.
 	Ermöglicht wird dies durch Spring JPA, dies wird im Kapitel "`Backend"'
 	erläutert. Als Datenbankserver soll MySQL zur Verwendung kommen, da die
@@ -94,6 +93,17 @@ zu verwenden.
 		Verwaltung der Datensätze ermöglicht werden. Diese Funktionen werden für
 		"`normale"' Benutzer ausgeblendet.
 		
+	\subsubsection{Mobile}
+		Die mobilen Clients sollen den selben Funktionsumfang haben wie auch der
+		native Client. So soll es den Lehrern möglich sein flexibel mit einem Tablett
+		die Lokation des Trainingsraumes spontan zu wechseln, ohne dabei an einen fest
+		installierten Rechner gebunden zu sein. Beschäftigt man sich allerdings mit
+		mobilen Anwendungen, wird man feststellen, dass man dabei zumindest für die
+		zwei gängigen Plattformen Android und IOS programmieren muss. Die
+		unterschiedlichen Plattformen führen zu einem erhöhten Wartungsaufwand. Um
+		dies zu verhindern, wird ein Web-Client entwickelt, welcher im nächsten
+		Abschnitt vorgestellt wird. 
+		
 	\subsubsection{Web}
 		Der Web-Client soll ähnlich dem nativen Client dem Benutzer die derzeitig
 		anwesenden Schüler anzeigen, jedoch wird dieser als Webseite bereitgestellt.
@@ -102,11 +112,17 @@ zu verwenden.
 		im Zuge dieser Arbeit für den Einsatz in diesem Umfeld evaluiert und das beste
 		ausgewählt. Zur Auswahl stehen \ac{ASP}.NET von Microsoft, \ac{JSF},
 		Bootstrap und Zend.
+		Der Webclient ermöglicht es die Anwendung sowohl auf einem klassischen
+		Desktop-PC zu verwenden, als auch auf mobilen Endgeräten. Durch die Verwendung
+		eines Webclients ist es daher nicht nötig eine Applikation für die
+		unterschiedlichen mobilen Plattformen zu entwickeln um deren Vorteile für den
+		Anwender zu haben.
+		
+	\subsection{VPN}
+		
+		VPN leisten?
+	
 	\subsubsection{Framework} 
-		\paragraph{Zend(Weg?)}
-	\subsubsection{Mobile}
-	VPN leisten?
-		\paragraph{IOS}
-		\paragraph{Android}
+	\paragraph{Zend(Weg?)}
 
 
