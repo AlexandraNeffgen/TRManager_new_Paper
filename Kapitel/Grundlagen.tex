@@ -10,8 +10,8 @@ Unter einer Datenbank versteht man eine Ansammlung von Daten, die logisch
 als eine Einheit betrachtet werden. Der Unterschied zu einem Dateisystem liegt in
 einigen Anforderungen an eine Datenbank. Zu diesen Anforderungen gehört etwa das
 Handling von mehreren konkurrierenden Zugriffen.
-\cite{Sicherheit_von_Webanwendungen_in_der_Praxis} Die Daten werden physisch
-in Dateien gespeichert, logisch allerdings in so genannten Tablespaces
+Die Daten
+werden physisch in Dateien gespeichert, logisch allerdings in so genannten Tablespaces
 verwaltet. Ein Datenbankobjekt, wie beispielsweise eine Tabelle, ist immer einem
 Tablespace zu geordnet. Ein Tablespace kann aus einer oder mehreren Dateien
 bestehen.
@@ -101,7 +101,7 @@ Komponenten zugeordnet. Abbildung \ref{fig:mvc_basic} auf Seite
 \end{figure}
  
 \paragraph{Model (Modell)}
-Zu den Modellen gehören die Klassen welche die Daten repräsentieren. In diesen
+Zu den Modellen gehören die Klassen, welche die Daten repräsentieren. In diesen
 Klassen ist auch die Validierungslogik implementiert welche zur Einhaltung der
 Geschäftsregeln dient. Dieser Abschnitt ist von der Präsentation und der
 Steuerung unabhängig. 
@@ -112,8 +112,8 @@ welche von der Anwendung benutzt werden um dynamisch HTML-Antworten zu
 generieren.
 \paragraph{Controller (Steuerung)}
 Die Controller Klassen analysieren die eingehenden Anfragen und rufen aufgrund
-dieser Daten aus der Model - Schicht ab. Daraus bestimmt der Controller welche
-View - Vorlage die Antwort an den Browser gibt.
+dieser Daten aus der Model-Schicht ab. Daraus bestimmt der Controller welche
+View-Vorlage die Antwort an den Browser gibt.
 	
 \subsection{Logischer Aufbau einer Webseite}
 Konventionen helfen Menschen sich zu orientieren und so haben sich auch einige
@@ -138,7 +138,7 @@ geben, dass er sich noch immer auf der gleichen Seite befindet.
 Als Grundlage für dieses Kapitel ist die Definition von Matthias Rohr aus seinem
 Buch "`Sicherheit von Webanwendungen in der Praxis"' gewählt. Diese besagt: "`Eine
 Webanwendung ist eine Client-Server-Anwendung, die auf Webtechnologien (HTTP,
-HTML etc.) aufsetzt."' (1).
+HTML etc.) aufsetzt."'\footnote{\bibentry{Sicherheit_von_Webanwendungen_in_der_Praxis}} .
 Eine Webanwendung wird in der Regel über einen Webbrowser aufgerufen, in dem die
 serverseitige Anwendung dargestellt wird. Es ist aber auch möglich auf andere
 Weise auf eine Webanwendung zuzugreifen, etwa über eine Kommandozeile. Daher
@@ -166,7 +166,6 @@ benötigt werden, etwa weil auf deutlich mehr als ein Hintergrundsystem
 zugegriffen wird und auch der Serverseitige Teil der Anwendung separat
 gegliedert ist. Für dieses doch recht strukturierte Projekt des TRManagers
 reicht das 3-Schichten-Modell allerdings zum Verständnis.
-
 
 \subsection{Framework}
 Ein Framework ist eine Art Rahmen, die Programmieren ein Grundgerüst für
