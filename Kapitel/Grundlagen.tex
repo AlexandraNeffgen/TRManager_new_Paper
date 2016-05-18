@@ -10,7 +10,7 @@ Unter einer Datenbank versteht man eine Ansammlung von Daten, die logisch
 als eine Einheit betrachtet werden. Der Unterschied zu einem Dateisystem liegt in
 einigen Anforderungen an eine Datenbank. Zu diesen Anforderungen gehört etwa das
 Handling von mehreren konkurrierenden Zugriffen.
-\footcite{Sicherheit_von_Webanwendungen_in_der_Praxis} Die Daten werden physisch
+\cite{Sicherheit_von_Webanwendungen_in_der_Praxis} Die Daten werden physisch
 in Dateien gespeichert, logisch allerdings in so genannten Tablespaces
 verwaltet. Ein Datenbankobjekt, wie beispielsweise eine Tabelle, ist immer einem
 Tablespace zu geordnet. Ein Tablespace kann aus einer oder mehreren Dateien
@@ -55,11 +55,16 @@ Transaktionsmanagement und Unterstützung von \ac{JPA},\ac{JDBC} und \ac{JMS}
 	Spring setzt diese mit sogenannten \acs{IoC}-Containern um. \ac{IoC} beschreibt
 	die "`Umkehr der Steuerung"'. Hierbei wird die Steuerung der Anwendung an das
 	Framework abgegeben, die Anwendung selbst wird nur durch dieses aufgerufen.
-	Implementiert wird dies über die "`@Autowired"'-Annotation, dies teil Spring
+	Implementiert wird dies über die "`@Autowired"'-Annotation, dies teilt Spring
 	mit dass hier die Injektion gewünscht ist. Spring verwaltet dann die Zuweisung
 	dieser Objekte.
 	\subsubsection{Aspect Oriented Programming}
-	
+	Aspektorientierte Programmierung(\acs{AOP}) beschreibt ein Programmierparadigma
+	in der objektorientierten Programmierung. Das Ziel der \acs{AOP} ist es,
+	logische Aspekte (oder generische Funktionalität) von der eigentlichen
+	Geschäftslogik zu trennen. Entwickelt wurde dieses Konzept bei Xerox PARC von
+	Gregor Kiczales und seinem Team. 2001 wurde dort auch die erste Sprache dafür
+	vorgestellt, AspectJ, eine aspekt-orientierte Erweiterung von Java.
 \subsection{Windows Forms}
 	\subsubsection{.Net Bibliothek} 
 ASP.NET ist eine von Microsoft entwickelte Technologie, welche auf dem .NET
@@ -162,6 +167,7 @@ zugegriffen wird und auch der Serverseitige Teil der Anwendung separat
 gegliedert ist. Für dieses doch recht strukturierte Projekt des TRManagers
 reicht das 3-Schichten-Modell allerdings zum Verständnis.
 
+
 \subsection{Framework}
 Ein Framework ist eine Art Rahmen, die Programmieren ein Grundgerüst für
 bestimmte Funktionen bietet. Dabei ist ein Framework selbst kein eigenständiges
@@ -169,7 +175,7 @@ Programm, es bietet Funktionen und gibt eine bestimmte Struktur vor, die
 eigentliche Anwendung wird unter Verwendung dieses Gerüsts implementiert.
 Frameworks unterstützen den Programmierer auch bei der Umsetzung des
 \ac{DRY}-Prinzips, so dass Wiederholungen vermieden werden.
-\paragraph{Bootstrap}
+\subsubsection{Bootstrap}
 Bei Bootstrap handelt es sich um ein freies CSS/HTML/JavaScript-Framework.
 Bootstrap wurde ursprünglich von Twitter als internes Tool zu Vereinheitlichung
 der Oberflächenprogrammierung entwickelt. In Rahmen dieses Projektes merke
