@@ -4,10 +4,6 @@
 % Hier nur Grobaufbau, Text in anderen .tex-files im Ordner Kapitel
 % Initiation 
 \documentclass[a4paper,oneside,12pt]{article}
-\usepackage[backend=biber]{biblatex}
-\addbibresource{./bibtex/rfc.bib}
-\addbibresource{./bibtex/custom.bib}
-\defbibheading{bibliography}[\refname]{}
 \usepackage{a4wide}                        	%Ermöglicht eine bessere Ausnutzung von A4 Seiten
 \setlength{\textwidth}{15.5cm}				%Textbreite setzen
 \setlength\oddsidemargin{0.5cm}		 		%Linken Seitenrand setzen (ungerade Seiten)
@@ -44,7 +40,9 @@ hidelinks]{hyperref}
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 %Dokumentgrundgerüst
-
+\usepackage{cite}
+\usepackage{bibentry}
+\nobibliography*
 \begin{document}
 
 
@@ -79,20 +77,6 @@ Bearbeitungszeitraum:			& 19.06.2015\\
 \pagestyle{empty}    						%Unterdrücken der Kopf- und Fußzeilen (Leerseite)
 \cleardoublepage      						%Titelseite beenden
 
-%##################################################################
-%DAS IST EINE HILFE
-%Kopf- und Fußzeilen () reinmachen für kopfzeilen 
-%***********************************************************************************************************************
-%\pagestyle{fancy}                              %Stil der Kopf- und Fußzeilen
-%\lhead[] {\bfseries BELIEBIGER TEXT} 			%Linker Kopf
-%\rhead[\bfseries BELIEBIGER TEXT] {} 			%Rechter Kopf
-%\cfoot{}
-
-%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-%Kopf- und Fußzeilen (Eidesstattliche Erklärung)
-%***********************************************************************************************************************
 \pagestyle{fancy}                              		%Stil der Kopf- und Fußzeilen
 \lhead[] {\bfseries EIDESSTATTLICHE ERKLÄRUNG} 		%Linker Kopf
 \rhead[\bfseries EIDESSTATTLICHE ERKLÄRUNG] {} 		%Rechter Kopf
@@ -319,9 +303,10 @@ Ort, Datum \hspace*{4cm}& & Alexandra Neffgen & & Florian Baier\\
 \cfoot{}    												%Fußzeile
 
 \pagestyle{fancy}
-\section{Literaturverzeichnis}
 \label{sec:literatur}
-\printbibliography
+\bibliography{bibtex/custom}
+\bibliographystyle{plain}
+\renewcommand{\bibname}{ }
 %\newpage
 %\pagestyle{empty}
 %\cleardoublepage
