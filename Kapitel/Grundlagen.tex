@@ -46,6 +46,20 @@ Transaktionsmanagement und Unterstützung von \ac{JPA},\ac{JDBC} und \ac{JMS}
 	und der Datenbank an sich beschäftigen und kann gegen die Schnittstelle von
 	Hibernate programmieren. Diese generiert dann die benötigten SQL-Anweisungen
 	für das darunterliegende Datenbanksystem.
+	\subsubsection{Dependency Injection}
+	Dependency Injection beschreibt in der objektorientierten Programmierung ein
+	Entwurfsmuster, dass die Abhängigkeiten eines Objekts erst zur Laufzeit
+	festlegt. Werden bei der Erzeugung eines Objektes andere Objekte benötigt, sind
+	diese Abhängigkeiten zentral gespeichert und wird nicht selbst vom erzeugten
+	Objekt erzeugt.\\
+	Spring setzt diese mit sogenannten \acs{IoC}-Containern um. \ac{IoC} beschreibt
+	die "`Umkehr der Steuerung"'. Hierbei wird die Steuerung der Anwendung an das
+	Framework abgegeben, die Anwendung selbst wird nur durch dieses aufgerufen.
+	Implementiert wird dies über die "`@Autowired"'-Annotation, dies teil Spring
+	mit dass hier die Injektion gewünscht ist. Spring verwaltet dann die Zuweisung
+	dieser Objekte.
+	\subsubsection{Aspect Oriented Programming}
+	
 \subsection{Windows Forms}
 	\subsubsection{.Net Bibliothek} 
 ASP.NET ist eine von Microsoft entwickelte Technologie, welche auf dem .NET
@@ -54,7 +68,7 @@ Klassenbibliotheken und Schnittstellen. Von den vielen unterstützen
 Programmiersprachen sind C\# und VB.NET die meist verwendeten. Aufgrund des
 Projektes wird im Rahmen dieser Arbeit nur ASP.NET in Zusammenhang mit C\#
 betrachtet.
-ASP.NET löste 2002 den Vorgänger ASP (Active Server Page) ab. Der Markanteil von
+ASP.NET löste 2002 den Vorgänger \ac{ASP} ab. Der Markanteil von
 Webseiten, die mit ASP.NET realisiert wurden, liegt derzeit bei ca. 16\% (2)
 (Stand 2016). Damit belegt ASP.NET den zweiten Platz der meistverwendeten
 Websprachen nach PHP, die ca. 81\% der Webseiten verwenden.
@@ -62,9 +76,8 @@ Das .NET Framework ist die Schnittstelle zwischen dem Programmcode und dem
 Betriebssystem, auf dem das Projekt läuft. Viele Funktionen, welche man
 ansonsten selbst schreiben musste, sind im Framework bereits enthalten und
 lassen sich nutzen. Durch diesen Umstand wird beim Kompilieren der Programmcode
-in eine Zwischensprache umgewandelt, welche sich Microsoft Intermediate Language
-(MSIL) genannt wird. So lassen sich auch in einem Projekt unterschiedliche
-Programmiersprachen verwenden.
+in eine Zwischensprache umgewandelt, welche sich \ac{MSIL} nennt. So lassen sich
+auch in einem Projekt unterschiedliche Programmiersprachen verwenden.
 	
 \subsubsection{Model View Controller (MVC)} 
 Der Begriff MVC steht für ein Architekturmuster zum strukturierten und dennoch
