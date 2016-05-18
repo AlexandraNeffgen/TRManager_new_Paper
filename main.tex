@@ -9,7 +9,7 @@
 \setlength\oddsidemargin{0.5cm}		 		%Linken Seitenrand setzen (ungerade Seiten)
 \setlength\evensidemargin{0cm}				%Linken Seitenrand setzen (gerade Seiten)
 \setlength\marginparwidth{0cm}				%Rechten Seitenrand setzen
-\usepackage[xindy]{glossaries}
+\usepackage[xindy, toc]{glossaries}
 \usepackage{fancyhdr}                       %Ermöglicht die Verwendung von Kopf- und Fußzeilen	
 \usepackage{german}                         %Anpassungen an die deutsche Sprache
 \usepackage[german]{varioref}
@@ -36,7 +36,7 @@
 pdfauthor={Alexandra Neffgen & Florian Baier},  
 hidelinks]{hyperref}
 \setcounter{secnumdepth}{4}
-\include{glossary}
+\include{Kapitel/glossary}
 \makeglossary
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -311,6 +311,9 @@ Ort, Datum \hspace*{4cm}& & Alexandra Neffgen & & Florian Baier\\
 \renewcommand{\bibname}{ }
 \cleardoublepage
 
+
+\pagestyle{fancy}
+\label{sec:glossary}
 \glsaddall
 \printglossaries
 
