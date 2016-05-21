@@ -14,9 +14,20 @@ optional, da der Service in einem geschlossenen Netz betrieben werden soll. Das
 Backend soll zudem Authentifizierungsanfragen auf Anwendungsebene bearbeiten. 
 \subsection{Implementierung}
 	Das Backend wird mit dem quelloffenen Framework Spring umgesetzt. Spring bietet
-	wie in Kapitel
+	wie in Kapitel \ref{Spring} auf Seite \pageref{Spring} beschrieben Funktionen
+	wie Dependency Injection und ähnliches, das die Implementierung eines
+	Webservices erheblich vereinfacht. Die für dieses Projekt verwendeten Module
+	umfassen Spring Boot und Spring Data. Spring Boot erlaubt die einfache
+	Erstellung sofort lauffähiger Spring-Anwendungen, da hier keine komplexen
+	XML-Konfigurationen vorgenommen werden müssen, und das Projekt übersichtlich
+	genug, um keine komplexen Konfigurationen zu benötigen.
 	\subsubsection{Datenbank}
-	
+		Die Datenbank wird von Hibernate (Siehe Kapitel \ref{Hibernate}, Seite
+		\pageref{Hibernate}) aus dem Objektmodell generiert. Hierzu werden die
+		Tabellennamen, Beziehungen und die Optionen wie zum Beispiel "`Not Null"'
+		mithilfe von Annotationen an Hibernate weitergegeben. Aus diesen Informationen
+		erstellt Hibernate das relationale Datenmodell(Siehe Abbildung
+		\ref{fig:er_model}, Seite \pageref{fig:er_model}).
 	 \begin{figure}[H]
 		\begin{minipage}{\linewidth}
 		 	\includegraphics[width=0.9\linewidth]{grafx/ER_Model}
@@ -24,6 +35,28 @@ Backend soll zudem Authentifizierungsanfragen auf Anwendungsebene bearbeiten.
   			\label{fig:er_model}
 		\end{minipage}
 	\end{figure}
+	\begin{description}
+	\item[teacher]
+		Die "`teacher"'-Tabelle hält Daten über die Lehrer vor. Dies umfasst den
+		vollen Namen (name), die Abkürzung (abbreviation) und die Anrede (salutation)
+	\item[form]
+		Die "`form"'-Tabelle hält Daten über die Schulklassen vor, dies beinhaltet die
+		Bezeichnung der Klasse (name) und einen Fremdschlüssel "`teacher\_id"', der
+		den Klassenlehrer referenziert.
+	\item[student]
+		Die "`student"'-Tabelle hält Daten über die Schüler, die im System erfasst
+		sind, vor. Dies umfasst den Namen des Schülers geteilt in Vor- und Nachname
+		(givenname, surname) und einen Fremdschlüssel "`form\_id"', die die
+		Schulklasse, der der Schüler angehört referenziert. Zudem wird die
+		Identifikationsnummer des Schülers gespeichert, um gleichnamige Schüler
+		eindeutig identifizieren zu können (schild\_id).
+	\item[incident]
+		In der "`incident"'-Tabelle werden alle Vorfälle gespeichert, die über den
+		TRManager eingetragen werden. Dazu gehören die Ankunftszeit (arrival), der
+		Zeitpunkt der "`Entlassung"' (department), den zugehörigen Schüler (\ac{FK}
+		student\_id), den schickenden Lehrer (\ac{FK} teacher\_id), ein Kommentarfeld
+		(comment) und eine interne Vorfallsnummer, die Ticket ID(ticket\_id).
+	\end{description}
 
 \subsection{Tests }
 
