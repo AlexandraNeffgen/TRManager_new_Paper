@@ -5,9 +5,16 @@ Erstellung von Web-Services und unterstützt den Programmierer mit Werkzeugen wie
 Hibernate, die die Verwaltung der Datenbank stark vereinfacht und Änderungen an
 der Modellierung direkt in der Datenbank umsetzt.
 \subsection{Anforderungen}
-Wie oben genannt soll das Backend als RESTful-Service gestaltet werden. D
+Das Backend soll den Clients die Daten wie oben genannt über einen
+RESTful-Service zur Verfügung stellen. Dies vereinfacht den Zugriff auf die
+Ressourcen und ist leicht in bestehende Infrastrukturen einzubinden. Das Backend
+soll nach Möglichkeit über \ac{https} zur Verfügung stellen, damit übertragene
+Daten auf dem Weg gesichert sind. Eine Authentifizierung auf Zugriffsebene ist
+optional, da der Service in einem geschlossenen Netz betrieben werden soll. Das
+Backend soll zudem Authentifizierungsanfragen auf Anwendungsebene bearbeiten. 
 \subsection{Implementierung}
-
+	Das Backend wird mit dem quelloffenen Framework Spring umgesetzt. Spring bietet
+	wie in Kapitel
 	\subsubsection{Datenbank}
 	
 	 \begin{figure}[H]
