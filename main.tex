@@ -36,7 +36,7 @@
 pdfauthor={Alexandra Neffgen & Florian Baier},  
 hidelinks]{hyperref}
 \setcounter{secnumdepth}{4}
-\include{Kapitel/glossary}
+\input{Kapitel/glossary}
 \makeglossary
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -290,6 +290,22 @@ Ort, Datum \hspace*{4cm}& & Alexandra Neffgen & & Florian Baier\\
 \newpage
 \pagestyle{empty}
 \cleardoublepage 
+
+\subsection{Fazit}
+\label{Fazit}
+\pagestyle{fancy}
+\input{./Kapitel/Fazit}
+\newpage
+\pagestyle{empty}
+\cleardoublepage 
+
+\subsection{Ausblick}
+\label{Ausblick}
+\pagestyle{fancy}
+\input{./Kapitel/Ausblick}
+\newpage
+\pagestyle{empty}
+\cleardoublepage 
 %END CLIENTS
 
 %HIER WERDEN DANN NOCH WEITERE ERGÄNZT BEI BEDARF		
@@ -309,13 +325,24 @@ Ort, Datum \hspace*{4cm}& & Alexandra Neffgen & & Florian Baier\\
 \bibliography{bibtex/custom}
 \bibliographystyle{plain}
 \renewcommand{\bibname}{ }
+\newpage
 \cleardoublepage
 
-
+\section*{Glossar}
+\label{sec:glossary}
+\input{Kapitel/glossary}
 \pagestyle{fancy}
 \label{sec:glossary}
 \glsaddall
 \printglossaries
+
+\section{Anhang}
+\label{Anhang}
+\pagestyle{fancy}
+\input{./Kapitel/anhang}
+\newpage
+\pagestyle{empty}
+\cleardoublepage 
 
 %\newpage
 %\pagestyle{empty}

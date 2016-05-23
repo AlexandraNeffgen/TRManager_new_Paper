@@ -21,10 +21,42 @@ Backend soll zudem Authentifizierungsanfragen auf Anwendungsebene bearbeiten.
 	Erstellung sofort lauffähiger Spring-Anwendungen, da hier keine komplexen
 	XML-Konfigurationen vorgenommen werden müssen, und das Projekt übersichtlich
 	genug, um keine komplexen Konfigurationen zu benötigen.
-	\subsubsection{Datenbank}
+	\subsubsection{Model}
+		Das Model legt die Datenstrukturen fest, in der der Webservice arbeitet.
+		Ebenso legen diese über die annotierten Model-Klassen die Datenbankstruktur
+		fest (Siehe Kapitel "`Hibernate"'). Für die Darstellung der Daten werden
+		folgende Klassen benötigt:
+		\begin{description}
+		\item[LazyObject]
+		Die LazyObject-Klasse ist die Basis-Klasse aller anderen Model-Klassen. Von
+		dieser erben alle anderen Klassen. Sie legt die Grundstruktur jedes Objektes
+		fest, wie zum Beispiel die ID.(Siehe Anhang, Seite \pageref{LazyObject})	 
+		\item[Teacher]
+		Die Teacher-Klasse stellt jeweils einen Lehrer dar. Jeder Lehrer hat einen
+		Namen und eine Abkürzung. 
+		\item[Form]
+		Die Form-Klasse stellt jeweils eine Schulklasse dar. Jede Klasse hat einen
+		Klassenlehrer, einen Namen und eine Liste mit allen in dieser Klasse
+		befindlichen Schülern.
+		\item[Student]
+		Die Student-Klasse stellt jeweils einen Schüler dar. Gespeichert werden der
+		Name des Schülers, geteilt in Vor- und Nachname, die Klasse in der der Schüler
+		ist und eine Liste aller Vorfälle, in die der Schüler verwickelt ist.
+		\item[Incident]
+		Die Incident-Klasse stellt jeweils einen Vorfall dar. Jeder Vorfall speichert
+		den schickenden Lehrer, den zugehörigen Schüler, eine interne Vorfallsnummer,
+		die Ankunftszeit und Entlassungszeit sowie einen Kommentar, der den Vorfall
+		selbst beschreibt und frei eingegeben werden kann.
+		\item[Comment]
+		Die Comment-Klasse stellt jeweils einen vorgefertigten Kommentar dar, der von
+		den Clients verwendet werden kann um das Eintragen eines neuen Vorfalls zu
+		vereinfachen.
+		\end{description}
+	\paragraph{Datenbank}
 		Die Datenbank wird von Hibernate (Siehe Kapitel \ref{Hibernate}, Seite
-		\pageref{Hibernate}) aus dem Objektmodell generiert. Hierzu werden die
-		Tabellennamen, Beziehungen und die Optionen wie zum Beispiel "`Not Null"'
+		\pageref{Hibernate}) aus dem Objektmodell(Beschrieben in Kapitel \ref{Model}
+		auf Seite \pageref{Model}) generiert.
+		Hierzu werden die Tabellennamen, Beziehungen und die Optionen wie zum Beispiel "`Not Null"'
 		mithilfe von Annotationen an Hibernate weitergegeben. Aus diesen Informationen
 		erstellt Hibernate das relationale Datenmodell(Siehe Abbildung
 		\ref{fig:er_model}, Seite \pageref{fig:er_model}).
@@ -56,9 +88,14 @@ Backend soll zudem Authentifizierungsanfragen auf Anwendungsebene bearbeiten.
 		Zeitpunkt der "`Entlassung"' (department), den zugehörigen Schüler (\ac{FK}
 		student\_id), den schickenden Lehrer (\ac{FK} teacher\_id), ein Kommentarfeld
 		(comment) und eine interne Vorfallsnummer, die Ticket ID(ticket\_id).
+	\item[comment]
+		In der "`comment"'-Tabelle werden vorgefertigte Antworten für Vorfälle
+		gespeichert. Das Feld "`text"' hält hierbei jeweils einen vorgefertigten
+		Kommentar vor, der von den Clients abgerufen werden kann.
 	\end{description}
-
-\subsection{Tests }
+	\subsubsection{Controller}
+	
+\subsection{Tests}
 
 
 	\subsubsection{In Memory DB ?}
