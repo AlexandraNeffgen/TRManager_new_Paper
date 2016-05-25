@@ -94,6 +94,33 @@ Backend soll zudem Authentifizierungsanfragen auf Anwendungsebene bearbeiten.
 		Kommentar vor, der von den Clients abgerufen werden kann.
 	\end{description}
 	\subsubsection{Controller}
+	Die Controller sind die Anlaufstelle für Anfragen über das Netzwerk und
+	bearbeiten diese.
+	Sie bedienen die Clients und liefern ihnen die angeforderten Daten zurück. Die
+	in dieser Arbeit verwendeten Controller werden von Java beziehungsweise Spring
+	(@RestController) bereitgestellt und erlauben eine einfach Zuordnung zu einer
+	\ac{URI}, unter der sie ansprechbar sind sowie die Zuordnung der Methoden, die die unterschiedlichen Anfragen (zum
+	Beispiel POST, PUT oder DELETE) bearbeiten. 
+	\paragraph{Aufbau der Controller}
+	Im Allgemeinen gibt es für jede Model-Klasse einen Controller, der Daten zum
+	jeweiligen Model liefern kann. Es können jedoch noch weitere Controller(oder
+	weniger) definiert werden, die mehr oder weniger Funktionalität sowie
+	zusätzliche, vom Datenmodell abgekoppelte, Funktionen anbieten können. So wurde
+	zum Beispiel zur generellen Verwaltung des Datenbestandes ein Backup-Controller
+	implementiert, der den gesamten Datenbestand in einer Anfrage ausliefern kann
+	sowie löschen kann und in den Anfangszustand zurücksetzt.
+	\lstinputlisting[label=controller_definition,caption=Definition
+	eines Controllers]{listings/controller_definition.java}
+	In Listing \ref{controller_definition} sieht man die einfache Definition eines
+	Controllers. Die Klasse wird mit der "`@RestController"'-Annotation versehen,
+	die dem \ac{IoC}-Container mitteilt, dass diese Klasse als \ac{REST}-Controller
+	definiert ist. Die Annotation "`@RequestMapping"' legt die Adresse fest, auf
+	der der Controller lauscht (In diesem Fall
+	"`<hostname>/trmanager/form"') und Anfragen entgegennimmt. Die in der Klasse
+	definierte Beispielmethode liefert auf eine GET-Anfrage alle Form-Objekte
+	(definiert über "`method=RequestMethod.GET"') aus.
+	
+	
 	
 \subsection{Tests}
 
