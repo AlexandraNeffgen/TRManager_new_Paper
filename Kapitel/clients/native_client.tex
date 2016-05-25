@@ -1,6 +1,22 @@
+Der native Client stellt die grafische Benutzeroberfläche dar, die zusätzlich
+auch die Programm-Logik enthält. Der Client ist als \adc{MVC} Anwendung
+konzipiert. Die einzelnen funktionalen Anforderungen an den Client sind im
+Kapitel TODO aufgeführt. Im folgenden werden die einzelnen Aspekte und Elemente
+aufgeführt und erläutert.
 \subsection{Anforderungen}
+Die Daten werden vom Backend über einen Restful-Client in JSON empfangen und dem
+Benutzer in einer grafischen Oberfläsche entsprechend prädentiert. Dabei werden
+die Daten als Objekte in der Anwendung gehalten. Um ausfallsicher zu arbeiten
+wird jede Änderung der Daten direkt an das Backend gesendet.
 
 \subsection{Implementierung}
+	Für den nativen Client wird die Programmiersprache C\# so wie das Framework
+	einer WindowsForms Anwendung verwendet. Wie in Kapitel \ref{Windows Forms}
+	beschrieben verwendet eine solche Anwendung das .Net Framework. Dies ermöglicht 
+	
+	\subaubsection{Model}
 
-\subsection{Model}
+\subsection{WEB-Request}
+
+\subsection{Serialize JSON}
 
