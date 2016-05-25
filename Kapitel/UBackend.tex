@@ -119,6 +119,19 @@ Backend soll zudem Authentifizierungsanfragen auf Anwendungsebene bearbeiten.
 	"`<hostname>/trmanager/form"') und Anfragen entgegennimmt. Die in der Klasse
 	definierte Beispielmethode liefert auf eine GET-Anfrage alle Form-Objekte
 	(definiert über "`method=RequestMethod.GET"') aus.	
+	\paragraph{Funktionsumfang der Controller}
+	Jeder Controller der einer Model-Klasse (Form, Teacher, Student, Incident)
+	zugeordnet ist muss mindestens die folgenden Methoden umsetzen:\\
+	\begin{itemize}
+	  \item Ausliefern der Daten (getById \& getAll)
+	  \item Hinzufügen von einzelnen Datensätzen (add)
+	  \item Hinzufügen von mehreren Datensätzen (addBulk)
+	  \item Manipulation der Daten (edit)
+	  \item Löschen von Datensätzen (delete)
+	\end{itemize}
+	Diese werden benötigt, um den Clients die nötigen Funktionen zu bieten, um die
+	Anforderungen an das Programm umzusetzen. 
+	
 \subsection{Tests}
 
 
