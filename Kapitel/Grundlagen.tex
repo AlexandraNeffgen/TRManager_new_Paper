@@ -10,6 +10,26 @@ Unter einer Datenbank versteht man eine Ansammlung von Daten, die logisch
 als eine Einheit betrachtet werden. Der Unterschied zu einem Dateisystem liegt in
 einigen Anforderungen an eine Datenbank. Zu diesen Anforderungen gehört etwa das
 Handling von mehreren konkurrierenden Zugriffen.
+Wird allgemein von einer Datenbank gesprochen, ist meist ein \ac{DBMS} gemeint.
+Ein DBMS enthält kann mehr als eine Datenbank verwalten. Die Datenbank selbst
+steht in diesem Kontext lediglich für die gespeicherten Informationen und
+deren Meta-Daten. Wird also von der Datenbank gesprochen, muss dieser Begriff im
+Kontext betrachtet werden. 
+Neben dem Handling von konkurrierenden Zugriffen stellt ein DBMS weitere
+Features zur Verfügung. Dazu gehört standardmäßig auch die Implementierung von
+Regeln zur Zugriffssteuerung. So lässt sich die Datenbank gegen unerlaubte
+Manipulation oder lesende Zugriffe schützen. Ein DBMS liefert zu dem auch
+Backup- und Recovery-Verfahren mit.
+Um ein DBMS zu nutzen wird eine Benutzerschnittelle geboten. So kann das DBMS
+zum einem direkt über eine grafische Benutzeroberfläche steuern, oder aber über
+Schnittstellen wie etwa ODBC.
+Eine weitere Grundlegende Anforderung an ein DBMS ist die Vermeidung von
+Redundanz, sowie die Sicherstellung einer maximalen Integrität. Sind
+Informationen mehr als einmal in einer Datenbank gespeichert, ist es schwer
+sicherzustellen, dass diese alle den gleichen Stand haben, wenn die Information
+geupdatet wird. Die Datenintegrität lässt sich erzwingen, in dem
+beispielsweise ein Datumsfeld auch ledigliche Werte in einem Datumsformat
+aktzeptiert. 
 
  
 \subsection{REST}
@@ -80,7 +100,7 @@ lassen sich nutzen. Durch diesen Umstand wird beim Kompilieren der Programmcode
 in eine Zwischensprache umgewandelt, welche sich \ac{MSIL} nennt. So lassen sich
 auch in einem Projekt unterschiedliche Programmiersprachen verwenden.
 	
-\subsubsection{Model View Controller (MVC)} 
+	\subsubsection{Model View Controller (MVC)} 
 Der Begriff MVC steht für ein Architekturmuster zum strukturierten und dennoch
 flexiblen Programmentwurf. So soll eine spätere Änderung oder Erweiterung
 erleichtert und eine Wiederverwendbarkeit der einzelnen Komponenten ermöglicht
