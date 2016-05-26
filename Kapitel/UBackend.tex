@@ -8,14 +8,14 @@ der Modellierung direkt in der Datenbank umsetzt.
 Das Backend soll den Clients die Daten wie oben genannt über einen
 RESTful-Service zur Verfügung stellen. Dies vereinfacht den Zugriff auf die
 Ressourcen und ist leicht in bestehende Infrastrukturen einzubinden. Das Backend
-soll nach Möglichkeit über \ac{https} zur Verfügung stellen, damit übertragene
+soll nach Möglichkeit über \ac{HTTPS} zur Verfügung stellen, damit übertragene
 Daten auf dem Weg gesichert sind. Eine Authentifizierung auf Zugriffsebene ist
 optional, da der Service in einem geschlossenen Netz betrieben werden soll. Das
 Backend soll zudem Authentifizierungsanfragen auf Anwendungsebene bearbeiten. 
 \subsection{Implementierung}
 	Das Backend wird mit dem quelloffenen Framework Spring umgesetzt. Spring bietet
-	wie in Kapitel \ref{Spring} auf Seite \pageref{Spring} beschrieben Funktionen
-	wie Dependency Injection und ähnliches, das die Implementierung eines
+	wie in Kapitel \ref{ssec:Spring} auf Seite \pageref{ssec:Spring} beschrieben
+	Funktionen wie Dependency Injection und ähnliches, das die Implementierung eines
 	Webservices erheblich vereinfacht. Die für dieses Projekt verwendeten Module
 	umfassen Spring Boot und Spring Data. Spring Boot erlaubt die einfache
 	Erstellung sofort lauffähiger Spring-Anwendungen, da hier keine komplexen
@@ -30,7 +30,7 @@ Backend soll zudem Authentifizierungsanfragen auf Anwendungsebene bearbeiten.
 		\item[LazyObject]
 		Die LazyObject-Klasse ist die Basis-Klasse aller anderen Model-Klassen. Von
 		dieser erben alle anderen Klassen. Sie legt die Grundstruktur jedes Objektes
-		fest, wie zum Beispiel die ID.(Siehe Anhang, Seite \pageref{LazyObject})	 
+		fest, wie zum Beispiel die ID.(Siehe Anhang, Seite \pageref{ssec:LazyObject})	 
 		\item[Teacher]
 		Die Teacher-Klasse stellt jeweils einen Lehrer dar. Jeder Lehrer hat einen
 		Namen und eine Abkürzung. 
@@ -53,9 +53,9 @@ Backend soll zudem Authentifizierungsanfragen auf Anwendungsebene bearbeiten.
 		vereinfachen.
 		\end{description}
 	\paragraph{Datenbank}
-		Die Datenbank wird von Hibernate (Siehe Kapitel \ref{Hibernate}, Seite
-		\pageref{Hibernate}) aus dem Objektmodell(Beschrieben in Kapitel \ref{Model}
-		auf Seite \pageref{Model}) generiert.
+		Die Datenbank wird von Hibernate (Siehe Kapitel \ref{sssec:Hibernate}, Seite
+		\pageref{sssec:Hibernate}) aus dem Objektmodell(Beschrieben in Kapitel
+		\ref{ssssec:Model} auf Seite \pageref{ssssec:Model}) generiert.
 		Hierzu werden die Tabellennamen, Beziehungen und die Optionen wie zum Beispiel "`Not Null"'
 		mithilfe von Annotationen an Hibernate weitergegeben. Aus diesen Informationen
 		erstellt Hibernate das relationale Datenmodell(Siehe Abbildung
@@ -100,7 +100,7 @@ Backend soll zudem Authentifizierungsanfragen auf Anwendungsebene bearbeiten.
 	in dieser Arbeit verwendeten Controller werden von Java beziehungsweise Spring
 	(@RestController) bereitgestellt und erlauben eine einfach Zuordnung zu einer
 	\ac{URI}, unter der sie ansprechbar sind sowie die Zuordnung der Methoden, die die unterschiedlichen Anfragen (zum
-	Beispiel POST, PUT oder DELETE) bearbeiten. 
+	Beispiel GET, POST, PUT oder DELETE) bearbeiten. 
 	\paragraph{Aufbau der Controller}
 	Im Allgemeinen gibt es für jede Model-Klasse einen Controller, der Daten zum
 	jeweiligen Model liefern kann. Es können jedoch noch weitere Controller(oder
