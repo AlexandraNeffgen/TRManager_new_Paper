@@ -133,9 +133,26 @@ Backend soll zudem Authentifizierungsanfragen auf Anwendungsebene bearbeiten.
 	Anforderungen an das Programm umzusetzen. 
 	
 \subsection{Tests}
-
-
-	\subsubsection{In Memory DB ?}
+Die Tests werden dazu verwendet um die Integrität und die Validatät des Backends
+zu überprüfen. Hierzu wird JUnit verwendet, (Siehe Kapitel \ref{sssec:JUnit} auf
+Seite \pageref{sssec:JUnit}) um automatisierte Unit-Tests durchzuführen und die
+Funktionalität des Backends zu gewährleisten.\\
+Zu Beginn der Tests werden Testdatensätze in die Datenbank geladen (Von der
+produktiven Datenbank getrennte Instanz) und auf diesen werden dann die Tests
+durchgeführt. Getestet werden die Controller (Anfragen über das Netzwerk) und
+die Services beziehungsweise die Repositories. Bei den Controllern wird die
+Richtigkeit der HTTP-Antworten geprüft sowie die Authentifizierung. Die Services
+und Repositories werden insoweit geprüft, dass sie die Datensätze anhand der
+implementierten Logik zurückgeben.
+	\subsubsection{Controller-Tests}
+		\paragraph{Teacher-Controller}
+		\paragraph{Form-Controller}
+		\paragraph{Student-Controller}
+		\paragraph{Incident-Controller}
+		\paragraph{Comment-Controller}
+		\paragraph{User-Controller}
+	\subsubsection{Service-Tests}
+	\subsubsection{Repository-Tests}
 
 
 \subsection{Generischer Controller ??}

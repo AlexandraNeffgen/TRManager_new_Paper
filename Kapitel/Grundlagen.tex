@@ -1,9 +1,7 @@
-Das Studium Informationstechnik beinhaltet eine Vielzahl an Bereichen, die für
-die Informatik von Bedeutung sind. Für die Entwicklung einer Anwendung ist es
-notwendig, grundlegende Techniken anzuwenden sowie diese zu kombinieren. Um das
-Projekt besser nachvollziehen zu können, werden im Folgenden die Grundlagen
-erklärt, die für das Projekt TRManager relevant sind. Zum einen wird auf
-grundlegende Techniken eingegangen, welche
+Um das Projekt besser nachvollziehen zu können, werden im Folgenden die
+Grundlagen erklärt, die für das Projekt TRManager relevant sind. Es wird auf
+grundlegende Techniken, die für die Arbeit relevant sind, eingegangen und
+erklärt sowie weiterführende, spezielle Techniken erläutert.
  
 \subsection{Datenbanken}
 Unter einer Datenbank versteht man eine Ansammlung von Daten, die logisch
@@ -18,14 +16,14 @@ Kontext betrachtet werden.
 Neben dem Handling von konkurrierenden Zugriffen stellt ein DBMS weitere
 Features zur Verfügung. Dazu gehört standardmäßig auch die Implementierung von
 Regeln zur Zugriffssteuerung. So lässt sich die Datenbank gegen unerlaubte
-Manipulation oder lesende Zugriffe schützen. Ein DBMS liefert zu dem auch
+Manipulation oder lesende Zugriffe schützen. Ein DBMS liefert oft auch
 Backup- und Recovery-Verfahren mit.
-Um ein DBMS zu nutzen wird eine Benutzerschnittelle geboten. So kann das DBMS
-zum einem direkt über eine grafische Benutzeroberfläche steuern, oder aber über
-Schnittstellen wie etwa ODBC.
-Eine weitere Grundlegende Anforderung an ein DBMS ist die Vermeidung von
-Redundanz, sowie die Sicherstellung einer maximalen Integrität. Sind
-Informationen mehr als einmal in einer Datenbank gespeichert, ist es schwer
+Um ein DBMS zu nutzen wird eine Benutzerschnittelle geboten. So kann man das
+DBMS zum einem direkt über eine grafische Benutzeroberfläche steuern, aber auch
+über Schnittstellen wie etwa \ac{ODBC}. ODBC verwendet hierzu SQL
+(Eigenständiger Begriff, kann aber als Abkürzung von Structured Query Language
+gesehen werden) zur Kommunikation mit dem DBMS. Eine weitere Grundlegende
+Anforderung an ein DBMS ist die Vermeidung von Redundanz, sowie die Sicherstellung einer maximalen Integrität. Sind Informationen mehr als einmal in einer Datenbank gespeichert, ist es schwer
 sicherzustellen, dass diese alle den gleichen Stand haben, wenn die Information
 geupdatet wird. Die Datenintegrität lässt sich erzwingen, in dem
 beispielsweise ein Datumsfeld auch ledigliche Werte in einem Datumsformat
@@ -36,8 +34,45 @@ aktzeptiert.
 \ac{REST} bezeichnet ein Paradigma für verteilte Systeme. Grundgedanke von
 \ac{REST} ist es, einen Service über eine bereits genormte und universelle
 Schnittstelle (\ac{HTTP}) anzubieten. Der Vorteil von \ac{REST} liegt darin,
-dass Webseiten, die ihren Inhalt über HTTP bereitstellen, meistens REST-Konform
-sind (Dynamische Webseiten ausgenommen, da sie ihr Format ändern).  
+dass man, wie oben genannt, seine Services über eine uniforme Schnittstelle
+anzubieten, die sehr weit verbreitet ist. Dies erleichtert das Konsumieren des
+Services, da man bereits bekannte Methoden(Im Sinne von Methodik) verwenden
+kann, um auf diese zuzugreifen, und auch die Struktur der HTTP-Anfragen gut
+bekannt ist. Zudem ist die Infrastruktur, die für REST nötig ist, im WWW sehr
+weit ausgebaut (HTTP-fähige Clients, Web- und Anwendungsserver, HTML-Parser)
+sind und viele der dort zu findenden Dienste schon REST-Konform sind
+(Auslieferung der Seiten über HTTP, Verwendung von HTTP-Methoden wie GET und
+POST etc.)\\
+REST ist Zustandslos, das bedeutet dass jede Nachricht alle Informationen
+bereithält um diese zu verstehen. Dies begünstigt die Skalierbarkeit solcher
+Services, da man eingehende Anfragen ohne große Probleme auf andere Systeme
+umleiten kann (Zur Lastverteilung), da der Server keine Zustandsinformationen zu
+einer Verbindung speichert. Diese werden ausschliesslich clientseitig
+vorgehalten, der Service dient hier sozusagen als Datenquelle. Neben der guten
+Skalierbarkeit bietet REST die Vorteile von HTTP wie zum Beispiel die einfache
+und erprobte Sicherung über \ac{TLS} sowie HTTP-Caching.\\
+Daten werden bei REST hauptsächlich über Formate wie JSON und XML realisiert,
+dazu kann der REST-Service je nach Client und angeforderter Formatierung ein
+anderes Format wählen.
+
+\subsection{Java}
+
+\subsubsection{JUnit}\label{sssec:JUnit}
+JUnit ist ein Framework zum Erstellen von automatisierten Tests.
+Es bietet die möglichkeit, automatisierte Tests an sogenannten Units (Klassen beziehungsweise
+Methoden) zu implementieren und durchzuführen. Es wurde ursprünglich von Erich
+Gamma und Kent Beck entwickelt und ist an das Test-Framework SUnit (Smalltalk)
+angelehnt. Dabei ist JUnit nicht nur für Java verfügbar, jedoch werden diese
+nach der Programmiersprache benannt, für die sie verwendet werden und werden
+unter dem Begriff "`xUnit"' zusammengefasst.\\
+Zur Evaluierung eines Tests gibt es in JUnit nur zwei Zustände: Entweder er
+gelingt oder er schlägt fehl(Failure beziehungsweise Error), was mit einer
+Exception signalisiert wird. Der Unterschied zwischen Failure und Error ist der,
+dass Failure erwartet werden kann, wobei Errors eher unerwartet auftreten.\\
+Zudem existieren für JUnit zahlreiche Visualisierungs-Tools, die auch Dinge wie
+zum Beispiel Pfadabdeckung überprüfen. Zu diesen Tools zählt zum Beispiel
+Jacoco.
+
 \subsection{Spring}\label{ssec:Spring}
 Das Spring-Framework ist ein quelloffenens Framework für die Java-Plattform. Es
 soll die Entwicklung mit Java/JavaEE vereinfachen und gute Programmierpraktiken
