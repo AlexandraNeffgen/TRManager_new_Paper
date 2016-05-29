@@ -145,7 +145,15 @@ Richtigkeit der HTTP-Antworten geprüft sowie die Authentifizierung. Die Services
 und Repositories werden insoweit geprüft, dass sie die Datensätze anhand der
 implementierten Logik zurückgeben.
 	\subsubsection{Controller-Tests}
+	Da die Controller die Schnittstelle zur Aussenwelt darstellen, ist hier die
+	Richtigkeit der Antworten besonders wichtig. Um die einzelnen Methoden zu
+	validieren wird jeder Controller und jede Methode eines Controllers überprüft.
+	Zu den Überprüfungen gehören das Handling von Anfragen mit "`falschen"' Daten, die
+	Richtigkeit der zurückgelieferten Daten und falsche Anfragen. Da die jeweiligen
+	Controller sehr ähnlich aufgebaut sind, lässt sich hier vieles Übernehmen was
+	auch für einen anderen Controller benutzt wurde.
 		\paragraph{Teacher-Controller}
+		
 		\paragraph{Form-Controller}
 		\paragraph{Student-Controller}
 		\paragraph{Incident-Controller}
