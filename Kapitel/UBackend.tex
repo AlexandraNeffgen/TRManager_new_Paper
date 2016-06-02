@@ -43,7 +43,7 @@ Backend soll zudem Authentifizierungsanfragen auf Anwendungsebene bearbeiten.
 		Name des Schülers, geteilt in Vor- und Nachname, die Klasse in der der Schüler
 		ist und eine Liste aller Vorfälle, in die der Schüler verwickelt ist.
 		\item[Incident]
-		Die Incident-Klasse stellt jeweils einen Vorfall dar. Jeder Vorfall speichert
+		Die Incident-Klasse stellt jeweils einen Vorfall dar. Jeder Vorfall speichert 
 		den schickenden Lehrer, den zugehörigen Schüler, eine interne Vorfallsnummer,
 		die Ankunftszeit und Entlassungszeit sowie einen Kommentar, der den Vorfall
 		selbst beschreibt und frei eingegeben werden kann.
@@ -93,6 +93,17 @@ Backend soll zudem Authentifizierungsanfragen auf Anwendungsebene bearbeiten.
 		gespeichert. Das Feld "`text"' hält hierbei jeweils einen vorgefertigten
 		Kommentar vor, der von den Clients abgerufen werden kann.
 	\end{description}
+	\subsubsection{Repositories}
+	Ein Repository stellt im Grunde die Verbindung zwischen der Datenbank
+	(Hibernate) und der Anwendung selbst da. Es ist für die Zusammensetzung der
+	Queries zuständig und liefert Daten zurück und schreibt Daten zurück in die
+	Datenbank. Werden hier Änderungen an einem Objekt vorgenommen, werden diese
+	transparent in der Datenbank geändert, hier ist also Vorsicht geboten.\\
+	Um fehlerhafte Änderungen durch unsachgemäßen Gebrauch der Repositorys zu
+	vermeiden, wird normalerweise eine Schicht dazwischen geschoben, um davon zu
+	abstrahieren(Siehe Kapitel \ref{sssec:services}, Seite
+	\pageref{sssec:services}). 
+	\subsubsection{Services} \label{sssec:services}
 	\subsubsection{Controller}
 	Die Controller sind die Anlaufstelle für Anfragen über das Netzwerk und
 	bearbeiten diese.
