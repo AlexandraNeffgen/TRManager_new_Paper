@@ -99,7 +99,7 @@ Backend soll zudem Authentifizierungsanfragen auf Anwendungsebene bearbeiten.
 	Queries zuständig und liefert Daten zurück und schreibt Daten zurück in die
 	Datenbank. Werden hier Änderungen an einem Objekt vorgenommen, werden diese
 	transparent in der Datenbank geändert, hier ist also Vorsicht geboten.\\
-	Um fehlerhafte Änderungen durch unsachgemäßen Gebrauch der Repositorys zu
+	Um fehlerhafte Änderungen durch unsachgemäßen Gebrauch der Repositories zu
 	vermeiden, wird normalerweise eine Schicht dazwischen geschoben, um davon zu
 	abstrahieren(Siehe Kapitel \ref{sssec:services}, Seite
 	\pageref{sssec:services}). 
@@ -131,8 +131,9 @@ Backend soll zudem Authentifizierungsanfragen auf Anwendungsebene bearbeiten.
 	definierte Beispielmethode liefert auf eine GET-Anfrage alle Form-Objekte
 	(definiert über "`method=RequestMethod.GET"') aus.	
 	\paragraph{Funktionsumfang der Controller}
-	Jeder Controller der einer Model-Klasse (Form, Teacher, Student, Incident)
-	zugeordnet ist muss mindestens die folgenden Methoden umsetzen:\\
+	Jeder Controller der einer Model-Klasse (Form, Teacher, Student, Incident,
+	User, Comment) zugeordnet ist muss mindestens die folgenden Methoden
+	umsetzen:\\
 	\begin{itemize}
 	  \item Ausliefern der Daten (getById \& getAll)
 	  \item Hinzufügen von einzelnen Datensätzen (add)
@@ -162,9 +163,37 @@ implementierten Logik zurückgeben.
 	Zu den Überprüfungen gehören das Handling von Anfragen mit "`falschen"' Daten, die
 	Richtigkeit der zurückgelieferten Daten und falsche Anfragen. Da die jeweiligen
 	Controller sehr ähnlich aufgebaut sind, lässt sich hier vieles Übernehmen was
-	auch für einen anderen Controller benutzt wurde.
+	auch für einen anderen Controller benutzt wurde.\\
+	Zu Beginn eines jeden Tests wird die Datenbank neu geladen, das heisst die
+	Testdaten, wie oben beschrieben, werden wiederhergestellt, damit sichergestellt
+	ist dass bei Inserts keine Fehler bezüglich Duplikaten auftreten, die
+	referenzierten Datensätze vorhanden sind etc.\\
+	Die Tests werden mit MockMVC aus
 		\paragraph{Teacher-Controller}
-		
+			Es werden alle Methoden des Teacher-Controllers getestet. Hierzu gehören:\\
+			\begin{itemize}
+			  \item getAllTeachers
+			  \item getTeacherById
+			  \item addTeacher
+			  \item editTeacher
+			  \item deleteTeacher
+			\end{itemize}
+			Bei den Methoden, die nur Daten zurückliefern und sonst keine anderen
+			Funktionen erfüllen (getAllTeachers, getTeacherById) wird überprüft, ob der
+			Controller die Anfrage richtig behandelt. So soll etwa ein Fehler
+			zurückgegeben werden, falls der Datensatz nicht vorhanden und vice versa für
+			einen existierenden Datensatz.\\
+			\lstinputlisting[label=testGetTeacherById,caption=Test
+			der getById-Methode des
+			Teacher-Controllers]{listings/tcontrollertestidempotent.java} 
+			Listing \ref{testGetTeacherById} auf Seite \pageref{testGetTeacherById} zeigt
+			den Test einer solchen idempotenten Methode. Es wird zuerst ein aus dem
+			MockMVC-Objekt ein RequestBuilder, der für die Erzeugung des Web-Requests
+			verwendet wird. 
+			
+			Das Testen der
+			nicht-idempotenten Methoden wie addTeacher muss darauf geachtet werden, dass der Controller die Ausnahmefälle behandelt, und die Datensätze richtig ändert beziehungsweise neu anlegt.\\
+			
 		\paragraph{Form-Controller}
 		\paragraph{Student-Controller}
 		\paragraph{Incident-Controller}
