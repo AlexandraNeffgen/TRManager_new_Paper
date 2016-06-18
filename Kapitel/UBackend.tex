@@ -93,7 +93,7 @@ Backend soll zudem Authentifizierungsanfragen auf Anwendungsebene bearbeiten.
 		gespeichert. Das Feld "`text"' hält hierbei jeweils einen vorgefertigten
 		Kommentar vor, der von den Clients abgerufen werden kann.
 	\end{description}
-	\subsubsection{Repositories}
+	\subsubsection{Repositories}\label{sssec:repositories}
 	Ein Repository stellt im Grunde die Verbindung zwischen der Datenbank
 	(Hibernate) und der Anwendung selbst da. Es ist für die Zusammensetzung der
 	Queries zuständig und liefert Daten zurück und schreibt Daten zurück in die
@@ -102,8 +102,49 @@ Backend soll zudem Authentifizierungsanfragen auf Anwendungsebene bearbeiten.
 	Um fehlerhafte Änderungen durch unsachgemäßen Gebrauch der Repositories zu
 	vermeiden, wird normalerweise eine Schicht dazwischen geschoben, um davon zu
 	abstrahieren(Siehe Kapitel \ref{sssec:services}, Seite
-	\pageref{sssec:services}). 
+	\pageref{sssec:services}). \\
+	Standardmäßig werden die Repositories von Spring mit vordefinierten
+	Zugriffsmethoden generiert, um die Handhabung zu vereinfachen. Es ist aber auch
+	möglich, andere Queries als die von Spring Vorgegebenen zu verwenden, zum
+	Beispiel im Falle von "`schlecht"' (durch den Aufbau der Tabellen schlecht
+	optimierten) Queries, um ein bessere Performance zu erreichen. Dies ist jedoch
+	im Rahmen des TR-Managers nicht notwendig, da der Datenbestand relativ klein
+	und auch keine komplexen Abhängigkeiten im Datenmodell bestehen.\\
+	\lstinputlisting[label=repository_definition, caption=Definition eines
+	Repositories]{listings/repository_definition.java}
+	In Listing \ref{repository_definition} auf Seite
+	\pageref{repository_definition} ist die Definition des Repositories für die
+	Form-Objekte. Das Repository ist im Grunde ein Interface, das von
+	"`JpaRepository"' erbt und mit Generiken versehen wird, um den Rückgabetyp und
+	den "`Suchwert"' (In dem Fall Integer, die ID) festzulegen. Im Beispiel ist
+	auch eine selbst-definierte Query zu sehen, diese werden mit der
+	"`\@Query"'-Annotation festgelegt und werden von Spring vorrangig zur Abfrage
+	verwendet. Für die restlichen Methoden (findAll, findById, delete etc.) werden
+	die von Spring Data/Hibernate generierten Queries verwendet.
 	\subsubsection{Services} \label{sssec:services}
+	Die Services sind wie in \ref{sssec:repositories} auf Seite
+	\pageref{sssec:repositories} beschrieben die Abstraktion der Repositories für
+	die restliche Anwendung und behandeln Ausnahmefälle, damit diese nicht an die
+	Repositories weitergereicht werden. Im einfachsten Fall reicht der Service die
+	im Repository gefundenen Daten weiter an die höheren Komponenten, damit nicht
+	direkt auf das Repository zugegriffen wird und direkte Manipulationen der
+	Datenbank minimiert werden. Dies sollte ausschließlich über die
+	"`save"'-Methode der Repositories durchgeführt werden. Weitere Funktionen die
+	die Services erfüllen könnten wären höhere Konsistenzprüfungen
+	(Abhängigkeiten, die nicht auf Datenbankebene definiert werden können
+	beziehungsweise in der Geschäftslogik umgesetzt werden soll) sowie die
+	Validierung von Daten. Dies wird in der Anwendung jedoch nicht benötigt,
+	deshalb wurde darauf verzichtet.\\
+	\lstinputlisting[label=service_definition, caption=Definition eines
+	Services]{listings/service_definition.java}
+	In Listing \ref{service_definition} auf Seite \pageref{service_definition} wird
+	eine beispielhafte Definition eines Services mit einer Methode gezeigt. Die
+	"`\@Service"'-Annotation markiert diese Klasse für Spring als Service. Das
+	Repository-Objekt dient als Datenquelle für die Anfragen, diese wird durch den
+	IoC-Container injiziert und steht automatisch zur Laufzeit zur Verfügung
+	(So wie alle Objekte mit "`\@Autowired"'-Annotation). Die beispielhafte Methode
+	"`getFormById"' sucht eine Schulklasse anhand ihrer ID und liefert diese
+	zurück.
 	\subsubsection{Controller}
 	Die Controller sind die Anlaufstelle für Anfragen über das Netzwerk und
 	bearbeiten diese.
@@ -168,7 +209,17 @@ implementierten Logik zurückgeben.
 	Testdaten, wie oben beschrieben, werden wiederhergestellt, damit sichergestellt
 	ist dass bei Inserts keine Fehler bezüglich Duplikaten auftreten, die
 	referenzierten Datensätze vorhanden sind etc.\\
-	Die Tests werden mit MockMVC aus
+	Die Tests werden mit MockMVC aus dem Spring Integration Testing durchgeführt.
+	Basis für die Test bilden die Web-Requests, die sich aus dem MockMVC-Objekt
+	generieren lassen (RequestBuilder). Diese werden dazu verwendet, um Anfragen an
+	das Backend abzusetzen und so zu überprüfen. So kann zum Beispiel getestet
+	werden, ob der Server richtig reagiert, wenn ein Objekt nicht gefunden werden
+	kann (In dem Fall 404: Not found). Falls das erwartete Verhalten eintritt, ist
+	der Test erfolgreich. In dem Stil werden alle Tests für jede Methode der
+	Controller durchgeführt, es werden alle möglichen Ergebnisse der Controller
+	"`erzwungen"'. Im Fall dieser Anwendung wären das normalerweise pro Controller
+	zwei Testfälle, entweder "`Not found"' beziehungsweise "`Internal Server
+	Error"' oder "`OK"'. 
 		\paragraph{Teacher-Controller}
 			Es werden alle Methoden des Teacher-Controllers getestet. Hierzu gehören:\\
 			\begin{itemize}
@@ -188,12 +239,26 @@ implementierten Logik zurückgeben.
 			Teacher-Controllers]{listings/tcontrollertestidempotent.java} 
 			Listing \ref{testGetTeacherById} auf Seite \pageref{testGetTeacherById} zeigt
 			den Test einer solchen idempotenten Methode. Es wird zuerst ein aus dem
-			MockMVC-Objekt ein RequestBuilder, der für die Erzeugung des Web-Requests
-			verwendet wird. 
-			
-			Das Testen der
-			nicht-idempotenten Methoden wie addTeacher muss darauf geachtet werden, dass der Controller die Ausnahmefälle behandelt, und die Datensätze richtig ändert beziehungsweise neu anlegt.\\
-			
+			MockMVC-Objekt ein RequestBuilder generiert, der für die Erzeugung des
+			Web-Requests verwendet wird. Dieser Request wird mit "`mvc.perform"'
+			abgesetzt und das Ergebnis gespeichert. Dieser Vorgang wird zwei Mal
+			durchgeführt, einmal mit einer ungültigen ID (50000) und einmal mit einer
+			Gültigen. Die Methode "`andExpect"' ist für die Überprüfung des Status
+			zuständig, hier verwendet mit "`isNotFound"' für die ungültige ID und
+			"`isOK"' für die gültige.\\
+			\lstinputlisting[label=testAddTeacher,caption=Test
+			der Add-Methode des
+			Teacher-Controllers]{listings/tcontrollertestnonidempotent.java} Analog dazu
+			laufen die Tests für die nicht-idempotenten Methoden des Teacher-Controllers ab, hier muss aber anstatt eines GET-Requests ein
+			POST-Request erzeugt werden und die zu übertragenden Daten serialisiert.
+			Dafür sind jeweils der ObjectMapper, der PrettyPrinter und der ObjectWriter
+			zuständig, die das übergebene Objekt in JSON umwandeln. Nach dem Umwandlung
+			liegt das Objekt als String vor, das dem Request mitgegeben werden kann. Auch
+			hier werden die zwei Testfälle behandelt, einmal mit gültigen Daten (Alle
+			nötigen Werte sind gesetzt) und ungültigen Daten (Ein benötigter Wert wird
+			auf null gesetzt). Der Rest des Tests ist analog zum idempotenten Test, nur
+			dass hier anstelle eines "`Not found"' ein "`Internal Server Error"' geworfen
+			wird.			
 		\paragraph{Form-Controller}
 		\paragraph{Student-Controller}
 		\paragraph{Incident-Controller}
