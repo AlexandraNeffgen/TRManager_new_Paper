@@ -220,12 +220,13 @@ implementierten Logik zurückgeben.
 	"`erzwungen"'. Im Fall dieser Anwendung wären das normalerweise pro Controller
 	zwei Testfälle, entweder "`Not found"' beziehungsweise "`Internal Server
 	Error"' oder "`OK"'. 
-		\paragraph{Teacher-Controller}
+		\paragraph{Teacher-Controller}\label{ssssec:test_tcontroller}
 			Es werden alle Methoden des Teacher-Controllers getestet. Hierzu gehören:\\
 			\begin{itemize}
 			  \item getAllTeachers
 			  \item getTeacherById
 			  \item addTeacher
+			  \item addBulk
 			  \item editTeacher
 			  \item deleteTeacher
 			\end{itemize}
@@ -260,13 +261,69 @@ implementierten Logik zurückgeben.
 			dass hier anstelle eines "`Not found"' ein "`Internal Server Error"' geworfen
 			wird.			
 		\paragraph{Form-Controller}
+			Es werden alle Methoden des Teacher-Controllers getestet. Hierzu gehören:\\
+			\begin{itemize}
+			  \item getAllForms
+			  \item getFormById
+			  \item addForm
+			  \item addBulk
+			  \item editForm
+			  \item deleteForm
+			\end{itemize}
+			Die Methoden werden analog wie in Kapitel \ref{ssssec:test_tcontroller} auf
+			Seite \pageref{ssssec:test_tcontroller} getestet. Auch hier wird zwischen den
+			idempotenten und nichtidempotenten Methoden unterschieden.
 		\paragraph{Student-Controller}
+		   Es werden alle Methoden des Student-Controllers getestet. Hierzu gehören:\\
+			\begin{itemize}
+			  \item getAllStudents
+			  \item getStudentById
+			  \item addStudent
+			  \item addBulk
+			  \item editStudent
+			  \item deleteStudent
+			\end{itemize}
+			Die Methoden werden analog wie in Kapitel \ref{ssssec:test_tcontroller} auf
+			Seite \pageref{ssssec:test_tcontroller} getestet. Auch hier wird zwischen den
+			idempotenten und nichtidempotenten Methoden unterschieden.
 		\paragraph{Incident-Controller}
+			Es werden alle Methoden des Incident-Controllers getestet. Hierzu gehören:\\
+			\begin{itemize}
+			  \item getAllIncidents
+			  \item getIncidentsById
+			  \item addIncident
+			  \item addBulk
+			  \item editIncident
+			  \item deleteIncident
+			\end{itemize}
+			Die Methoden werden analog wie in Kapitel \ref{ssssec:test_tcontroller} auf
+			Seite \pageref{ssssec:test_tcontroller} getestet. Auch hier wird zwischen den
+			idempotenten und nichtidempotenten Methoden unterschieden.
 		\paragraph{Comment-Controller}
+			Es werden alle Methoden des Comment-Controllers getestet. Hierzu gehören:\\
+			\begin{itemize}
+			  \item getAllComments
+			  \item getCommentById
+			  \item add
+			  \item addBulk
+			  \item edit
+			\end{itemize}
+			Die Methoden werden analog wie in Kapitel \ref{ssssec:test_tcontroller} auf
+			Seite \pageref{ssssec:test_tcontroller} getestet. Auch hier wird zwischen den
+			idempotenten und nichtidempotenten Methoden unterschieden.
 		\paragraph{User-Controller}
+			Da der User-Controller nur über die Authenticate-Methode verfügt (Die
+			Benutzer werden auf Datenbankebene eingefügt und sollen nicht geändert
+			werden) muss nur diese getestet werden.\\
+			\lstinputlisting[label=ucontroller_test, caption=testAuthenticate des
+			User-Controllers]{listings/uControllerTest.java}
+			Listing \ref{ucontroller_test} auf Seite \pageref{ucontroller_test} zeigt die
+			Methode zum Testen der Authenticate-Methode des User-Controllers. Zuerst
+			werden wie üblich die Hilfobjekte zum generieren des JSON-Strings erzeugt.
+			Diese werden benutzt um zwei User-Objekte zu serialisieren, einmal einen
+			validen Benutzer (wird aus der Datenbank geholt) und einen Invaliden. Der
+			valide Benutzer sollte ein "`OK"' vom Backend erhalten, der Invalide ein
+			"`NOT\_AUTHORIZED"'. 
 	\subsubsection{Service-Tests}
 	\subsubsection{Repository-Tests}
-
-
-\subsection{Generischer Controller ??}
  
