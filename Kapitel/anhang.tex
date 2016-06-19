@@ -9,7 +9,7 @@
 \subsection{User-Stories}
 User-Stories Grundfunktionen
 \begin{itemize}
-  \item Import und Export der Daten / Datensicherung
+  \item Import und Export der Daten / Datensicherung (Priorität 1)
   \begin{itemize}
     \item Zu Beginn jedes Schuljahres werden die Schülerdaten aus der externen
     SchILD- Datenbank (Verwaltungsnetzwerk) bezogen und im CSV-Format in das
@@ -26,13 +26,13 @@ User-Stories Grundfunktionen
 	\item Diese Funktionen sollen ausschließlich dem Administrator zur Verfügung
 			stehen.
   \end{itemize}
-  \item Login Daten
+  \item Login Daten (Priorität 1)
   \begin{itemize}
     \item Jeder Lehrer soll sich im Programm mit seinem Kürzel (ohne Passwort)
     anmelden können, um die Informationen des Laufzettels in die grafische
     Oberfläche eintragen zu können.
   \end{itemize}
-  \item Besuch eines Schülers eintragen
+  \item Besuch eines Schülers eintragen (Priorität 1)
   \begin{itemize}
     \item Sobald ein Schüler den Trainingsraum betritt, wird zunächst zwischen
     neuen Vorfällen und Rückkehrer unterschieden. Dies geschieht unabhängig vom
@@ -51,7 +51,7 @@ User-Stories Grundfunktionen
     den Überweisungsschein eingetragen wird. Diese wird im Incident ebenfalls
     gespeichert, aber nicht durch den User ausgewählt.
   \end{itemize}
-  \item Vervollständigung
+  \item Vervollständigung (Priorität 1)
   \begin{itemize}
     \item Bei Eingabe der Namen sollen Vorschläge zur Vervollständigung
     angezeigt werden. Bei keinem Vorschlag soll die Neuanlage eines Schülers
@@ -61,7 +61,7 @@ User-Stories Grundfunktionen
 	Vervollständigungsvorschläge zu minimieren und den korrekten Schüler
 	vorgeschlagen zu bekommen.
   \end{itemize}
-  \item Behandlungen bei drei bzw. fünf Besuchen
+  \item Behandlungen bei drei bzw. fünf Besuchen (Priorität 1)
   \begin{itemize}
     \item Nach Hinzufügen eines Trainingsraumbesuches soll ersichtlich werden,
     wie oft der Schüler in dem jeweiligen Schuljahr bereits im Trainingsraum
@@ -69,20 +69,22 @@ User-Stories Grundfunktionen
 	\item Beim dritten bzw. fünften Besuch soll als Popup ersichtlich werden, dass
 	ein Elterngespräch bzw. eine Konferenz notwendig ist.
   \end{itemize}
-  \item Behandlung Rückkehrer TR aufgrund von Ablehnung Rückkehrplan
+  \item Behandlung Rückkehrer TR aufgrund von Ablehnung Rückkehrplan (Priorität
+  1)
   \begin{itemize}
     \item Kommt ein Schüler ohne neuen Überweisungsschein zurück in den TR, muss
     dies vermerkt werden. Diese Rückkehr ist KEIN neuer TR-Besuch.
     (Rückkehrer-Button)
 	\item Gleiche Scheinnummer, neue Incidentnummer
   \end{itemize}
-  \item Administrationsrechte
+  \item Administrationsrechte (Priorität 1)
   \begin{itemize}
     \item Es soll ein Administrator-Account mit Passwort angelegt werden, der
     als alleinige Instanz die Möglichkeit haben soll, zeitlich unabhängiges
     Hinzufügen und Verändern bereits eingegebener Daten durchzuführen.
   \end{itemize}
   \item Schülerdatenabruf / Information über Besuche im Trainingsraum (TR)
+  (Priorität 2)
   \begin{itemize}
     \item Es sollen Schülerdaten (Vor-, Nachname, Id, Klasse und Klassenlehrer),
     sowie Informationen über Besuche im Trainingsraum (Datum, Uhrzeit, Lehrer,
@@ -92,7 +94,7 @@ User-Stories Grundfunktionen
 	können.
 	\item Nur zugänglich für den Admin
   \end{itemize}
-  \item Zeitzähler
+  \item Zeitzähler (Priorität 2)
   \begin{itemize}
     \item Es soll ein Zeitzähler realisiert werden, der die Aufenthaltszeit
     jedes Schülers, beginnend bei 0 Minuten hochzählt und vor Erreichen von 15
@@ -109,33 +111,33 @@ User-Stories Grundfunktionen
 	Trainingsraumbesuchern nicht verloren gehen. Wird das Programm nach einem
 	Absturz wieder gestartet, sollen diese Daten aktualisiert vorhanden sein.
   \end{itemize}
-  \item Druckfertige Nachricht
+  \item Druckfertige Nachricht (Priorität 2)
   \begin{itemize}
     \item Ist ein Elterngespräch oder eine Konferenz notwendig, soll eine
     druckfertige Nachricht mit unveränderbarem Template erstellt werden können.
 	\item Das Template für diese Nachricht soll abhängig von der Schule gestaltet
 	werden können
   \end{itemize}
-  \item Neuanlage Lehrer mit hinterlegter Mailadresse
+  \item Neuanlage Lehrer mit hinterlegter Mailadresse (Priorität 3)
   \begin{itemize}
     \item Neue Lehrer sollen nur vom Administrator angelegt werden können, wobei
     hier ebenfalls eine Emailadresse hinterlegt werden soll.
   \end{itemize}
-  \item Mailfunktion
+  \item Mailfunktion (Priorität 5)
   \begin{itemize}
     \item Es soll eine Emailfunktion vorbereitet werden, die eine Info an die
     beteiligten Lehrer versendet, sobald ein Schüler den TR zum dritten, bzw.
     fünften Mal betritt.
   \end{itemize}
-  \item Statistiken anhand der Exportdaten
-  \begin{itemize}
-    \item Anhand der exportierten Daten sollen lokal Statistiken erstellt werden
-    können (Filter- und Sortieroptionen). 
-  \end{itemize} 
 \end{itemize}
 User Stories Unterstützungsfunktionen
 \begin{itemize}
-  \item Externer Zugriff
+  \item Statistiken anhand der Exportdaten (Priorität 3)
+    \begin{itemize}
+    \item Anhand der exportierten Daten sollen lokal Statistiken erstellt werden
+    können (Filter- und Sortieroptionen). 
+  \end{itemize} 
+  \item Externer Zugriff (Priorität 5)
   \begin{itemize}
     \item Für die Administration soll ein externer Zugriff auf die Daten über
     eine zusätzliche Software Komponente möglich sein.
