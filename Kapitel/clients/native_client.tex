@@ -31,9 +31,24 @@ zeitunabhängig die Informationen zu Incidents, Lehrern und Schülern zu
 bearbeiten. 
 
 \paragraph{Workflows}$~~$\\
-Die einzelnen Workflows werden im folgenden erläutert.
+Die einzelnen Workflows werden im folgenden erläutert. Dabei werden sowohl die
+Schritte des Nutzer aufgeführt, als auch die wesentlichen technischen
+Hintergrundprozesse. 
 
-\setlength\parindent{0pt} \textbf{Schülerbesuch eintragen}
+\setlength\parindent{0pt} 
+\textbf{Schülerbesuch eintragen}
+Um einen Schülerbesuch einzutragen muss in dem linken Teil der Oberfläche zu
+nächst die Klasse des Schülers aus der Liste ausgewählt werden. Sobald man sich
+innerhalb der Liste befindet kann der User durch einfaches tippen von Buchstaben
+in der Liste navigieren. Beispielsweise lässt sich durch tippen eines
+Klassennamens zu dieser springen. Sobald eine Klasse ausgewählt wurde, füllt
+sich direkt daneben eine Liste mit den Schülern dieser Klasse. Um bei dem
+navigieren durch die Oberfläche nicht den Überblick zu verlieren wird in dem
+Spaltenkopf der Schülerliste die aktuell ausgewählte Klasse notiert. Im
+Hintergrund 
+
+\lstinputlisting[label=lv_form_changed, caption=Klasse
+ausgewählt]{listings/lv_form_IndexChange.cs}
 
 \textbf{Schüler aus dem Trainingsraum entlassen}
 
