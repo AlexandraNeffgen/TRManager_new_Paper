@@ -233,6 +233,13 @@ Ort, Datum \hspace*{4cm}& & Alexandra Neffgen & & Florian Baier\\
 \pagestyle{empty}                                     		%Unterdrücken der Kopf- und Fußzeilen (Leerseite)
 \cleardoublepage                                      		%Abkürzungsverzeichnis beenden
 
+\addcontentsline{toc}{section}{Quellcodeverzeichnis}
+\renewcommand\lstlistlistingname{Quellcodeverzeichnis}
+\lstlistoflistings
+\thispagestyle{fancy}                                		%Stil der Kopf- und Fußzeilen 
+\pagestyle{empty}                                     		%Unterdrücken der Kopf- und Fußzeilen (Leerseite)
+\cleardoublepage                                      		%Abkürzungsverzeichnis beenden
+
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -313,7 +320,7 @@ Ort, Datum \hspace*{4cm}& & Alexandra Neffgen & & Florian Baier\\
 \pagestyle{empty}
 \cleardoublepage 
 
-\subsection{Fazit}
+\section{Fazit}
 \label{Fazit}
 \pagestyle{fancy}
 \input{./Kapitel/Fazit}
@@ -321,7 +328,7 @@ Ort, Datum \hspace*{4cm}& & Alexandra Neffgen & & Florian Baier\\
 \pagestyle{empty}
 \cleardoublepage 
 
-\subsection{Ausblick}
+\section{Ausblick}
 \label{Ausblick}
 \pagestyle{fancy}
 \input{./Kapitel/Ausblick}
@@ -357,6 +364,7 @@ Ort, Datum \hspace*{4cm}& & Alexandra Neffgen & & Florian Baier\\
 \label{sec:glossary}
 \glsaddall
 \printglossaries
+\cleardoublepage
 
 \section{Anhang}
 \label{Anhang}

@@ -3,21 +3,74 @@ dem er den Webservice nutzen kann. In Zuge dieser Arbeit werden nur graphische
 Benutzerinterfaces betrachtet, da diese für die Benutzer einfacher zu erlernen
 sind und auch einen einfachen Workflow bieten. Umgesetzt wurden der native
 Windows-Client und ein Web-Client, der lesenden Zugriff ermöglicht. Beschrieben
-wird der gemeinsame Teil, der die Daten versendet und empfängt.
+wird der gemeinsame Teil, der die Daten versendet und empfängt. Die eigentlichen
+Benutzeroberflächen werden dann in respektiven Kapiteln behandelt.
 \subsection{Anforderungen}
-Jeder der Clients muss eine Komponente besitzen 
-Die Daten werden vom Backend über einen HTTP-Client in JSON empfangen und dem
-Benutzer in einer grafischen Oberfläche entsprechend präsentiert. Dabei werden
-die Daten als Objekte in der Anwendung gehalten. Um ausfallsicher zu arbeiten
-wird jede Änderung der Daten direkt an das Backend gesendet.
+Jeder der Clients muss eine Komponente besitzen, um Daten ans Backend zu senden
+und zu erhalten. Dies wird im Falle der .NET-Basierten Clients über die
+HttpWebRequest-Klasse aus der System.Net-Bibliothek. Mithilfe dieser Methode
+wird der Zugriff auf das Backend abstrahiert, ähnlich einer DAO-Schicht, der
+TRManager\_http\_client.
+Die Funktionsweise dieser Klasse wird in Kapitel \ref{sssec:http_client} auf
+Seite \pageref{sssec:http_client} näher erläutert.\\
+Neben der Komponente zum Daten empfangen sollen die Clients es dem Anwender
+ermöglichen, Vorfälle einzutragen und wieder auszutragen (entlassen). Für den
+administrativen Benutzer soll zudem die Möglichkeit bestehen, Datensätze zu
+verwalten (Im Sinne von bearbeiten, neue erstellen und löschen) und Daten zu
+im- und exportieren. 
 
 \subsection{Implementierung}
-	Für den nativen Client wird die Programmiersprache C\# so wie das Framework
-	einer Windows Forms Anwendung verwendet. Wie in Kapitel \ref{Windows Forms}
-	beschrieben verwendet eine solche Anwendung das .Net Framework. Dies ermöglicht 
-	
+	Jeder im Zuge dieser Arbeit implementierte Client wurde in C\# mit dem
+	.NET-Framework geschrieben, der Web-Client verwendet zusätzlich für die
+	Web-Funktionalität das ASP.NET-Framework. Dies bedeutet, dass ein großer Teil
+	des Codes wiederverwendet werden kann, wie etwa die Datenmodell-Klassen und die
+	Methoden zum empfangen und senden von Daten über das Netzwerk (respektive über
+	HTTP). Die gemeinsame Basis der Clients wird in diesem Kapitel beschrieben.
 	\subsubsection{Model}
-
-\subsubsection{WEB-Request}
-
-\paragraph{Serialize JSON}
+		Das Model enthält die Datenstrukturen, in der das Backend "`spricht"'. Diese
+		werden vom Backend festgelegt und müssen in den Clients exakt umgesetzt
+		werden. Zu den Model-Klassen gehören wie in Kapitel \ref{sssec:model} auf
+		Seite \pageref{sssec:model} beschrieben:
+		\begin{itemize}
+		  \item Teacher
+		  \item Form (Schulklasse)
+		  \item Student (Schüler)
+		  \item Incident (Vorfall)
+		  \item Comment (Vorgefertigter Kommentar)
+		\end{itemize}
+		Der einzige Unterschied zum serverseitigen Modell besteht darin, dass für die
+		Basis-Klasse "`LazyObject"' (Siehe Anhang) keine Klasse implementiert wurde,
+		da die Funktionalität, die LazyObject erfüllt (Flag zum Anzeigen ob das
+		Objekt vollständig geladen ist und Hilfsklassen), nur auf dem Server benötigt
+		wird und für den Client bis auf die vererbte ID uninterresant ist. Daraus
+		ergibt sich auch die Änderung, dass die Klassen im Gegensatz zum Model im
+		Backend die ID als direktes Attribut führen.\\
+		\lstinputlisting[label=teacher_client, caption=Teacher-Model-Klasse im
+		Client]{listings/Teacher.cs}
+		Listing \ref{teacher_client} auf Seite \pageref{teacher_client} zeigt als
+		Beispiel einen Auszug aus der Teacher-Model-Klasse des Clients. Was hierbei zu
+		beachten ist, dass die Attribute exakt so benamt sind wie im Backend. Dies ist
+		später für die Serialisierung und Deserialisierung der Daten mit JSON wichtig,
+		da sonst die Attribute nicht richtig zugewiesen werden können. Zudem wird mit
+		"`\[JsonConstructor\]"' der Konstruktor markiert, mit dem die Objekte
+		deserialisiert werden sollen. Die Mechanik, die mit JSON umgeht wird in
+		Kapitel \ref{ssssec:s_json} auf Seite \pageref{ssssec:s_json} erläutert.\\
+	\subsubsection{HTTP-Client}\label{sssec:http_client}
+		Der HTTP-Client ist sozusagen das "`Herstück"' der Clients. Er empfängt die
+		Daten und bereitet diese für die Verwendung auf und serialisiert und sendet
+		Objekte an das Backend. Es abstrahiert ähnlich einer DAO-Schicht die
+		"`Abfragen"' (in diesem Kontext Web-Requests) vom Programmierer und bietet
+		eine komfortable Möglichkeit, den Web-Service zu nutzen. Der HTTP-Client
+		benutzt Generics und lässt sich so an fast jeden Webservice anpassen.\\
+		Es wurden für die wichtigsten CRUD-Methoden Methoden implementiert:
+		\begin{itemize}
+		  \item add (POST)
+		  \item addBulk (POST)
+		  \item edit (PUT)
+		  \item delete (DELETE)
+		  \item getByID (GET)
+		  \item getAll (GET)
+		\end{itemize}
+		\paragraph{Serialize JSON}\label{ssssec:s_json}
+		
+\cleardoublepage
