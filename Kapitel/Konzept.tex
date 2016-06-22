@@ -105,11 +105,10 @@ zu verwenden.
 
 \subsubsection{Datenbank}
 	Die Datenbank-Struktur wird aus den annotierten Objektklassen generiert.
-	Ermöglicht wird dies durch Hibernate, dies wird im Kapitel \ref{Umsetzung des
-	Backends} auf Seite \pageref{Umsetzung des Backends} erläutert. Als
-	Datenbankserver soll MySQL zur Verwendung kommen, da die Datenmengen relativ gering sind und auch Backups Clientseitig realisiert
-	werden. Zudem fallen bei MySQL keine Lizenzierungskosten an, da die
-	Community-Version als \ac{OSS} zur Verfügung steht.
+	Ermöglicht wird dies durch Hibernate, dies wird im Kapitel \ref{ubackend_database} auf Seite \pageref{ubackend_database} erläutert. Als
+	Datenbankserver soll MySQL zur Verwendung kommen, da dies für die relativ
+	geringe Datenmenge und die clientseitige Backupstrategie ausreichend sind.
+	Zudem fallen bei MySQL keine Lizenzierungskosten an, da die Community-Version als \ac{OSS} zur Verfügung steht.
 	 
 \subsection{Clients}
 	Die Clients haben den Zweck, dem Benutzer die gewünschten Daten
@@ -142,8 +141,7 @@ zu verwenden.
 		Die Daten werden über den vom Backend bereitgestellten \ac{REST}ful-Service
 		abgerufen und per \ac{AJAX} angezeigt. Die zu verwendenden Frameworks werden
 		im Zuge dieser Arbeit für den Einsatz in diesem Umfeld evaluiert und das beste
-		ausgewählt. Zur Auswahl stehen \ac{ASP}.NET von Microsoft, \ac{JSF},
-		Bootstrap und Zend.
+		ausgewählt. Zur Auswahl stehen \ac{ASP}.NET von Microsoft, \ac{JSF} und Zend.
 		Der Webclient ermöglicht es die Anwendung sowohl auf einem klassischen
 		Desktop-PC zu verwenden, als auch auf mobilen Endgeräten. Durch die Verwendung
 		eines Webclients ist es daher nicht nötig eine Applikation für die
@@ -154,8 +152,8 @@ zu verwenden.
 		Dadurch, dass wir die Verwaltung der Daten und ihre Darstellung in ein Backend
 		und ein Frontend unterteilt haben, ist es auch möglich das Frontend von einem
 		anderen Gerät aus aufzurufen. Da die Grundfunktionen der Anwendung nicht
-		durch Passwörter geschützt werden sollen muss der Datenschutz an einer Stelle
-		realisiert werden. Es soll verhindert werden, dass das Backend aus dem
+		durch Passwörter geschützt werden sollen muss der Datenschutz an einer anderen
+		Stelle realisiert werden. Es soll verhindert werden, dass das Backend aus dem
 		\ac{WWW} erreichbar ist. Dazu darf das Backend grundsätzlich nur auf einer
 		Maschine in einem geschützten Netz, also etwa hinter einer Firewall,
 		installiert werden. Diese Verantwortung liegt allerdings beim Kunden, da
