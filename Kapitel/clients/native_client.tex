@@ -45,10 +45,39 @@ Klassennamens zu dieser springen. Sobald eine Klasse ausgewählt wurde, füllt
 sich direkt daneben eine Liste mit den Schülern dieser Klasse. Um bei dem
 navigieren durch die Oberfläche nicht den Überblick zu verlieren wird in dem
 Spaltenkopf der Schülerliste die aktuell ausgewählte Klasse notiert. Im
-Hintergrund 
-
+Hintergrund wertet das Programm bei jeder Veränderung der Markierung innerhalb
+der Liste die aktuelle Auswahl aus. Dazu wird zunächst geprüft ob überhaupt
+etwas markiert ist, denn bei dem Wechsel der Selektion ist zu beachten, dass diese aus
+den folgenden zwei Schritten besteht: Abwählen der vorherigen Selektion und
+Selektion der neuen Auswahl. Ist sichergestellt, dass es sich um die eigentlich
+Selektion handelt, wird der Code zur Anzeige der Schüler einer Klasse
+ausgeführt. Die wichtigsten Befehle dazu sind im Listing \ref{lv_form_changed}
+aufgeführt.
 \lstinputlisting[label=lv_form_changed, caption=Klasse
 ausgewählt]{listings/lv_form_IndexChange.cs}
+Um sicherzustellen, dass sämtliche Daten der vorherigen Klasse aus der Liste
+entfernt werden, wird die komplette Spalte gelöscht. Zur besseren Überischt der
+aktuellen Selektion wurde dem Spaltennamen der Schülerliste in Zeile 10 des
+Listings die Klassenbezeichnung angefügt. Durch die Abstraktion der Daten sind
+sämtliche Schüler dem Klassenobjekt der zugehörigen Klasse angehängt. Daher
+kann auf diese über das Klassen-Objekt mit einer foreach-Schleife zugegriffen
+werden. Die Objekte sind den Listen in dem Attribut "`Tag"' hinterlegt, um diese
+für weitere Aktionen verwenden zu können. Da der Tag aber nicht für den Benutzer
+der ANwendung sichtbar ist, werden zusätzlich zu einem Eintrag das Attribut
+"`Name"' gesetzt.
+Nach bestätigen des Button "`Vorfall anlegen"' wird ein seperates Fenster
+geöffnet. Um dies hervorzuheben wird die MainForm leicht durchsichtig. Dies
+geschieht über die Methode "`Deactivate"' und den Eigenschaftswerd "`Opacity"'.
+In der folgenden Form erhält der Nutzer eine Liste mit sämtlichen Lehrern, ein
+Freitextfeld für Bemerkungen und eine Auswahl von der Standard Begründungen.
+Sämtliche hier enthaltenen Daten stehen in der Datenbank und werden durch die
+Klasse RepositoryUtility \ref{http_client_repo_uti} zur Verfügung gestellt. Dies
+bedeutet, dass auch hier lediglich mit Listen gearbeitet wird. Durch den Button
+"`Vorfall anlegen"' wird ein neues Incident-Objekt erstellt und mit den Daten
+aus dem Formular und der aktuellen Zeit gefüttert. Der Inhalt des Freifeldtext
+und die Auswahl der Begründung bilden dabei das Attribut "`Comment"'. 
+
+
 
 \textbf{Schüler aus dem Trainingsraum entlassen}
 
