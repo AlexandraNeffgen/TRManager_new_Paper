@@ -2,8 +2,9 @@ Das Backend soll wie in Kapitel 2.3 beschrieben die Datenquelle für die
 verschiedenen Clients sein. Umgesetzt werden soll dies über einen RESTful
 Service. Es wird das Framework "`Spring"' eingesetzt. Dies erlaubt eine einfache
 Erstellung von Web-Services und unterstützt den Programmierer mit Werkzeugen wie
-Hibernate, die die Verwaltung der Datenbank stark vereinfacht und Änderungen an
-der Modellierung direkt in der Datenbank umsetzt.
+Hibernate(Hibernate ist ein externes Tool und gehört nicht direkt zu Spring),
+die den Zugriff auf der Datenbank stark vereinfacht und Änderungen an der
+Modellierung direkt in der Datenbank umsetzt.
 \subsection{Anforderungen}
 Das Backend soll den Clients die Daten wie oben genannt über einen
 RESTful-Service zur Verfügung stellen. Dies vereinfacht den Zugriff auf die
@@ -11,18 +12,21 @@ Ressourcen und ist leicht in bestehende Infrastrukturen einzubinden. Das Backend
 soll nach Möglichkeit über \ac{HTTPS} zur Verfügung stellen, damit übertragene
 Daten auf dem Weg gesichert sind. Eine Authentifizierung auf Zugriffsebene ist
 optional, da der Service in einem geschlossenen Netz betrieben werden soll. Das
-Backend soll zudem Authentifizierungsanfragen auf Anwendungsebene bearbeiten. 
+Backend soll zudem Authentifizierungsanfragen auf Anwendungsebene bearbeiten
+können.
 \subsection{Implementierung}
 	Das Backend wird mit dem quelloffenen Framework Spring umgesetzt. Spring bietet
-	wie in Kapitel \ref{ssec:Spring} auf Seite \pageref{ssec:Spring} beschrieben
-	Funktionen wie Dependency Injection und ähnliches, das die Implementierung eines
-	Webservices erheblich vereinfacht. Die für dieses Projekt verwendeten Module
-	umfassen Spring Boot und Spring Data. Spring Boot erlaubt die einfache
-	Erstellung sofort lauffähiger Spring-Anwendungen, da hier keine komplexen
+	den Anwendungsentwickler Funktionen wie Dependency Injection und ähnliche
+	(vergleiche Kapitel \ref{ssec:Spring} auf Seite \pageref{ssec:Spring}), die die
+	Implementierung eines Webservices erheblich vereinfacht.
+	Die für dieses Projekt verwendeten Module umfassen Spring Boot,Spring Data und
+	Spring REST.
+	Spring Boot erlaubt die einfache Erstellung sofort lauffähiger Spring-Anwendungen, da hier keine komplexen
 	XML-Konfigurationen vorgenommen werden müssen, und das Projekt übersichtlich
 	genug, um keine komplexen Konfigurationen zu benötigen.
 	\subsubsection{Model}\label{sssec:model}
-		Das Model legt die Datenstrukturen fest, in der der Webservice arbeitet.
+		Das Model legt die Datenstrukturen fest, in der das Backend arbeitet und
+		antwortet.
 		Ebenso legen diese über die annotierten Model-Klassen die Datenbankstruktur
 		fest (Siehe Kapitel "`Hibernate"'). Für die Darstellung der Daten werden
 		folgende Klassen benötigt:
@@ -52,14 +56,14 @@ Backend soll zudem Authentifizierungsanfragen auf Anwendungsebene bearbeiten.
 		den Clients verwendet werden kann um das Eintragen eines neuen Vorfalls zu
 		vereinfachen.
 		\end{description}
-	\paragraph{Datenbank}$~~$\\\label{ubackend_database}
-		Die Datenbank wird von Hibernate (Siehe Kapitel \ref{sssec:Hibernate}, Seite
+	\textbf{Datenbank}$~~$\\\label{ubackend_database}
+		Die Tebellen werden von Hibernate (Siehe Kapitel \ref{sssec:Hibernate}, Seite
 		\pageref{sssec:Hibernate}) aus dem Objektmodell(Beschrieben in Kapitel
 		\ref{ssssec:Model} auf Seite \pageref{ssssec:Model}) generiert.
 		Hierzu werden die Tabellennamen, Beziehungen und die Optionen wie zum Beispiel "`Not Null"'
 		mithilfe von Annotationen an Hibernate weitergegeben. Aus diesen Informationen
 		erstellt Hibernate das relationale Datenmodell(Siehe Abbildung
-		\ref{fig:er_model}, Seite \pageref{fig:er_model}).
+		\ref{fig:er_model}).
 	 \begin{figure}[H]
 		\begin{minipage}{\linewidth}
 		 	\includegraphics[width=0.9\linewidth]{grafx/ER_Model}
@@ -93,27 +97,25 @@ Backend soll zudem Authentifizierungsanfragen auf Anwendungsebene bearbeiten.
 		gespeichert. Das Feld "`text"' hält hierbei jeweils einen vorgefertigten
 		Kommentar vor, der von den Clients abgerufen werden kann.
 	\end{description}
-	\subsubsection{Repositories}\label{sssec:repositories}
+	\subsubsection{Repositories (Spring Data)}\label{sssec:repositories}
 	Ein Repository stellt im Grunde die Verbindung zwischen der Datenbank
 	(Hibernate) und der Anwendung selbst da. Es ist für die Zusammensetzung der
-	Queries zuständig und liefert Daten zurück und schreibt Daten zurück in die
+	Queries zuständig und liefert Daten zurück und schreibt Daten in die
 	Datenbank. Werden hier Änderungen an einem Objekt vorgenommen, werden diese
 	transparent in der Datenbank geändert, hier ist also Vorsicht geboten.\\
 	Um fehlerhafte Änderungen durch unsachgemäßen Gebrauch der Repositories zu
 	vermeiden, wird normalerweise eine Schicht dazwischen geschoben, um davon zu
-	abstrahieren(Siehe Kapitel \ref{sssec:services}, Seite
-	\pageref{sssec:services}). \\
+	abstrahieren(Siehe Kapitel \ref{sssec:services}). \\
 	Standardmäßig werden die Repositories von Spring mit vordefinierten
 	Zugriffsmethoden generiert, um die Handhabung zu vereinfachen. Es ist aber auch
-	möglich, andere Queries als die von Spring Vorgegebenen zu verwenden, zum
-	Beispiel im Falle von "`schlecht"' (durch den Aufbau der Tabellen schlecht
-	optimierten) Queries, um ein bessere Performance zu erreichen. Dies ist jedoch
-	im Rahmen des TR-Managers nicht notwendig, da der Datenbestand relativ klein
+	möglich, andere Queries als die von Spring generierten zu verwenden, zum
+	Beispiel falls die per Standarad gegebenen Zugriffsmöglichkeiten von Spring
+	Data nicht ausreichen.
+	Dies ist jedoch im Rahmen des TR-Managers nicht notwendig, da der Datenbestand relativ klein
 	und auch keine komplexen Abhängigkeiten im Datenmodell bestehen.\\
 	\lstinputlisting[label=repository_definition, caption=Definition eines
 	Repositories]{listings/repository_definition.java}
-	In Listing \ref{repository_definition} auf Seite
-	\pageref{repository_definition} ist die Definition des Repositories für die
+	In Listing \ref{repository_definition} ist die Definition des Repositories für die
 	Form-Objekte. Das Repository ist im Grunde ein Interface, das von
 	"`JpaRepository"' erbt und mit Generiken versehen wird, um den Rückgabetyp und
 	den "`Suchwert"' (In dem Fall Integer, die ID) festzulegen. Im Beispiel ist
@@ -122,9 +124,8 @@ Backend soll zudem Authentifizierungsanfragen auf Anwendungsebene bearbeiten.
 	verwendet. Für die restlichen Methoden (findAll, findById, delete etc.) werden
 	die von Spring Data/Hibernate generierten Queries verwendet.
 	\subsubsection{Services} \label{sssec:services}
-	Die Services sind wie in \ref{sssec:repositories} auf Seite
-	\pageref{sssec:repositories} beschrieben die Abstraktion der Repositories für
-	die restliche Anwendung und behandeln Ausnahmefälle, damit diese nicht an die
+	Die Services sind wie in Kapitel \ref{sssec:repositories} beschrieben die
+	Abstraktion der Repositories für die restliche Anwendung und behandeln Ausnahmefälle, damit diese nicht an die
 	Repositories weitergereicht werden. Im einfachsten Fall reicht der Service die
 	im Repository gefundenen Daten weiter an die höheren Komponenten, damit nicht
 	direkt auf das Repository zugegriffen wird und direkte Manipulationen der
@@ -137,7 +138,7 @@ Backend soll zudem Authentifizierungsanfragen auf Anwendungsebene bearbeiten.
 	deshalb wurde darauf verzichtet.\\
 	\lstinputlisting[label=service_definition, caption=Definition eines
 	Services]{listings/service_definition.java}
-	In Listing \ref{service_definition} auf Seite \pageref{service_definition} wird
+	In Listing \ref{service_definition} wird
 	eine beispielhafte Definition eines Services mit einer Methode gezeigt. Die
 	"`\@Service"'-Annotation markiert diese Klasse für Spring als Service. Das
 	Repository-Objekt dient als Datenquelle für die Anfragen, diese wird durch den
@@ -149,27 +150,26 @@ Backend soll zudem Authentifizierungsanfragen auf Anwendungsebene bearbeiten.
 	Die Controller sind die Anlaufstelle für Anfragen über das Netzwerk und
 	bearbeiten diese.
 	Sie bedienen die Clients und liefern ihnen die angeforderten Daten zurück. Die
-	in dieser Arbeit verwendeten Controller werden von Java beziehungsweise Spring
-	(@RestController) bereitgestellt und erlauben eine einfach Zuordnung zu einer
+	in dieser Arbeit verwendeten Controller werden von Java (beziehungsweise
+	Spring) (@RestController) bereitgestellt und erlauben eine einfach Zuordnung zu einer
 	\ac{URI}, unter der sie ansprechbar sind sowie die Zuordnung der Methoden, die die unterschiedlichen Anfragen (zum
 	Beispiel GET, POST, PUT oder DELETE) bearbeiten. 
-	\paragraph{Aufbau der Controller}$~~$\\
+	\textbf{Aufbau der Controller}$~~$\\
 	Im Allgemeinen gibt es für jede Model-Klasse einen Controller, der Daten zum
 	jeweiligen Model liefern kann. Es können jedoch noch weitere Controller(oder
 	weniger) definiert werden, die mehr oder weniger Funktionalität sowie
 	zusätzliche, vom Datenmodell abgekoppelte, Funktionen anbieten können. So wurde
 	zum Beispiel zur generellen Verwaltung des Datenbestandes ein Backup-Controller
-	implementiert, der den gesamten Datenbestand in einer Anfrage ausliefern kann
-	sowie löschen kann und in den Anfangszustand zurücksetzt.
-	\lstinputlisting[label=controller_definition,caption=Definition
-	eines Controllers]{listings/controller_definition.java}
+	implementiert, der das clientseitige Backup unterstützt (alle Daten
+	ausliefern, Daten löschen und die Tabellen in den Anfangszustand versetzen)
+	\lstinputlisting[label=controller_definition,caption=Definition eines Controllers]{listings/controller_definition.java}
 	In Listing \ref{controller_definition} sieht man die einfache Definition eines
 	Controllers. Die Klasse wird mit der "`@RestController"'-Annotation versehen,
 	die dem \ac{IoC}-Container mitteilt, dass diese Klasse als \ac{REST}-Controller
 	definiert ist. Die Annotation "`@RequestMapping"' legt die Adresse fest, auf
 	der der Controller lauscht (In diesem Fall
-	"`<hostname>/trmanager/form"') und Anfragen entgegennimmt. Die in der Klasse
-	definierte Beispielmethode liefert auf eine GET-Anfrage alle Form-Objekte
+	"`<hostname>:port/trmanager/form"') und Anfragen entgegennimmt. Die in der
+	Klasse definierte Beispielmethode liefert auf eine GET-Anfrage alle Form-Objekte
 	(definiert über "`method=RequestMethod.GET"') aus.	
 	\paragraph{Funktionsumfang der Controller}$~~$\\
 	Jeder Controller der einer Model-Klasse (Form, Teacher, Student, Incident,
@@ -191,19 +191,19 @@ zu überprüfen. Hierzu wird JUnit verwendet, (Siehe Kapitel \ref{sssec:JUnit} auf
 Seite \pageref{sssec:JUnit}) um automatisierte Unit-Tests durchzuführen und die
 Funktionalität des Backends zu gewährleisten.\\
 Zu Beginn der Tests werden Testdatensätze in die Datenbank geladen (Von der
-produktiven Datenbank getrennte Instanz) und auf diesen werden dann die Tests
+produktiven Datenbank getrenntes Schema) und auf diesen werden dann die Tests
 durchgeführt. Getestet werden die Controller (Anfragen über das Netzwerk) und
 die Services beziehungsweise die Repositories. Bei den Controllern wird die
 Richtigkeit der HTTP-Antworten geprüft sowie die Authentifizierung. Die Services
 und Repositories werden insoweit geprüft, dass sie die Datensätze anhand der
 implementierten Logik zurückgeben.
-	\subsubsection{Controller-Tests}
+	\subsubsection{Controller-Unit-Tests}
 	Da die Controller die Schnittstelle zur Aussenwelt darstellen, ist hier die
 	Richtigkeit der Antworten besonders wichtig. Um die einzelnen Methoden zu
 	validieren wird jeder Controller und jede Methode eines Controllers überprüft.
 	Zu den Überprüfungen gehören das Handling von Anfragen mit "`falschen"' Daten, die
 	Richtigkeit der zurückgelieferten Daten und falsche Anfragen. Da die jeweiligen
-	Controller sehr ähnlich aufgebaut sind, lässt sich hier vieles Übernehmen was
+	Controller sehr ähnlich aufgebaut sind, lässt sich hier vieles übernehmen was
 	auch für einen anderen Controller benutzt wurde.\\
 	Zu Beginn eines jeden Tests wird die Datenbank neu geladen, das heisst die
 	Testdaten, wie oben beschrieben, werden wiederhergestellt, damit sichergestellt
@@ -217,9 +217,9 @@ implementierten Logik zurückgeben.
 	kann (In dem Fall 404: Not found). Falls das erwartete Verhalten eintritt, ist
 	der Test erfolgreich. In dem Stil werden alle Tests für jede Methode der
 	Controller durchgeführt, es werden alle möglichen Ergebnisse der Controller
-	"`erzwungen"'. Im Fall dieser Anwendung wären das normalerweise pro Controller
-	zwei Testfälle, entweder "`Not found"' beziehungsweise "`Internal Server
-	Error"' oder "`OK"'. 
+	"`erzwungen"'. Im Fall dieser Anwendung werden demnach pro Controller zwei
+	Testfälle benötigt, entweder "`Not found"' beziehungsweise "`Internal Server
+	Error"' oder "`OK"'.
 		\paragraph{Teacher-Controller}\label{ssssec:test_tcontroller}$~~$\\
 			Es werden alle Methoden des Teacher-Controllers getestet. Hierzu gehören:\\
 			\begin{itemize}
@@ -233,7 +233,7 @@ implementierten Logik zurückgeben.
 			Bei den Methoden, die nur Daten zurückliefern und sonst keine anderen
 			Funktionen erfüllen (getAllTeachers, getTeacherById) wird überprüft, ob der
 			Controller die Anfrage richtig behandelt. So soll etwa ein Fehler
-			zurückgegeben werden, falls der Datensatz nicht vorhanden und vice versa für
+			zurückgegeben werden, falls der Datensatz nicht vorhanden und umgekehrt für
 			einen existierenden Datensatz.\\
 			\lstinputlisting[label=testGetTeacherById,caption=Test
 			der getById-Methode des
@@ -317,7 +317,7 @@ implementierten Logik zurückgeben.
 			werden) muss nur diese getestet werden.\\
 			\lstinputlisting[label=ucontroller_test, caption=testAuthenticate des
 			User-Controllers]{listings/uControllerTest.java}
-			Listing \ref{ucontroller_test} auf Seite \pageref{ucontroller_test} zeigt die
+			Listing \ref{ucontroller_test} zeigt die
 			Methode zum Testen der Authenticate-Methode des User-Controllers. Zuerst
 			werden wie üblich die Hilfsobjekte zum generieren des JSON-Strings erzeugt.
 			Diese werden benutzt um zwei User-Objekte zu serialisieren, einmal einen
