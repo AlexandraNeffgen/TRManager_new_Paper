@@ -52,7 +52,7 @@ im- und exportieren.
 		beachten ist, dass die Attribute exakt so benamt sind wie im Backend. Dies ist
 		später für die Serialisierung und Deserialisierung der Daten mit JSON wichtig,
 		da sonst die Attribute nicht richtig zugewiesen werden können. Zudem wird mit
-		"`\[JsonConstructor\]"' der Konstruktor markiert, mit dem die Objekte
+		"`{[}JsonConstructor{]}"' der Konstruktor markiert, mit dem die Objekte
 		deserialisiert werden sollen. Die Mechanik, die mit JSON umgeht wird in
 		Kapitel \ref{ssssec:s_json} auf Seite \pageref{ssssec:s_json} erläutert.\\
 	\subsubsection{HTTP-Client}\label{sssec:http_client}
@@ -62,15 +62,88 @@ im- und exportieren.
 		"`Abfragen"' (in diesem Kontext Web-Requests) vom Programmierer und bietet
 		eine komfortable Möglichkeit, den Web-Service zu nutzen. Der HTTP-Client
 		benutzt Generics und lässt sich so an fast jeden Webservice anpassen.\\
-		Es wurden für die wichtigsten CRUD-Methoden Methoden implementiert:
+		Es wurden für die wichtigsten CRUD-Methoden (CRUD: Create, Read, Update,
+		Delete) Methoden implementiert:
 		\begin{itemize}
 		  \item add (POST)
 		  \item addBulk (POST)
 		  \item edit (PUT)
 		  \item delete (DELETE)
-		  \item getByID (GET)
+		  \item getById (GET)
 		  \item getAll (GET)
 		\end{itemize}
-		\paragraph{Serialize JSON}\label{ssssec:s_json}
+		Die grundsätzliche Funktionsweise der Methoden unterscheidet sich wieder in
+		idempotente und nichtidempotente Methoden, dies wird an Auszügen der Methoden
+		"`getById"' und "`add"' veranschaulicht:\\
+		\lstinputlisting[label=httpclient_getbyid, caption=getById-Methode des
+		Http-Clients]{listings/httpclient_idem.cs}
+		Listing \ref{httpclient_getbyid} auf Seite \pageref{httpclient_getbyid} zeigt
+		die getById-Methode des HTTP-Clients. Die wesentlichen Schritte bestehen im
+		Erzeugen des Requests und dem Festlegen der Request-Parameter(Zeile 3), dem
+		"`Abholen"' des Ergebnisses (HttpWebResponse, Zeile 4) und dem Lesen der
+		Response-Daten (reader.ReadToEnd(), Zeile 10). Der so erhaltene String wird
+		danach per JsonConvert (Json.NET Framework, siehe Kapitel \ref{ssssec:s_json})
+		deserialisiert und zurückgegeben. Der Rückgabewert der Methode wird festgelegt
+		durch den bei der Erzeugung des HTTP-Clients angegebenen Typs, zum Beispiel
+		Teacher. Zudem ist zu beachten dass ausser dem Query-String keine weiteren
+		Informationen an das Backend geschickt wird, da diese Methode nur Daten aus
+		dem Backend holt und sonst keine weiteren Änderungen vornimmt. Die anderen
+		Methoden, die GET verwenden sind sehr ähnlich implementiert, diese
+		unterscheiden sich nur durch einen anderen Einstiegspunkt.\\
+		Anders sieht es bei der Add-Methode aus, hier werden per POST Daten an das
+		Backend übermittelt:
+		 \lstinputlisting[label=httpclient_add, caption=Add-Methode
+		des Http-Clients]{listings/httpclient_nonidem.cs}
+		Analog zur getById-Methode wird auch ein Request erzeugt, dieser benötigt aber
+		weitere Informationen damit das Backend Diesen versteht. Dazu gehört der
+		"`ContentType"' (In welcher Form die Daten geschickt werden) und "`Accept"'
+		(Legt fest in welchem Format geantwortet werden soll). Nun wird das übergebene
+		Objekt serialisiert (JSON-Format) und an den Request angehängt (Zeile 10). Der
+		fertige Request wird an den Server geschickt und die Antwort als Response
+		gespeichert (Zeile 11). Die nun erhaltenen Daten entscheiden darüber ob die
+		Methode erfolgreich war, dann erhält man das gesendete Objekt als Bestätigung
+		mit ID zurück, falls nicht enthält der Response eine Server-Fehler-Nachricht
+		(Internal Server Error) und die Methode bricht ab. Die anderen Methoden, die
+		Daten per POST übertragen (addBulk, edit, delete) sind gleich aufgebaut, sie
+		unterscheiden sich lediglich durch einen anderen Einstiegspunkt (addBulk) oder
+		einer anderen HTTP-Methode (PUT, DELETE).
+		\paragraph{Json.NET Framework}$~~$\\\label{ssssec:s_json}
+		Da das .NET-Framework nicht über die Möglichkeit verfügt, Daten im JSON-Format
+		zu serialisieren und deserialisieren, wurde für das Projekt die Bibliothek
+		"`Json.NET"' von Newtonsoft eingebunden. Es bietet die Möglichkeit, Objekte
+		ins JSON-Format umzuwandeln und JSON-Strings zurück in Objekte. Hierfür muss
+		lediglich die zu serialisierende/deserialisierende Klasse mit einem Flag
+		versehen werden, die dem Framework den zu benutzenden Konstruktor anzeigt. Der
+		Rest erfolgt automatisch, solange man die Attribut-Namen einhält, die vom
+		Backend festgelegt wurden. Zudem besteht die Möglichkeit, weitere
+		Konfiguration wie zum Beispiel erweiterte Mappings und Ähnliches
+		festzulegen.\\
+		Im einfachsten Fall erfolgt die Serialisierung über einen Aufruf an das
+		Framework ohne weitere Einstellungen:
+		\begin{lstlisting}
+		JsonConvert.SerializeObject(obj);
+		\end{lstlisting}
+		"`obj"' ist hierbei das zu serialisierende Objekt.
+		Die Deserialisierung erfolgt analog dazu mit:
+		\begin{lstlisting}
+		JsonConvert.DeserializeObject<T>(content);
+		\end{lstlisting}
+		Der zurückzugebende Typ muss hier mit Generika festgelegt werden, im Falle des
+		Http-Clients wird dies bei Erzeugung festgelegt. "`content"' stellt einen
+		String im JSON-Format dar, der vom Framework geparsed und anhand des
+		markierten Konstruktors in ein Objekt vom Typ "`T"' umgewandelt wird.\\
+		Erweiterte Konfigurationen können mit einem "`JsonSerializerSettings"'-Objekt
+		festgelegt werden. 
+		\begin{lstlisting}
+		new JsonSerializerSettings { 
+		PreserveReferencesHandling = PreserveReferencesHandling.None,
+		ReferenceLoopHandling = ReferenceLoopHandling.Ignore 
+		};
+		\end{lstlisting}
+		Hier kann zum Beispiel die Behandlungsstrategie von
+		Referenzschleifen (ERKLÄRUNG EINFÜGEN) oder wie Referenzen allgemein behandelt
+		werden sollen festgelegt werden.\\
+		Json.NET ist Open Source-Software und wurde unter der MIT-Lizenz freigegeben
+		und kann somit ohne Restriktionen in kommerzieller Software verwendet werden.
 		
 \cleardoublepage

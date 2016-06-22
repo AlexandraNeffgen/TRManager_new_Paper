@@ -52,7 +52,7 @@ Backend soll zudem Authentifizierungsanfragen auf Anwendungsebene bearbeiten.
 		den Clients verwendet werden kann um das Eintragen eines neuen Vorfalls zu
 		vereinfachen.
 		\end{description}
-	\paragraph{Datenbank}
+	\paragraph{Datenbank}$~~$\\
 		Die Datenbank wird von Hibernate (Siehe Kapitel \ref{sssec:Hibernate}, Seite
 		\pageref{sssec:Hibernate}) aus dem Objektmodell(Beschrieben in Kapitel
 		\ref{ssssec:Model} auf Seite \pageref{ssssec:Model}) generiert.
@@ -153,7 +153,7 @@ Backend soll zudem Authentifizierungsanfragen auf Anwendungsebene bearbeiten.
 	(@RestController) bereitgestellt und erlauben eine einfach Zuordnung zu einer
 	\ac{URI}, unter der sie ansprechbar sind sowie die Zuordnung der Methoden, die die unterschiedlichen Anfragen (zum
 	Beispiel GET, POST, PUT oder DELETE) bearbeiten. 
-	\paragraph{Aufbau der Controller}
+	\paragraph{Aufbau der Controller}$~~$\\
 	Im Allgemeinen gibt es für jede Model-Klasse einen Controller, der Daten zum
 	jeweiligen Model liefern kann. Es können jedoch noch weitere Controller(oder
 	weniger) definiert werden, die mehr oder weniger Funktionalität sowie
@@ -171,7 +171,7 @@ Backend soll zudem Authentifizierungsanfragen auf Anwendungsebene bearbeiten.
 	"`<hostname>/trmanager/form"') und Anfragen entgegennimmt. Die in der Klasse
 	definierte Beispielmethode liefert auf eine GET-Anfrage alle Form-Objekte
 	(definiert über "`method=RequestMethod.GET"') aus.	
-	\paragraph{Funktionsumfang der Controller}
+	\paragraph{Funktionsumfang der Controller}$~~$\\
 	Jeder Controller der einer Model-Klasse (Form, Teacher, Student, Incident,
 	User, Comment) zugeordnet ist muss mindestens die folgenden Methoden
 	umsetzen:\\
@@ -220,7 +220,7 @@ implementierten Logik zurückgeben.
 	"`erzwungen"'. Im Fall dieser Anwendung wären das normalerweise pro Controller
 	zwei Testfälle, entweder "`Not found"' beziehungsweise "`Internal Server
 	Error"' oder "`OK"'. 
-		\paragraph{Teacher-Controller}\label{ssssec:test_tcontroller}
+		\paragraph{Teacher-Controller}\label{ssssec:test_tcontroller}$~~$\\
 			Es werden alle Methoden des Teacher-Controllers getestet. Hierzu gehören:\\
 			\begin{itemize}
 			  \item getAllTeachers
@@ -260,7 +260,7 @@ implementierten Logik zurückgeben.
 			auf null gesetzt). Der Rest des Tests ist analog zum idempotenten Test, nur
 			dass hier anstelle eines "`Not found"' ein "`Internal Server Error"' geworfen
 			wird.			
-		\paragraph{Form-Controller}
+		\paragraph{Form-Controller}$~~$\\
 			Es werden alle Methoden des Teacher-Controllers getestet. Hierzu gehören:\\
 			\begin{itemize}
 			  \item getAllForms
@@ -273,7 +273,7 @@ implementierten Logik zurückgeben.
 			Die Methoden werden analog wie in Kapitel \ref{ssssec:test_tcontroller} auf
 			Seite \pageref{ssssec:test_tcontroller} getestet. Auch hier wird zwischen den
 			idempotenten und nichtidempotenten Methoden unterschieden.
-		\paragraph{Student-Controller}
+		\paragraph{Student-Controller}$~~$\\
 		   Es werden alle Methoden des Student-Controllers getestet. Hierzu gehören:\\
 			\begin{itemize}
 			  \item getAllStudents
@@ -286,7 +286,7 @@ implementierten Logik zurückgeben.
 			Die Methoden werden analog wie in Kapitel \ref{ssssec:test_tcontroller} auf
 			Seite \pageref{ssssec:test_tcontroller} getestet. Auch hier wird zwischen den
 			idempotenten und nichtidempotenten Methoden unterschieden.
-		\paragraph{Incident-Controller}
+		\paragraph{Incident-Controller}$~~$\\
 			Es werden alle Methoden des Incident-Controllers getestet. Hierzu gehören:\\
 			\begin{itemize}
 			  \item getAllIncidents
@@ -299,7 +299,7 @@ implementierten Logik zurückgeben.
 			Die Methoden werden analog wie in Kapitel \ref{ssssec:test_tcontroller} auf
 			Seite \pageref{ssssec:test_tcontroller} getestet. Auch hier wird zwischen den
 			idempotenten und nichtidempotenten Methoden unterschieden.
-		\paragraph{Comment-Controller}\label{ssssec:comment_controller}
+		\paragraph{Comment-Controller}$~~$\\\label{ssssec:comment_controller}
 			Es werden alle Methoden des Comment-Controllers getestet. Hierzu gehören:\\
 			\begin{itemize}
 			  \item getAllComments
@@ -311,7 +311,7 @@ implementierten Logik zurückgeben.
 			Die Methoden werden analog wie in Kapitel \ref{ssssec:test_tcontroller} auf
 			Seite \pageref{ssssec:test_tcontroller} getestet. Auch hier wird zwischen den
 			idempotenten und nichtidempotenten Methoden unterschieden.
-		\paragraph{User-Controller}
+		\paragraph{User-Controller}$~~$\\
 			Da der User-Controller nur über die Authenticate-Methode verfügt (Die
 			Benutzer werden auf Datenbankebene eingefügt und sollen nicht geändert
 			werden) muss nur diese getestet werden.\\
