@@ -39,24 +39,23 @@ anbieten kann, die sehr weit verbreitet ist. Dies erleichtert das Konsumieren
 des Services, da man bereits bekannte Methoden(Im Sinne von Methodik) verwenden
 kann, um auf diese zuzugreifen, und auch die Struktur der HTTP-Anfragen gut
 bekannt ist. Zudem ist die Infrastruktur, die für REST nötig ist, im WWW sehr
-weit ausgebaut (HTTP-fähige Clients, Web- und Anwendungsserver, HTML-Parser)
-sind und viele der dort zu findenden Dienste schon REST-Konform sind
-(Auslieferung der Seiten über HTTP, Verwendung von HTTP-Methoden wie GET und
-POST etc.)\\
-REST ist Zustandslos, das bedeutet dass jede Nachricht alle Informationen
+weit ausgebaut (HTTP-fähige Clients, Web- und Anwendungsserver, HTML-Parser) ist
+und viele der schon bestehenden Dienste RESTful sind(Auslieferung der Seiten
+über HTTP, Verwendung von HTTP-Methoden wie GET und POST etc.)\\
+REST ist zustandslos, das bedeutet dass jede Nachricht alle Informationen
 bereithält um diese zu verstehen. Dies begünstigt die Skalierbarkeit solcher
 Services, da man eingehende Anfragen ohne große Probleme auf andere Systeme
-umleiten kann (Zur Lastverteilung), da der Server keine Zustandsinformationen zu
+umleiten kann (zur Lastverteilung), da der Server keine Zustandsinformationen zu
 einer Verbindung speichert. Diese werden ausschliesslich clientseitig
 vorgehalten, der Service dient hier sozusagen als Datenquelle. Neben der guten
 Skalierbarkeit bietet REST die Vorteile von HTTP wie zum Beispiel die einfache
-und erprobte Sicherung über \ac{TLS} sowie HTTP-Caching.\\
+und erprobte Verschlüsselung über \ac{TLS} sowie HTTP-Caching.\\
 Daten werden bei REST hauptsächlich über Formate wie JSON und XML realisiert,
 dazu kann der REST-Service je nach Client und angeforderter Formatierung ein
 anderes Format wählen.
 
 \subsection{Java}
-
+%KAPITEL SCHREIBEN !!!
 \subsubsection{JUnit}\label{sssec:JUnit}
 JUnit ist ein Framework zum Erstellen von automatisierten Tests.
 Es bietet die möglichkeit, automatisierte Tests an sogenannten Units (Klassen beziehungsweise
@@ -77,12 +76,13 @@ Jacoco.
 Das Spring-Framework ist ein quelloffenens Framework für die Java-Plattform. Es
 soll die Entwicklung mit Java/JavaEE vereinfachen und gute Programmierpraktiken
 fördern. Es wird zur Entwicklung von modernen, Java-basierten
-Enterprise-Anwendungen genutzt und bietet eine leicht verständliches
+Enterprise-Anwendungen genutzt und bietet ein leicht verständliches
 Programmier- und Konfigurationsmodell. Dabei sind die meisten Komponenten
 voneinander entkoppelt, dies führt zu einer guten Trennung von zum Beispiel
 Geschäftslogik und der darunter verwendeten Umgebung.\\
 Spring bietet Dependency Injection, Aspektorientierte Programmierung inklusive deklarativem
-Transaktionsmanagement und Unterstützung von \ac{JPA},\ac{JDBC} und \ac{JMS}
+Transaktionsmanagement und Unterstützung von \ac{JPA},\ac{JDBC}, \ac{JMS} und
+anderen.
 	\subsubsection{Spring Boot}
 	Spring Boot bietet eine vollständige, lauffähige Umgebung für einfache
 	Anwendungen, die ohne Konfiguration auskommen und alle Bibliotheken enthält. Es
@@ -95,18 +95,18 @@ Transaktionsmanagement und Unterstützung von \ac{JPA},\ac{JDBC} und \ac{JMS}
 	verwendet, um objektrelationale Abbildungen in relationalen Datenbanksystemen
 	umzusetzen.\\
 	Hierzu bildet es eine Abstraktionsschicht zwischen der Datenbank und dem
-	Benutzer. So muss sich der Benutzer zum Größtenteil nicht mehr mit dem Mapping
-	und der Datenbank an sich beschäftigen und kann gegen die Schnittstelle von
+	Anwendungsentwickler. So muss sich der Benutzer zum Größtenteil nicht mehr mit
+	dem Mapping und der Datenbank an sich beschäftigen und kann gegen die Schnittstelle von
 	Hibernate programmieren. Diese generiert dann die benötigten SQL-Anweisungen
 	für das darunterliegende Datenbanksystem.
 	\subsubsection{Dependency Injection}
 	Dependency Injection beschreibt in der objektorientierten Programmierung ein
-	Entwurfsmuster, dass die Abhängigkeiten eines Objekts erst zur Laufzeit
+	Entwurfsmuster, das die Abhängigkeiten eines Objekts erst zur Laufzeit
 	festlegt. Werden bei der Erzeugung eines Objektes andere Objekte benötigt, sind
-	diese Abhängigkeiten zentral gespeichert und wird nicht selbst vom erzeugten
+	diese Abhängigkeiten zentral gespeichert und werden nicht selbst vom erzeugten
 	Objekt erzeugt.\\
-	Spring setzt diese mit sogenannten \acs{IoC}-Containern um. \ac{IoC} beschreibt
-	die "`Umkehr der Steuerung"'. Hierbei wird die Steuerung der Anwendung an das
+	Spring setzt diese mit dem sogenannten \acs{IoC}-Container um. \ac{IoC}
+	beschreibt die "`Umkehr der Steuerung"'. Hierbei wird die Steuerung der Anwendung an das
 	Framework abgegeben, die Anwendung selbst wird nur durch dieses aufgerufen.
 	Implementiert wird dies über die "`@Autowired"'-Annotation, dies teilt Spring
 	mit dass hier die Injektion gewünscht ist. Spring verwaltet dann die Zuweisung
