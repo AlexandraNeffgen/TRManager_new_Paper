@@ -32,8 +32,13 @@ Statistik geht diese wohl nicht durch. Hier ist eine separate Anwendung oder
 entsprechende Erweiterungen anzugehen.
 
 \subsubsection{Backend-Erweiterungen}
-Verschlüsselung 
-
+Als weiterführende Maßnahmen wären die Einführung von Verschlüsselung sowie eine
+Backend-Seitige Authentifizierung denkbar. Hierbei könnte auf Transportebene
+TLS eingesetzt werden, dies ist ohne großen Aufwand möglich, da dies für HTTP
+schon weitreichend entwickelt ist. Für die Authentifizierung gäbe es mehrere
+Möglichkeiten. Neben einer selbstentwickelten Authentifizierung könnte Spring
+Security für diese Zwecke angepasst werden. Da die Anwendung aber in einem
+abgeschlossenem Netz läuft ist dies eher zweitrangig.
 
 \subsection{Wirtschaftlicher Faktor}\label{ssec:wFaktor}
 Das Projekt hat als Endergebnis ein solide funktionierendes Programm, welches
