@@ -35,29 +35,88 @@ einem Berufskolleg, welches bereits seit längerer Zeit mit dem
 Trainingsraumkonzept arbeitet, wurden entsprechende Anforderungen formuliert.
 Für eine bessere Übersicht wurden die einzelnen Punkte zum einem nach
 Grundfunktionen und unterstützende Funktionen aufgeteilt und zum anderen in
-logische Gruppen zusammengefasst. Die ausführlichen User-Stories sind in Anhang
-!!!! zu finden.
+logische Gruppen zusammengefasst. Die ausführlichen User-Stories sind im Anhang
+\ref{ssec:User_Stories} auf Seite \pageref{ssec:User_Stories} zu finden. Folgend
+werden die wesentlichen Gruppen erläutert.
 
-Die wesentlichen Grundfunktionen mit der Priorität eins wurden im Rahmen dieses
-Projektes vollständig umgesetzt. Die Anforderungen zu Priorität Zwei wurden im
-wesentlichen mit kleineren Änderungen ebenfalls umgesetzt. Die druckfertige
-Nachricht nach dem dritten bzw. den fünften Trainingsraum-Besuch ist bisher noch
-nicht umgesetzt.
-Die Anforderungen mit der Priorität Drei und Fünf wurden noch nicht umgesetzt
-und müssen noch geprüft werden. Zu diesen Anforderungen gehört im
-wesentlichen die Verwendung von Mailadressen. Um diese Funktionen umzusetzen
-müssen mehrere Bedingungen erfüllt sein. Zum einem werden die Mailadressen der
-Lehrer benötigt und zum anderen muss ein Server zur Verfügung gestellt werden,
-welcher die Mails an die Lehrer verschicken kann. Das Verwaltungstool
-Schild-NRW, aus welchem sämtliche Daten exportiert werden speichert nicht die
-Mailadressen der Lehrer. Außerdem steht dem Berufskolleg mit dem kooperiert
-weder die Mittel noch die Kompetenzen für einen eigenen Mail-Server zur
-Verfügung. 
-Die Statistiken und das Archiv wurden ebenfalls noch nicht umgesetzt. Die
-Vorbereitungen, wie etwa der Export der Daten wurden sind allerdings schon
-implementiert.
-Die unterstützende Funktion des externen Zugriffes wurde mittels des Web-Clients
-realisiert. Weiteres dazu in Kapitel !!!
+\begin{itemize}
+  \item Import und Export der Daten / Datensicherung (Priorität 1)
+  \begin{itemize}
+    \item Um mit den aktuellen Daten der jeweilgen Schule arbeiten zu können,
+    werden diese mittels CSV-Dateien importiert und können zur Absicherung auch
+    wieder in CSV-Dateien exportiert werden
+  \end{itemize}
+  \item Login Daten (Priorität 1)
+  \begin{itemize}
+    \item Jeder Lehrer kann sich durch dem ihm zugeordneten Kürzel ohne Passwort
+    anmelden. Die administrativen Funktionen sollen Passwortgeschützt sein.
+  \end{itemize}
+  \item Besuch eines Schülers eintragen (Priorität 1)
+  \begin{itemize}
+    \item Die Haupttätigkeit eines Lehrer im Trainingsraum
+  \end{itemize}
+  \item Vervollständigung (Priorität 1)
+  \begin{itemize}
+    \item Zur Vereinfachung der Namensfindung von Lehrern, Schülern und Klassen
+    soll es eine Art Autovervollständigung geben.
+  \end{itemize}
+  \item Behandlungen bei drei bzw. fünf Besuchen (Priorität 1)
+  \begin{itemize}
+    \item Nach drei bzw. fünf Besuchen eines Schülers im Trainingsraum sind von
+    schulischer Seite besondere Maßnahmen zu treffen. Auf diese soll durch das
+    Programm hingewiesen werden.
+  \end{itemize}
+  \item Behandlung Rückkehrer TR aufgrund von Ablehnung Rückkehrplan (Priorität
+  1)
+  \begin{itemize}
+    \item Rückkehrer werden auch technisch anders als ein Erstbesuch im
+    Trainingsraum behandelt.
+  \end{itemize}
+  \item Administrationsrechte (Priorität 1)
+  \begin{itemize}
+    \item Sämtliche verwaltende und zeitunabhängige Datenmanipulation geschieht
+    über einen Passwortgesicherten Account.
+  \end{itemize}
+  \item Schülerdatenabruf / Information über Besuche im Trainingsraum (TR)
+  (Priorität 2)
+  \begin{itemize}
+    \item Statistische Informationen zu einem Schüler sollen für den
+    administrativen Account abrufbar sein.
+  \end{itemize}
+  \item Zeitzähler (Priorität 2)
+  \begin{itemize}
+    \item Ein Schüler muss mindestens 15 Minuten im Traingsraum sich seinem
+    Rückkehrplan widmen. Diese 15 Minuten sollen dem betreuenden Lehrer grafisch
+    angezeigt werden
+  \end{itemize}
+  \item Druckfertige Nachricht (Priorität 4)
+  \begin{itemize}
+    \item Der Hinweis für die Schule zu einem dritten bzw. fünften Besuch soll
+    als druckfertige Nachricht ausgegeben werden
+  \end{itemize}
+  \item Lehrer mit hinterlegter Mailadresse (Priorität 4)
+  \begin{itemize}
+    \item Zur Modernisierung der Benarichtigungen an die Lehrer, soll deren
+    Mailadresse hinterlegt werden
+  \end{itemize}
+  \item Mailfunktion (Priorität 5)
+  \begin{itemize}
+    \item Sämtliche relevanten Informationen an die Lehrer sollen zeitnah per
+    Mail vertielt werden
+  \end{itemize}
+\end{itemize}
+\begin{itemize}
+  \item Statistiken anhand der Exportdaten (Priorität 4)
+    \begin{itemize}
+    \item Anhand der exportierten Daten sollen lokal Statistiken erstellt werden
+    können (Filter- und Sortieroptionen). 
+  \end{itemize} 
+  \item Externer Zugriff (Priorität 5)
+  \begin{itemize}
+    \item Für die Administration soll ein externer Zugriff auf die Daten über
+    eine zusätzliche Software Komponente möglich sein.
+  \end{itemize} 
+\end{itemize}
 
 \subsection{Design}
 
