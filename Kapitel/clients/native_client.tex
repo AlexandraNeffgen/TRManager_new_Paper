@@ -30,13 +30,13 @@ Im Reiter "`Datensätze verwalten"' hat der Administrator die Möglichkeit
 zeitunabhängig die Informationen zu Incidents, Lehrern und Schülern zu
 bearbeiten. 
 
-\paragraph{Workflows}$~~$\\
+\subsubsection{Workflows}$~~$\\
 Die einzelnen Workflows werden im folgenden erläutert. Dabei werden sowohl die
 Schritte des Nutzer aufgeführt, als auch die wesentlichen technischen
-Hintergrundprozesse. 
+Hintergrundprozesse. \\
 
 \setlength\parindent{0pt} 
-\textbf{Schülerbesuch eintragen}
+\textbf{Schülerbesuch eintragen}\\
 Um einen Schülerbesuch einzutragen muss im linken Teil der Oberfläche zu
 nächst die Klasse des Schülers aus der Liste ausgewählt werden. Sobald man sich
 innerhalb der Liste befindet kann der User durch einfaches tippen von Buchstaben
@@ -87,8 +87,9 @@ form_main.mainFormReference.refreshInterfaceData();
 In der Refresh Methode des Hauptfenster (Kapitel \ref{refreshInterfaceData}
 Seite \pageref{refreshInterfaceData}) werden über die RepositoryUtility Klasse
 die aktuellen Daten aus dem Backend abgerufen und in den zuvor geleerten Listen
-angezeigt.
-\textbf{Details zu einem Incident anzeigen}
+angezeigt.\par 
+\vspace{\baselineskip}
+\textbf{Details zu einem Incident anzeigen}\\
 Um sich Details zu einem Incident anzeigen zu lassen, muss in der
 Tagesansicht selektiert werden. Sobald dieser ausgewählt ist, werden unten
 rechts in der Detailbox Infos zum betreffenden Incident angezeigt(Benutzerhandbuch, Kapitel 3
@@ -102,15 +103,16 @@ Abbildung 3: 2). Dazu gehören:
 \end{itemize}
 Im Hintergrund wird das Event "`SelectedIndexChanged"' ausgelöst. Die Methode
 prüft zunächst, ob ein Element ausgewählt ist und übernimmt dann die Daten in
-die Detailbox. 
-\textbf{Schüler aus dem Trainingsraum entlassen}
+die Detailbox. \par 
+\vspace{\baselineskip}
+\textbf{Schüler aus dem Trainingsraum entlassen}\\
 Um einen Schüler aus dem Trainingsraum zu entlassen muss der betreffende
 Incident wie in "`Details zu einem Incident anzeigen"' beschrieben
-ausgewählt werden. Nun kann der Button "`Entlassen"' betätigt werden (Benutzerhandbuch, Kapitel 3
-Abbildung 3: 6).
-Bei Betätigung dieses Buttons wird (15 Minuten Anwesenheit vorausgesetzt) eine Infobox zur Bestätigung angezeigt und der Schüler ist
-entlassen. Im Hintergrund löst dies die Methode "`btn\_release\_student\_Click"'
-aus:
+ausgewählt werden. Nun kann der Button "`Entlassen"' betätigt werden
+(Benutzerhandbuch, Kapitel 3 Abbildung 3: 6).
+Bei Betätigung dieses Buttons wird (15 Minuten Anwesenheit vorausgesetzt) eine
+Infobox zur Bestätigung angezeigt und der Schüler ist entlassen. Im Hintergrund
+löst dies die Methode "`btn\_release\_student\_Click"' aus:
 \begin{lstlisting}
 if (Incident_info_box.Tag != null && Incident_info_box.Tag is Incident)
 {
@@ -123,9 +125,10 @@ von "`Entlassen"'. Der Incident wird aus der Liste extrahiert und an die Methode
 "`releaseStudent"' (RepositoryUtility) übergeben, die die Entlassung an das
 Backend weitergibt. Bei einer Entlassung wird in den Incident die Zeit des
 Verlassens eingetragen und ist somit abgeschlossen. Um dem Benutzer die
-aktuellen Daten anzuzeigen werden die Anzeigedaten mit "`refreshInterfaceData"'
-aktualisiert.
-\textbf{Rückkehrer eintragen}  
+aktuellen Daten anzuzeigen werden die angezeigte Daten mit
+"`refreshInterfaceData"' aktualisiert.\par 
+\vspace{\baselineskip}
+\textbf{Rückkehrer eintragen}  \\
 Um einen Rückkehrer einzutragen, muss zunächst die Schaltfläche
 "`Rückkehrer"' betätigt werden (7). Das sich nun öffnende Fenster zeigt eine
 Liste mit allen innerhalb der letzten 5 Tage eingetragenen Incidents. Aus dieser
@@ -142,12 +145,35 @@ werden die Anzeigedaten über das übliche
 refreshInterfaceData();
 \end{lstlisting}
 aktualisiert.
-\textbf{Import/Export}
+\par 
+\vspace{\baselineskip}
+\textbf{Import/Export} \\
 
-\textbf{Servereinstellungen ändern}
-Für 
-\textbf{Klasse ändern}
 
-\textbf{Klasse hinzufügen}
+\par 
+\vspace{\baselineskip}
+\textbf{Servereinstellungen ändern}\\
+Die Servereinstellungen werden im Reiter Einstellungen verändert. Durch einen
+Klick in die Textbox können jeweils die folgenden drei Werte bearbeitet werden:
+\begin{itemize}
+  \item Serveradresse
+  \item Port
+  \item Endpoint
+\end{itemize}
+Ein roter Balken unterhalb der Textbox markiert dabei die aktuelle Position.
+Durch Betätigung des "`Konfiguration speichern"' wir die Methode zur
+persistenten Speicherung der Konfiguration
+aufgerufen: \lstinputlisting[label=config_save,
+caption=Speicherung der Konfiguration]{listings/config_safe.cs}
+ 
+\par 
+\vspace{\baselineskip}
+\textbf{Klasse ändern}\\
 
-\textbf{Klasse löschen}
+\par 
+\vspace{\baselineskip}
+\textbf{Klasse hinzufügen}\\
+
+\par 
+\vspace{\baselineskip}
+\textbf{Klasse löschen}\\
