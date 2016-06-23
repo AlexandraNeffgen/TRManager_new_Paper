@@ -55,7 +55,23 @@ dazu kann der REST-Service je nach Client und angeforderter Formatierung ein
 anderes Format wählen.
 
 \subsection{Java}
-%KAPITEL SCHREIBEN !!!
+Java ist eine vom Unternehmen Sun Microsystems entwickelte, objektorientierte
+Sprache. 2010 wurde Sun Microsystems von Oracle aufgekauft und wird seitdem von
+Oracle weiterentwickelt. Die Programmiersprache ist Kern der Java-Technologie,
+neben der Sprache gibt es die Entwicklungswerkzeuge (JDK, Java Development Kit)
+und die plattformunabhängige Laufzeitumgebung (JRE, Java Runtime Environment).
+In der Laufzeitumgebung sind die JVM (Java Virtual Machine) und die
+mitgelieferten Bibliotheken enthalten.\\
+Das Ziel der JVM, also im Grunde die Virtualisierung der Laufzeitumgebung, ist
+die plattformunabhängigkeit. So können Java-Programme auf jedem System mit einer
+JRE beziehungsweise JVM ausgeführt werden. Von Oracle selbst werden JRE\'s für
+Linux, OS X, Solaris und Windows angeboten, aber andere Hersteller lassen sich
+ihre eigenen Laufzeitumgebungen für die jeweilige Plattform zertifizieren. So
+gibt es zum Beispiel Laufzeitumgebungen für Hifi-Anlagen, Autos und viele
+mehr.\\
+Java ist aktuell in Version 8.92 (8 Update 92) verfügbar und bietet dem
+Anwendungsentwickler Funktionen wie Reflection und
+Annotationen\footnote{\bibentry{2012Einstiegin}, Kapitel 4}.
 \subsubsection{JUnit}\label{sssec:JUnit}
 JUnit ist ein Framework zum Erstellen von automatisierten Tests.
 Es bietet die möglichkeit, automatisierte Tests an sogenannten Units (Klassen beziehungsweise
@@ -98,7 +114,9 @@ anderen.
 	Anwendungsentwickler. So muss sich der Benutzer zum Größtenteil nicht mehr mit
 	dem Mapping und der Datenbank an sich beschäftigen und kann gegen die Schnittstelle von
 	Hibernate programmieren. Diese generiert dann die benötigten SQL-Anweisungen
-	für das darunterliegende Datenbanksystem.
+	für das darunterliegende Datenbanksystem.\\
+	Hibernate ist kein Teil von Spring, wird aber in dieser Arbeit in Spring
+	eingebunden\footnote{\bibentry{2006BeginningHibernate}}.
 	\subsubsection{Dependency Injection}
 	Dependency Injection beschreibt in der objektorientierten Programmierung ein
 	Entwurfsmuster, das die Abhängigkeiten eines Objekts erst zur Laufzeit
@@ -110,7 +128,7 @@ anderen.
 	Framework abgegeben, die Anwendung selbst wird nur durch dieses aufgerufen.
 	Implementiert wird dies über die "`@Autowired"'-Annotation, dies teilt Spring
 	mit dass hier die Injektion gewünscht ist. Spring verwaltet dann die Zuweisung
-	dieser Objekte.
+	dieser Objekte\footnote{\bibentry{2008ProSpring}, Kapitel 3}.
 	\subsubsection{Aspect Oriented Programming}
 	Aspektorientierte Programmierung(\acs{AOP}) beschreibt ein Programmierparadigma
 	in der objektorientierten Programmierung. Das Ziel der \acs{AOP} ist es,
@@ -118,6 +136,9 @@ anderen.
 	Geschäftslogik zu trennen. Entwickelt wurde dieses Konzept bei Xerox PARC von
 	Gregor Kiczales und seinem Team. 2001 wurde dort auch die erste Sprache dafür
 	vorgestellt, AspectJ, eine aspekt-orientierte Erweiterung von Java.
+	Im Rahmen von Spring wird AOP für Funktionen wie Logging, Deklaratives
+	Transaktionsmanagement und andere
+	verwendet\footnote{\bibentry{2008ProSpring}, Kapitel 5}.
 \subsection{Windows Forms}
 	\subsubsection{.Net Bibliothek} 
 ASP.NET ist eine von Microsoft entwickelte Technologie, welche auf dem .NET
@@ -251,3 +272,21 @@ enthalten unter anderem ein MVC-System, Authentifizierung und Benutzerverwaltung
 sowie verschiedene Hilfskomponenten wie zum Beispiel die Erstellung von
 PDF-Dateien und Email-Versand.
 \subsubsection{Java Server Pages}
+\ac{JSP} dient zur Erstellung dynamischer Webseiten. Es wurde von Sun
+Microsystems entwickelt und bietet die Möglichkeit, Java-Anwendungen für das Web
+zu programmieren. Um dies umzusetzen, werden JSP-Tags und Java-Code in
+HTML-Dokumente integriert und so dynamisch gestaltet. Der Kern von \ac{JSP}
+ist der JSP-Server. Es gibt kommerzielle und freie JSP-Server-Anwendungen, diese
+sind je nach Anwendungsgebiet auszuwählen. Durch die Verwendung der
+Java-Laufzeitumgebung ist JSP plattformunabhängig und kann dadurch fast überall
+ausgeführt werden. \\
+Da Servlets sehr statisch sind (Jede Änderung an der Ausgabeseite hat eine
+neukompilierung des Programms zur Folge) wurde für JSP ein anderer Weg gewählt.
+Hierbei werden JSP-Tags und Java-Code-Fragmente in das HTML-Dokument eingebunden
+und sorgen so für die unabhängigkeit von Programmlogik und
+Anzeigelogik\footnote{\bibentry{2011BasiswissenWeb-Programmierung}, Kapitel
+6ff}.
+Zudem ermöglicht JSP die Verwendung der Java-Bibliotheken, was zu einer größeren
+Wiederverwendbarkeit des geschriebenen Codes führt.\\
+Einsatzgebiet von JSP sind hauptsächlich große Web-Anwendungen.
+

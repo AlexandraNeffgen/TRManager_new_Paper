@@ -43,7 +43,7 @@ im- und exportieren.
 		da die Funktionalität, die LazyObject erfüllt (Flag zum Anzeigen ob das
 		Objekt vollständig geladen ist und Hilfsklassen), nur auf dem Server benötigt
 		wird und für den Client bis auf die vererbte ID uninterresant ist. Daraus
-		ergibt sich auch die Änderung, dass die Klassen im Gegensatz zum Model im
+		ergibt sich auch die Änderung, dass die Klassen im Gegensatz zum Model im4
 		Backend die ID als direktes Attribut führen.\\
 		\lstinputlisting[label=teacher_client, caption=Teacher-Model-Klasse im
 		Client]{listings/Teacher.cs}
@@ -107,6 +107,16 @@ im- und exportieren.
 		Daten per POST übertragen (addBulk, edit, delete) sind gleich aufgebaut, sie
 		unterscheiden sich lediglich durch einen anderen Einstiegspunkt (addBulk) oder
 		einer anderen HTTP-Methode (PUT, DELETE).
+		\paragraph{Repository-Utility}$~~$\\\label{http_client_repo_uti}
+		Die Repository-Utility-Klasse abstrahiert die Verwendung der einzelnen
+		HTTP-Clients, die für jede Model-Klasse erstellt werden. Dabei bietet es
+		Methoden zum Anlegen, Verändern und Löschen aller Model-Klassen(zum Beispiel
+		addTeacher oder editIncident). Die Daten werden über die Methode
+		"`refreshData"' vom Backend nachgeladen. Hierfür wird der Backup-Controller
+		verwendet, da er innerhalb eines Requests alle Daten ausliefern
+		kann. Dies führt zu einer Reduktion der Anzahl der Requests, da der Client
+		sich aus den schon geladenen Daten bedienen kann und nur bei Änderungen die
+		Daten nachladen muss.
 		\paragraph{Json.NET Framework}$~~$\\\label{ssssec:s_json}
 		Da das .NET-Framework nicht über die Möglichkeit verfügt, Daten im JSON-Format
 		zu serialisieren und deserialisieren, wurde für das Projekt die Bibliothek
