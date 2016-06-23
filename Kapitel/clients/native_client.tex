@@ -52,7 +52,7 @@ den folgenden zwei Schritten besteht: Abwählen der vorherigen Selektion und
 Selektion der neuen Auswahl. Ist sichergestellt, dass es sich um die eigentlich
 Selektion handelt, wird der Code zur Anzeige der Schüler einer Klasse
 ausgeführt. Die wichtigsten Befehle dazu sind im Listing \ref{lv_form_changed}
-aufgeführt.
+aufgeführt:
 \lstinputlisting[label=lv_form_changed, caption=Klasse
 ausgewählt]{listings/lv_form_IndexChange.cs}
 Um sicherzustellen, dass sämtliche Daten der vorherigen Klasse aus der Liste
@@ -71,19 +71,21 @@ geschieht über die Methode "`Deactivate"' und den Eigenschaftswerd "`Opacity"'.
 In der folgenden Form erhält der Nutzer eine Liste mit sämtlichen Lehrern, ein
 Freitextfeld für Bemerkungen und eine Auswahl von der Standard Begründungen.
 Sämtliche hier enthaltenen Daten stehen in der Datenbank und werden durch die
-Klasse RepositoryUtility \ref{http_client_repo_uti} zur Verfügung gestellt. Dies
-bedeutet, dass auch hier lediglich mit Listen gearbeitet wird. Durch den Button
+Klasse RepositoryUtility (Kapitel \ref{http_client_repo_uti} Seite
+\pageref{http_client_repo_uti}) zur Verfügung gestellt.
+Dies bedeutet, dass auch hier lediglich mit Listen gearbeitet wird. Durch den Button
 "`Vorfall anlegen"' wird ein neues Incident-Objekt erstellt und mit den Daten
 aus dem Formular und der aktuellen Zeit gefüttert. Der Inhalt des Freifeldtext
 und die Auswahl der Begründung bilden dabei das Attribut "`Comment"'. 
 Dieses neu erstellte Incident Object wird mittels über ReositoryUtility dem
 Backend übermittelt. Damit die Daten in der Hauptübersicht ebenfalls aktuell
 sind wird vor dem Schließen des "`Create Incident"' Fensters noch ein Refresh
-auf dem Hauptfenster aufgerufen.
+auf dem Hauptfenster aufgerufen:
 \begin{lstlisting}
 form_main.mainFormReference.refreshInterfaceData();
 \end{lstlisting}
-
+In der Refresh Methode des Hauptfenster (Kapitel \ref{refreshInterfaceData}
+Seite \pageref{refreshInterfaceData})
 
 
 \textbf{Schüler aus dem Trainingsraum entlassen}
