@@ -37,7 +37,7 @@ Hintergrundprozesse.
 
 \setlength\parindent{0pt} 
 \textbf{Schülerbesuch eintragen}
-Um einen Schülerbesuch einzutragen muss in dem linken Teil der Oberfläche zu
+Um einen Schülerbesuch einzutragen muss im linken Teil der Oberfläche zu
 nächst die Klasse des Schülers aus der Liste ausgewählt werden. Sobald man sich
 innerhalb der Liste befindet kann der User durch einfaches tippen von Buchstaben
 in der Liste navigieren. Beispielsweise lässt sich durch tippen eines
@@ -63,7 +63,7 @@ sämtliche Schüler dem Klassenobjekt der zugehörigen Klasse angehängt. Daher
 kann auf diese über das Klassen-Objekt mit einer foreach-Schleife zugegriffen
 werden. Die Objekte sind den Listen in dem Attribut "`Tag"' hinterlegt, um diese
 für weitere Aktionen verwenden zu können. Da der Tag aber nicht für den Benutzer
-der ANwendung sichtbar ist, werden zusätzlich zu einem Eintrag das Attribut
+der Anwendung sichtbar ist, werden zusätzlich zu einem Eintrag das Attribut
 "`Name"' gesetzt.
 Nach bestätigen des Button "`Vorfall anlegen"' wird ein seperates Fenster
 geöffnet. Um dies hervorzuheben wird die MainForm leicht durchsichtig. Dies
@@ -88,27 +88,66 @@ In der Refresh Methode des Hauptfenster (Kapitel \ref{refreshInterfaceData}
 Seite \pageref{refreshInterfaceData}) werden über die RepositoryUtility Klasse
 die aktuellen Daten aus dem Backend abgerufen und in den zuvor geleerten Listen
 angezeigt.
-
-\textbf{Schüler aus dem Trainingsraum entlassen}
-
 \textbf{Details zu einem Incident anzeigen}
-
+Um sich Details zu einem Incident anzeigen zu lassen, muss in der
+Tagesansicht selektiert werden. Sobald dieser ausgewählt ist, werden unten
+rechts in der Detailbox Infos zum betreffenden Incident angezeigt(Benutzerhandbuch, Kapitel 3
+Abbildung 3: 2). Dazu gehören:
+\begin{itemize}
+  \item Scheinnummer
+  \item Name
+  \item Ankunft
+  \item Schickender Lehrer
+  \item Kommentar
+\end{itemize}
+Im Hintergrund wird das Event "`SelectedIndexChanged"' ausgelöst. Die Methode
+prüft zunächst, ob ein Element ausgewählt ist und übernimmt dann die Daten in
+die Detailbox. 
+\textbf{Schüler aus dem Trainingsraum entlassen}
+Um einen Schüler aus dem Trainingsraum zu entlassen muss der betreffende
+Incident wie in "`Details zu einem Incident anzeigen"' beschrieben
+ausgewählt werden. Nun kann der Button "`Entlassen"' betätigt werden (Benutzerhandbuch, Kapitel 3
+Abbildung 3: 6).
+Bei Betätigung dieses Buttons wird (15 Minuten Anwesenheit vorausgesetzt) eine Infobox zur Bestätigung angezeigt und der Schüler ist
+entlassen. Im Hintergrund löst dies die Methode "`btn\_release\_student\_Click"'
+aus:
+\begin{lstlisting}
+if (Incident_info_box.Tag != null && Incident_info_box.Tag is Incident)
+{
+     RepositoryUtility.releaseStudent((Incident)Incident_info_box.Tag);
+}
+this.refreshInterfaceData();
+\end{lstlisting}
+Das vorangestellte Listing zeigt die ausgelösten Funktionen nach dem Betätigen
+von "`Entlassen"'. Der Incident wird aus der Liste extrahiert und an die Methode
+"`releaseStudent"' (RepositoryUtility) übergeben, die die Entlassung an das
+Backend weitergibt. Bei einer Entlassung wird in den Incident die Zeit des
+Verlassens eingetragen und ist somit abgeschlossen. Um dem Benutzer die
+aktuellen Daten anzuzeigen werden die Anzeigedaten mit "`refreshInterfaceData"'
+aktualisiert.
 \textbf{Rückkehrer eintragen}  
-
-\textbf{Import}
-
-\textbf{Export}
+Um einen Rückkehrer einzutragen, muss zunächst die Schaltfläche
+"`Rückkehrer"' betätigt werden (7). Das sich nun öffnende Fenster zeigt eine
+Liste mit allen innerhalb der letzten 5 Tage eingetragenen Incidents. Aus dieser
+Liste kann der entsprechende Incident ausgewählt werden und über einen Klick auf
+den Button "`Eintragen"' eingetragen werden. Die Scheinnummer bleibt hierbei die
+gleiche.\\
+Im Hintergrund wird die Liste mit vergangenen Incidents aus der Liste aller
+Incidents gefüllt. Hierbei werden jedoch nur Incidents übernommen, die ein
+"`Department"'-Datum gesetzt haben und das Department-Datum innerhalb der
+letzten 5 Tage liegt. Das Eintragen erfolgt technisch wie in "`Schülerbesuch
+eintragen"', nur wird hier die Scheinnummer manuell gesetzt. Nach dem Eintragen
+werden die Anzeigedaten über das übliche
+\begin{lstlisting}
+refreshInterfaceData();
+\end{lstlisting}
+aktualisiert.
+\textbf{Import/Export}
 
 \textbf{Servereinstellungen ändern}
-
+Für 
 \textbf{Klasse ändern}
 
 \textbf{Klasse hinzufügen}
 
-\textbf{Lehrer ändern}
-
-\textbf{Lehrer hinzufügen}    
-
-\textbf{Incident ändern}
-
-\textbf{Incident hinzufügen}
+\textbf{Klasse löschen}
