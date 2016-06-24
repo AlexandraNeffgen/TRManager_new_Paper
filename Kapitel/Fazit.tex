@@ -6,25 +6,39 @@ Die wesentlichen Grundfunktionen mit der Priorität eins wurden im Rahmen dieses
 Projektes vollständig umgesetzt. Die Anforderungen zu Priorität Zwei wurden im
 wesentlichen mit kleineren Änderungen ebenfalls umgesetzt. Die druckfertige
 Nachricht nach dem dritten bzw. den fünften Trainingsraum-Besuch ist bisher noch
-nicht umgesetzt.
+nicht umgesetzt. Die Autovervollständigung zur vereinfachten Suche von Schülern
+wurde durch die vorgeschaltete Auswahl der Klasse umgangen. Die
+Autovervollständigung sollte die Problematik von komplizierten und auf Papier
+schwer lesbaren Name beheben. Die gewählte Vorgehensweise erfüllt diesen Zweck
+ebenfalss und dient zudem auch der Übersicht in der Oberfläche.
 Die Anforderungen mit der Priorität Drei bis Fünf wurden noch nicht umgesetzt
-und müssen noch geprüft werden. Zu diesen Anforderungen gehört im
-wesentlichen die Verwendung von Mailadressen. Um diese Funktionen umzusetzen
-müssen mehrere Bedingungen erfüllt sein. Zum einem werden die Mailadressen der
-Lehrer benötigt und zum anderen muss ein Server zur Verfügung gestellt werden,
-welcher die Mails an die Lehrer verschicken kann. Das Verwaltungstool
-SchILD-NRW, aus welchem sämtliche Daten exportiert werden speichert nicht die
-Mailadressen der Lehrer. Außerdem steht dem Berufskolleg mit dem kooperiert
-wird weder die Mittel noch die Kompetenzen für einen eigenen Mail-Server zur
-Verfügung. \\
+und müssen noch geprüft werden. Zu diesen Anforderungen gehört im wesentlichen
+die Verwendung von Mailadressen. Um diese Funktionen umzusetzen müssen mehrere
+Bedingungen erfüllt sein. Zum einem werden die Mailadressen der Lehrer benötigt
+und zum anderen muss ein Server zur Verfügung gestellt werden, welcher die Mails
+an die Lehrer verschicken kann. Das Verwaltungstool SchILD-NRW, aus welchem
+sämtliche Daten exportiert werden speichert nicht die Mailadressen der Lehrer.
+Außerdem steht dem Berufskolleg mit dem kooperiert wird weder die Mittel noch
+die Kompetenzen für einen eigenen Mail-Server zur Verfügung. \\
 Die Statistiken und das Archiv wurden ebenfalls noch nicht umgesetzt. Die
 Vorbereitungen, wie etwa der Export der Daten wurden sind allerdings schon
 implementiert.\\
 Die unterstützende Funktion des externen Zugriffes wurde mittels des Web-Clients
 realisiert. Weiteres dazu in Kapitel \ref{ssec:web} auf Seite
-\pageref{ssec:web}.\\
+\pageref{ssec:web}.
+Zu Beginn des Projekts gab es noch die Anforderung, dass jeder angemeldete
+Lehrer die Möglichkeit haben soll einen Schüler anzulegen, sofern er in der
+Klasse nicht zu finden ist. Diese Anforderung entspringt der Tatsache, dass
+gerade zu Beginn des Schuljahres Schüler nachgepflegt werden müssen. Da es aber
+in Rahmen der Testphasen häufiger dazu kam, dass Lehrer bereits vorhandene
+Schüler eingetragen habe, weil sie in der falschen Klasse gesucht haben, wurde
+in Absprache mit der kooperierenden Schule beschlossen, diese Funktion wieder
+abzuschalten und auch aus den User-Stories zu entfernen. Ist nun ein Schüler
+nicht im System notiert, wird der komplette eintragen auf Papier festgehalten
+und vom Administrator nachgepflegt.
+\\
 Das gesamte Projekt besteht wie bereits häufiger erläutert aus drei Teilen,
-welche alle seperat installiert werden müssen. Zum Zeitpunkt des
+welche alle separat installiert werden müssen. Zum Zeitpunkt des
 Projektabschlusses steht kein Installationsprogramm zur Verfügung. Daher wird
 dem kooperativen Berufskolleg bei Auslieferung die vollständige Applikation
 installiert und eingerichtet. Die Installation soll in Zukunft vereinfacht
