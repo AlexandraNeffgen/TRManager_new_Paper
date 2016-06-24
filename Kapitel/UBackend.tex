@@ -20,15 +20,14 @@ können.
 	(vergleiche Kapitel \ref{ssec:Spring} auf Seite \pageref{ssec:Spring}), die die
 	Implementierung eines Webservices erheblich vereinfacht.
 	Die für dieses Projekt verwendeten Module umfassen Spring Boot,Spring Data und
-	Spring REST.
+	Spring MVC.
 	Spring Boot erlaubt die einfache Erstellung sofort lauffähiger Spring-Anwendungen, da hier keine komplexen
 	XML-Konfigurationen vorgenommen werden müssen, und das Projekt übersichtlich
 	genug, um keine komplexen Konfigurationen zu benötigen.
 	\subsubsection{Model}\label{sssec:model}
-		Das Model legt die Datenstrukturen fest, in der das Backend arbeitet und
-		antwortet.
-		Ebenso legen diese über die annotierten Model-Klassen die Datenbankstruktur
-		fest (Siehe Kapitel "`Hibernate"'). Für die Darstellung der Daten werden
+		Das Model legt die Datenstrukturen fest, diese stellen die Objekte in der
+		Anwendung dar wie zum Beispiel eine Klasse oder einen Schüler. Ebenso legen
+		diese über die annotierten Model-Klassen die Datenbankstruktur fest (Siehe Kapitel "`Hibernate"'). Für die Darstellung der Daten werden
 		folgende Klassen benötigt:
 		\begin{description}
 		\item[LazyObject]
@@ -48,8 +47,8 @@ können.
 		ist und eine Liste aller Vorfälle, in die der Schüler verwickelt ist.
 		\item[Incident]
 		Die Incident-Klasse stellt jeweils einen Vorfall dar. Jeder Vorfall speichert 
-		den schickenden Lehrer, den zugehörigen Schüler, eine interne Vorfallsnummer,
-		die Ankunftszeit und Entlassungszeit sowie einen Kommentar, der den Vorfall
+		den schickenden und den beaufsichtigenden Lehrer, den zugehörigen Schüler,
+		eine interne Vorfallsnummer, die Ankunftszeit und Entlassungszeit sowie einen Kommentar, der den Vorfall
 		selbst beschreibt und frei eingegeben werden kann.
 		\item[Comment]
 		Die Comment-Klasse stellt jeweils einen vorgefertigten Kommentar dar, der von
@@ -115,8 +114,8 @@ können.
 	und auch keine komplexen Abhängigkeiten im Datenmodell bestehen.\\
 	\lstinputlisting[label=repository_definition, caption=Definition eines
 	Repositories]{listings/repository_definition.java}
-	In Listing \ref{repository_definition} ist die Definition des Repositories für die
-	Form-Objekte. Das Repository ist im Grunde ein Interface, das von
+	In Listing \ref{repository_definition} sieht man die Definition des
+	Repositories für die Form-Objekte. Das Repository ist im Grunde ein Interface, das von
 	"`JpaRepository"' erbt und mit Generiken versehen wird, um den Rückgabetyp und
 	den "`Suchwert"' (In dem Fall Integer, die ID) festzulegen. Im Beispiel ist
 	auch eine selbst-definierte Query zu sehen, diese werden mit der
@@ -133,7 +132,7 @@ können.
 	"`save"'-Methode der Repositories durchgeführt werden. Weitere Funktionen die
 	die Services erfüllen könnten wären höhere Konsistenzprüfungen
 	(Abhängigkeiten, die nicht auf Datenbankebene definiert werden können
-	beziehungsweise in der Geschäftslogik umgesetzt werden soll) sowie die
+	beziehungsweise in der Geschäftslogik umgesetzt werden sollen) sowie die
 	Validierung von Daten. Dies wird in der Anwendung jedoch nicht benötigt,
 	deshalb wurde darauf verzichtet.\\
 	\lstinputlisting[label=service_definition, caption=Definition eines
@@ -151,9 +150,10 @@ können.
 	bearbeiten diese.
 	Sie bedienen die Clients und liefern ihnen die angeforderten Daten zurück. Die
 	in dieser Arbeit verwendeten Controller werden von Java (beziehungsweise
-	Spring) (@RestController) bereitgestellt und erlauben eine einfach Zuordnung zu einer
-	\ac{URI}, unter der sie ansprechbar sind sowie die Zuordnung der Methoden, die die unterschiedlichen Anfragen (zum
-	Beispiel GET, POST, PUT oder DELETE) bearbeiten. 
+	Spring MVC) (@RestController) bereitgestellt und erlauben eine einfach
+	Zuordnung zu einer \ac{URI}, unter der sie ansprechbar sind sowie die Zuordnung der Methoden, die die unterschiedlichen Anfragen (zum
+	Beispiel GET, POST, PUT oder DELETE) bearbeiten.\par
+	\vspace{\baselineskip}
 	\textbf{Aufbau der Controller}$~~$\\
 	Im Allgemeinen gibt es für jede Model-Klasse einen Controller, der Daten zum
 	jeweiligen Model liefern kann. Es können jedoch noch weitere Controller(oder
@@ -196,8 +196,8 @@ durchgeführt. Getestet werden die Controller (Anfragen über das Netzwerk) und
 die Services beziehungsweise die Repositories. Bei den Controllern wird die
 Richtigkeit der HTTP-Antworten geprüft sowie die Authentifizierung. Die Services
 und Repositories werden insoweit geprüft, dass sie die Datensätze anhand der
-implementierten Logik zurückgeben.
-	\subsubsection{Controller-Unit-Tests}
+implementierten Logik zurückgeben sowie richtig in die Datenbank übernehmen.
+	\subsubsection{Controller-Tests}
 	Da die Controller die Schnittstelle zur Aussenwelt darstellen, ist hier die
 	Richtigkeit der Antworten besonders wichtig. Um die einzelnen Methoden zu
 	validieren wird jeder Controller und jede Methode eines Controllers überprüft.
@@ -217,10 +217,14 @@ implementierten Logik zurückgeben.
 	kann (In dem Fall 404: Not found). Falls das erwartete Verhalten eintritt, ist
 	der Test erfolgreich. In dem Stil werden alle Tests für jede Methode der
 	Controller durchgeführt, es werden alle möglichen Ergebnisse der Controller
-	"`erzwungen"'. Im Fall dieser Anwendung werden demnach pro Controller zwei
-	Testfälle benötigt, entweder "`Not found"' beziehungsweise "`Internal Server
-	Error"' oder "`OK"'.
-		\paragraph{Teacher-Controller}\label{ssssec:test_tcontroller}$~~$\\
+	"`erzwungen"'. Im Fall dieser Anwendung gibt es für jeden Controller zwei
+	Testfäll, entweder "`Not found"' beziehungsweise "`Internal Server Error"' oder
+	"`OK"'.\\
+	Vom Test der darunterliegenden Komponenten (zum Beispiel Services) wird
+	abgesehen, da die Controller die Daten aus diesen beziehen und durch diese auch
+	die anderen Schichten mitgetestet werden.
+	
+	 \paragraph{Teacher-Controller}\label{ssssec:test_tcontroller}$~~$\\
 			Es werden alle Methoden des Teacher-Controllers getestet. Hierzu gehören:\\
 			\begin{itemize}
 			  \item getAllTeachers
@@ -259,59 +263,13 @@ implementierten Logik zurückgeben.
 			nötigen Werte sind gesetzt) und ungültigen Daten (Ein benötigter Wert wird
 			auf null gesetzt). Der Rest des Tests ist analog zum idempotenten Test, nur
 			dass hier anstelle eines "`Not found"' ein "`Internal Server Error"' geworfen
-			wird.			
-		\paragraph{Form-Controller}$~~$\\
-			Es werden alle Methoden des Teacher-Controllers getestet. Hierzu gehören:\\
-			\begin{itemize}
-			  \item getAllForms
-			  \item getFormById
-			  \item addForm
-			  \item addBulk
-			  \item editForm
-			  \item deleteForm
-			\end{itemize}
-			Die Methoden werden analog wie in Kapitel \ref{ssssec:test_tcontroller} auf
-			Seite \pageref{ssssec:test_tcontroller} getestet. Auch hier wird zwischen den
-			idempotenten und nichtidempotenten Methoden unterschieden.
-		\paragraph{Student-Controller}$~~$\\
-		   Es werden alle Methoden des Student-Controllers getestet. Hierzu gehören:\\
-			\begin{itemize}
-			  \item getAllStudents
-			  \item getStudentById
-			  \item addStudent
-			  \item addBulk
-			  \item editStudent
-			  \item deleteStudent
-			\end{itemize}
-			Die Methoden werden analog wie in Kapitel \ref{ssssec:test_tcontroller} auf
-			Seite \pageref{ssssec:test_tcontroller} getestet. Auch hier wird zwischen den
-			idempotenten und nichtidempotenten Methoden unterschieden.
-		\paragraph{Incident-Controller}$~~$\\
-			Es werden alle Methoden des Incident-Controllers getestet. Hierzu gehören:\\
-			\begin{itemize}
-			  \item getAllIncidents
-			  \item getIncidentsById
-			  \item addIncident
-			  \item addBulk
-			  \item editIncident
-			  \item deleteIncident
-			\end{itemize}
-			Die Methoden werden analog wie in Kapitel \ref{ssssec:test_tcontroller} auf
-			Seite \pageref{ssssec:test_tcontroller} getestet. Auch hier wird zwischen den
-			idempotenten und nichtidempotenten Methoden unterschieden.
-		\paragraph{Comment-Controller}$~~$\\\label{ssssec:comment_controller}
-			Es werden alle Methoden des Comment-Controllers getestet. Hierzu gehören:\\
-			\begin{itemize}
-			  \item getAllComments
-			  \item getCommentById
-			  \item add
-			  \item addBulk
-			  \item edit
-			\end{itemize}
-			Die Methoden werden analog wie in Kapitel \ref{ssssec:test_tcontroller} auf
-			Seite \pageref{ssssec:test_tcontroller} getestet. Auch hier wird zwischen den
-			idempotenten und nichtidempotenten Methoden unterschieden.
-		\paragraph{User-Controller}$~~$\\
+			wird. Für den hier getesteten Fehler würden eventuell andere Statuscodes
+			besser passen wie zum Beispiel "`Unprocessable Entity"', der dem
+			Anwendungsentwickler mehr Aufschluss geben würde.\\
+			Die anderen Controller werden analog zu diesem Controller getestet, diese
+			unterscheiden sich lediglich im Klassennamen, die Semantik der Tests bleibt
+			gleich.
+			 \paragraph{User-Controller}$~~$\\
 			Da der User-Controller nur über die Authenticate-Methode verfügt (Die
 			Benutzer werden auf Datenbankebene eingefügt und sollen nicht geändert
 			werden) muss nur diese getestet werden.\\
@@ -324,6 +282,4 @@ implementierten Logik zurückgeben.
 			validen Benutzer (wird aus der Datenbank geholt) und einen Invaliden. Der
 			valide Benutzer sollte ein "`OK"' vom Backend erhalten, der Invalide ein
 			"`NOT\_AUTHORIZED"'. 
-	\subsubsection{Service-Tests}
-	\subsubsection{Repository-Tests}
  
