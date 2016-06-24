@@ -2,11 +2,11 @@
 @RequestMapping(value = "/trmanager/form")
 public class FormController {
 	@Autowired
-	private FormRepository repository;
+	private FormService service;
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public List<Form> getAllForms(){
-		List<Form> forms = repository.findAll();
+		List<Form> forms = service.getAllForms();
 		return forms;
 	}
 }
