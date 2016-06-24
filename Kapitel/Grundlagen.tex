@@ -1,13 +1,13 @@
-Um das Projekt besser nachvollziehen zu können, werden im Folgenden die
-Grundlagen erklärt, die für das Projekt TRManager relevant sind. Es wird auf
-grundlegende Techniken, die für die Arbeit relevant sind, eingegangen und
-erklärt sowie weiterführende, spezielle Techniken erläutert.
+Um das Projekt besser nachvollziehen zu können wird im Folgenden auf die
+Grundlagen eingegangen, die für das Projekt TRManager relevant sind. Neben
+den grundlegende Techniken werden auch die weiterführenden, speziellen
+Techniken erklärt.
  
 \subsection{Datenbanken}
 Unter einer Datenbank versteht man eine Ansammlung von Daten, die logisch
 als eine Einheit betrachtet werden. Der Unterschied zu einem Dateisystem liegt in
 einigen Anforderungen an eine Datenbank. Zu diesen Anforderungen gehört etwa das
-Handling von Mehreren konkurrierenden Zugriffen.
+Handling von mehreren konkurrierenden Zugriffen.
 Wird allgemein von einer Datenbank gesprochen, ist meist ein \ac{DBMS} gemeint.
 Ein DBMS enthält kann mehr als eine Datenbank verwalten. Die Datenbank selbst
 steht in diesem Kontext lediglich für die gespeicherten Informationen und
@@ -23,11 +23,15 @@ DBMS zum einem direkt über eine grafische Benutzeroberfläche steuern, aber auch
 über Schnittstellen wie etwa \ac{ODBC}. ODBC verwendet hierzu SQL
 (Eigenständiger Begriff, kann aber als Abkürzung von Structured Query Language
 gesehen werden) zur Kommunikation mit dem DBMS. Eine weitere Grundlegende
-Anforderung an ein DBMS ist die Vermeidung von Redundanz, sowie die Sicherstellung einer maximalen Integrität. Sind Informationen mehr als einmal in einer Datenbank gespeichert, ist es schwer
-sicherzustellen, dass diese alle den gleichen Stand haben, wenn die Information
-geupdatet wird. Die Datenintegrität lässt sich erzwingen, in dem
-beispielsweise ein Datumsfeld auch ledigliche Werte in einem Datumsformat
-aktzeptiert. 
+Anforderung an ein DBMS ist die Vermeidung von Redundanz, sowie die
+Sicherstellung einer maximalen Integrität. Sind Informationen mehr als einmal in
+einer Datenbank gespeichert, ist es schwer sicherzustellen, dass diese alle den
+gleichen Stand haben, wenn die Information geupdatet wird. Diesem Umstand
+kann bereits durch eine gute Planung der Datenbank entgegen gewirkt werden. Die
+Datenintegrität bezeichnet die Korrektheit der Daten in Bezug auf die Realität.
+Ein Beispiel hierfür ist die Angabe eines Tages. "`abc"' als Wert wäre ein zu
+vermeidender Eintrag. Dies lässt sich erzwingen, in dem beispielsweise ein
+Datumsfeld auch lediglich Werte in einem Datumsformat akzeptiert.
 
  
 \subsection{REST}
@@ -36,12 +40,12 @@ aktzeptiert.
 Schnittstelle (\ac{HTTP}) anzubieten. Der Vorteil von \ac{REST} liegt darin,
 dass man, wie oben genannt, seine Services über eine uniforme Schnittstelle
 anbieten kann, die sehr weit verbreitet ist. Dies erleichtert das Konsumieren
-des Services, da man bereits bekannte Methoden(Im Sinne von Methodik) verwenden
+des Services, da man bereits bekannte Methoden(im Sinne von Methodik) verwenden
 kann, um auf diese zuzugreifen, und auch die Struktur der HTTP-Anfragen gut
 bekannt ist. Zudem ist die Infrastruktur, die für REST nötig ist, im WWW sehr
-weit ausgebaut (HTTP-fähige Clients, Web- und Anwendungsserver, HTML-Parser) ist
-und viele der schon bestehenden Dienste RESTful sind(Auslieferung der Seiten
-über HTTP, Verwendung von HTTP-Methoden wie GET und POST etc.)\\
+weit ausgebaut (HTTP-fähige Clients, Web- und Anwendungsserver, HTML-Parser)
+und viele der schon bestehenden Dienste sind bereits RESTful (Auslieferung
+der Seiten über HTTP, Verwendung von HTTP-Methoden wie GET und POST etc.)\\
 REST ist zustandslos, das bedeutet dass jede Nachricht alle Informationen
 bereithält um diese zu verstehen. Dies begünstigt die Skalierbarkeit solcher
 Services, da man eingehende Anfragen ohne große Probleme auf andere Systeme
@@ -50,14 +54,14 @@ einer Verbindung speichert. Diese werden ausschliesslich clientseitig
 vorgehalten, der Service dient hier sozusagen als Datenquelle. Neben der guten
 Skalierbarkeit bietet REST die Vorteile von HTTP wie zum Beispiel die einfache
 und erprobte Verschlüsselung über \ac{TLS} sowie HTTP-Caching.\\
-Daten werden bei REST hauptsächlich über Formate wie JSON und XML realisiert,
+Daten werden bei REST hauptsächlich über Formate wie JSON und XML repräsentiert,
 dazu kann der REST-Service je nach Client und angeforderter Formatierung ein
 anderes Format wählen.
 
 \subsection{Java}
 Java ist eine vom Unternehmen Sun Microsystems entwickelte, objektorientierte
 Sprache. 2010 wurde Sun Microsystems von Oracle aufgekauft und wird seitdem von
-Oracle weiterentwickelt. Die Programmiersprache ist Kern der Java-Technologie,
+Oracle vertrieben. Die Programmiersprache ist Kern der Java-Technologie,
 neben der Sprache gibt es die Entwicklungswerkzeuge (JDK, Java Development Kit)
 und die plattformunabhängige Laufzeitumgebung (JRE, Java Runtime Environment).
 In der Laufzeitumgebung sind die JVM (Java Virtual Machine) und die
@@ -69,9 +73,9 @@ Linux, OS X, Solaris und Windows angeboten, aber andere Hersteller lassen sich
 ihre eigenen Laufzeitumgebungen für die jeweilige Plattform zertifizieren. So
 gibt es zum Beispiel Laufzeitumgebungen für Hifi-Anlagen, Autos und viele
 mehr.\\
-Java ist aktuell in Version 8.92 (8 Update 92) verfügbar und bietet dem
-Anwendungsentwickler Funktionen wie Reflection und
-Annotationen\footnote{\bibentry{2012Einstiegin}, Kapitel 4}.
+Java ist aktuell in Version 8.92 (8 Update 92)
+verfügbar. \footnote{\bibentry{2012Einstiegin}, Kapitel 4}.
+
 \subsubsection{JUnit}\label{sssec:JUnit}
 JUnit ist ein Framework zum Erstellen von automatisierten Tests.
 Es bietet die möglichkeit, automatisierte Tests an sogenannten Units (Klassen beziehungsweise
@@ -85,8 +89,7 @@ gelingt oder er schlägt fehl(Failure beziehungsweise Error), was mit einer
 Exception signalisiert wird. Der Unterschied zwischen Failure und Error ist der,
 dass Failure erwartet werden kann, wobei Errors eher unerwartet auftreten.\\
 Zudem existieren für JUnit zahlreiche Visualisierungs-Tools, die auch Dinge wie
-zum Beispiel Pfadabdeckung überprüfen. Zu diesen Tools zählt zum Beispiel
-Jacoco.
+etwa Testabdeckung überprüfen. Zu diesen Tools zählt zum Beispiel Jacoco.
 
 \subsection{Spring}\label{ssec:Spring}
 Das Spring-Framework ist ein quelloffenens Framework für die Java-Plattform. Es
@@ -104,7 +107,7 @@ anderen.
 	Anwendungen, die ohne Konfiguration auskommen und alle Bibliotheken enthält. Es
 	eignet sich gut für kleinere, überschaubare Anwendungen, in denen keine
 	komplexen Konfigurationsmöglichkeiten benötigt werden.
-	\subsubsection{Spring REST/Spring MVC}
+	\subsubsection{Spring MVC}
 	Spring MVC bietet dem Anwendungsentwickler alle benötigten Funktionen, um einen
 	Web-Service anzubieten. Darunter fallen zum Beispiel die Controller
 	(\@Controller), Request-Mappings (Zuordnen von Requests zu Controllern,
@@ -212,14 +215,15 @@ Benutzeroberfläche zu Verfügung. Bei ASP.Net sind dies die Vorlagen - Dateien
 welche von der Anwendung benutzt werden um dynamisch HTML-Antworten zu
 generieren.
 \paragraph{Controller (Steuerung)}$~~$\\
-Die Controller Klassen analysieren die eingehenden Anfragen und rufen aufgrund
-dieser Daten aus der Model-Schicht ab. Daraus bestimmt der Controller welche
-View-Vorlage die Antwort an den Browser gibt.
+Die Controller Klassen analysieren die eingehenden Anfragen und leiten
+Diese an das entsprechende Obejtk der Model-Schicht. Ein Controller agiert
+demnach als Vermittler zwischen den Schichten und hat außerdem die Möglichkeit
+den Funktionsumfang des Nutzers auf der Präsentationsebene einzuschränken.
 	
-\subsection{Logischer Aufbau einer Webseite}
+\subsection{Logischer Aufbau einer Anwendung}
 Konventionen helfen Menschen sich zu orientieren und so haben sich auch einige
-Konventionen im Web Design entwickelt, die eingehalten werden sollten, um die
-Nutzbarkeit einer Seite zu erhöhen. Dazu gehört zum Beispiel, dass ein
+Konventionen im Anwendungs-Design entwickelt, die eingehalten werden sollten, um
+die Nutzbarkeit einer Anwendung zu erhöhen. Dazu gehört zum Beispiel, dass ein
 abspielbares Video das bekannte Dreieck das Abspiel-Knopfes enthält, damit der
 Nutzer dieses anklicken kann.
 Es muss für den Nutzer erkennbar sein, welche Elemente klickbar sind. Dies muss
@@ -243,13 +247,12 @@ HTML etc.) aufsetzt."'\footnote{\bibentry{Sicherheit_von_Webanwendungen_in_der_P
 Eine Webanwendung wird in der Regel über einen Webbrowser aufgerufen, in dem die
 serverseitige Anwendung dargestellt wird. Es ist aber auch möglich auf andere
 Weise auf eine Webanwendung zuzugreifen, etwa über eine Kommandozeile. Daher
-wird in der Regel vom Client oder aber User Agent gesprochen.
-\pageref{fig:webapp_layers}
+wird in der Regel vom Client oder aber User Agent gesprochen. 
  \begin{figure}[H]
 \begin{minipage}{\linewidth}
  \includegraphics[width=0.9\linewidth]{grafx/Web_3_Schichten}
  \caption[Schichtenarchitektur einer Webanwendung]{Schichtenarchitektur einer
- Webanwendung}
+ Webanwendung (eigene Darstellung)}
   \label{fig:webapp_layers}
 \end{minipage}
 \end{figure}
@@ -260,21 +263,23 @@ unter anderem auch für ganze Cluster aus Webservern und Applikationsservern
 bestehen. Dieser Webserver greift nun seinerseits in der Regel auf
 Hintergrundysteme wie etwa Datenbanken zu. So entsteht die so genannte
 3-Schichtenarchitektur, welche in Abbildung \ref{fig:webapp_layers} auf Seite
-\pageref{fig:webapp_layers} dargestellt ist. Zur Veranschaulichung wurden
-exemplarisch Technologien den einzelnen Schichten zugeordnet.
+dargestellt ist. Zur Veranschaulichung wurden exemplarisch Technologien den
+einzelnen Schichten zugeordnet.
 Mittlerweile reicht diese Darstellung kaum mehr aus, da deutlich mehr Schichten
 benötigt werden, etwa weil auf deutlich mehr als ein Hintergrundsystem
-zugegriffen wird und auch der Serverseitige Teil der Anwendung separat
-gegliedert ist. Für dieses doch recht strukturierte Projekt des TRManagers
+zugegriffen wird und auch der serverseitige Teil der Anwendung separat
+gegliedert ist. Für dieses doch recht überschaubare Projekt des TRManagers
 reicht das 3-Schichten-Modell allerdings zum Verständnis.
 
 \subsection{Frameworks}
-Ein Framework ist eine Art Rahmen, die Programmieren ein Grundgerüst für
+Ein Framework ist eine Art Rahmen, der Entwicklern ein Grundgerüst für
 bestimmte Funktionen bietet. Dabei ist ein Framework selbst kein eigenständiges
 Programm, es bietet Funktionen und gibt eine bestimmte Struktur vor, die
 eigentliche Anwendung wird unter Verwendung dieses Gerüsts implementiert.
 Frameworks unterstützen den Programmierer auch bei der Umsetzung des
-\ac{DRY}-Prinzips, so dass Wiederholungen vermieden werden.
+\ac{DRY}-Prinzips, so dass Wiederholungen vermieden werden. Folgend werden die
+Frameworks Bootstrap für die Seite des Clients und für die Serverseite
+Alternativen zu ASP.NET dargestellt.
 \subsubsection{Bootstrap}
 Bei Bootstrap handelt es sich um ein freies CSS/HTML/JavaScript-Framework.
 Bootstrap wurde ursprünglich von Twitter als internes Tool zu Vereinheitlichung
@@ -292,12 +297,12 @@ Bootstrap  eigenhändig zusammenstellen.
 Das Zend-Framework ist ein unter der BSD-Lizenz veröffentlichtes Framework für
 PHP, veröffentlicht vom Unternehmen Zend Technologies. Es ist
 komponenten-orientiert, viele Teile sind voneinander unabhängig. So kann Zend
-auch in Kombination mit anderen Lösungen integriert werden. Es ist komplett
+auch in Kombination mit anderen Lösungen verwendet werden. Es ist komplett
 objektorientiert umgesetzt und bietet dem Programmierer zum Beispiel Funktionen
-wie Dependency Injection. Beispielhafte Komponenten aus dem Zend-Framework
-enthalten unter anderem ein MVC-System, Authentifizierung und Benutzerverwaltung
-sowie verschiedene Hilfskomponenten wie zum Beispiel die Erstellung von
-PDF-Dateien und Email-Versand.
+wie Dependency Injection. Komponenten aus dem Zend-Framework enthalten unter
+anderem ein MVC-System, Authentifizierung und Benutzerverwaltung sowie
+verschiedene Hilfskomponenten wie zum Beispiel die Erstellung von PDF-Dateien
+und Email-Versand.
 \subsubsection{Java Server Pages}
 \ac{JSP} dient zur Erstellung dynamischer Webseiten. Es wurde von Sun
 Microsystems entwickelt und bietet die Möglichkeit, Java-Anwendungen für das Web

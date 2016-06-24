@@ -1,7 +1,7 @@
-In diesem Kapitel wird der konzeptionale Aufbau des Projektes beschrieben.
+In diesem Kapitel wird der konzeptuelle Aufbau des Projektes beschrieben.
 Dabei werden zuerst die abstrakten Konzepte, dann die Anforderungen des Kunden
 beziehungsweise die User-Stories und zum Schluss Konzepte zur technischen
-Umsetzung.
+Umsetzung dargestellt.
 
 \subsection{Trainingsraum}
 Das Konzept des Trainingsraumes beruht im wesentlichen auf den folgenden drei
@@ -28,7 +28,7 @@ Pädagoge anwesend, welcher vorwurfsfrei die Schüler bei ihren Ausbarbeitungen
 unterstützt und Hilfestellungen bietet.
 \cleardoublepage
 
-\subsection{User-Stories}
+\subsection{User-Stories}\label{ssec:konzeptUS}
 User Stories sind in Altagssprache definierte Software-Anforderungen. Dabei
 umfassen solche Anforderungen in der Regel 2-3 Sätze. In Zusammenarbeit mit
 einem Berufskolleg, welches bereits seit längerer Zeit mit dem
@@ -70,7 +70,7 @@ werden die wesentlichen Gruppen erläutert.
   1)
   \begin{itemize}
     \item Rückkehrer werden auch technisch anders als ein Erstbesuch im
-    Trainingsraum behandelt.
+    Trainingsraum behandelt, da die Scheinnummer die gleiche bleiben muss.
   \end{itemize}
   \item Administrationsrechte (Priorität 1)
   \begin{itemize}
@@ -118,16 +118,6 @@ werden die wesentlichen Gruppen erläutert.
   \end{itemize} 
 \end{itemize}
 
-\subsection{Design}
-
-Die Applikation besteht im Grunde aus drei Teilen: Dem Frontend, dem Backend und
-der Datenbank. Die Datenbank speichert die Daten, die erfasst werden und
-präsentiert diese dem Backend. Das Backend verarbeitet die Daten, die es vom
-Frontend und Datenbank bekommt, um es an beide weiterzureichen. Das Frontend
-interpretiert die Daten, die es vom Backend geliefert bekommt und zeigt diese
-dem Nutzer an und nimmt Eingaben vom Nutzer entgegen und schickt diese an das
-Backend.\\
-
 \subsection{Usability}\label{ssec:Usability}
 Zu Usability gibt es keine einheitliche Definition, da Usability in vielen
 Bereichen unseres Lebens wichtig ist. So gibt es das Thema Usability bei der
@@ -150,8 +140,16 @@ mehr als fünf Klicks in Ordnung sind, solange ein Klick ohne nachdenken passiert
 und dem Nutzer´anzeigt, dass er auf dem richtigen Weg befindet. Die Definition
 von Krug soll in dieser Arbeit als die Basis genommen werden.
 
-\subsection{Backend}
+\subsection{Design}
+Die Applikation besteht im Grunde aus drei Teilen: Dem Frontend, dem Backend und
+der Datenbank. Die Datenbank speichert die Daten, die erfasst werden und
+präsentiert diese dem Backend. Das Backend verarbeitet die Daten, die es vom
+Frontend und Datenbank bekommt, um es an beide weiterzureichen. Das Frontend
+interpretiert die Daten, die es vom Backend geliefert bekommt und zeigt diese
+dem Nutzer an und nimmt Eingaben vom Nutzer entgegen und schickt diese an das
+Backend.\\
 
+\subsection{Backend}
 Das Backend dient als Schnittstelle zwischen Datenbank und Frontend und bereitet
 die Daten, die von Datenbank und Frontend kommen, für den jeweils anderen auf.
 Umgesetzt wird das Backend mit Spring. Die Zugriffe erfolgen über einen
@@ -162,14 +160,14 @@ für jeden Client gleich sind. Auch andere Applikationen können so ohne Probleme
 auf diesen Dienst zugreifen, um zum Beispiel die gesammelten Daten anderweitig
 zu verwenden. 
 
-\subsubsection{Datenbank}
+\subsection{Datenbank}
 	Die Datenbank-Struktur wird aus den annotierten Objektklassen generiert.
 	Ermöglicht wird dies durch Hibernate, dies wird im Kapitel
 	\ref{ubackend_database} auf Seite \pageref{ubackend_database} erläutert. Als
 	Datenbankserver soll MySQL zur Verwendung kommen, da dies für die relativ
-	geringe Datenmenge und die clientseitige Backupstrategie ausreichend sind.
-	Zudem fallen bei MySQL keine Lizenzierungskosten an, da die Community-Version
-	als \ac{OSS} zur Verfügung steht.
+	geringe Datenmenge und die clientseitige Backupstrategie im vorliegenden
+	Kontext ausreichend sind. Zudem fallen bei MySQL keine Lizenzierungskosten an,
+	da die Community-Version als \ac{OSS} zur Verfügung steht.
 	 
 \subsection{Clients}
 	Die Clients haben den Zweck, dem Benutzer die gewünschten Daten
@@ -185,8 +183,14 @@ zu verwenden.
 		Raum verlassen darf. Des Weiteren kann der Lehrer in der gleichen Oberfläche
 		einen Besuch eintragen und einen Schüler aus dem Raum entlassen.		
 		Benutzern mit administrativen Rechten soll auch eine Verwaltung der
-		Datensätze und eine zeitunabhängige Manipulation ermöglicht werden. Diese
-		Funktionen werden für "`normale"' Benutzer ausgeblendet.
+		Datensätze und eine zeitunabhängige Manipulation ermöglicht werden. So
+		soll der Administrator einen vollständigen Incident nachträglich eintragen
+		können, ohne dabei an die 15 Minuten Wartezeit zwischen dem Eintragen eines
+		Besuches und dem Entlassen eines Schülers gebunden zu sein. Diese Funktionen
+		werden für "`normale"' Benutzer ausgeblendet. Eine vollständige Auflistung
+		der Funktionen befindet sich im Kapitel \ref{ssec:konzeptUS} auf Seite
+		\pageref{ssec:konzeptUS}. Die detaillierten User-Stories befinden sich im
+		Anhang \ref{ssec:User_Stories} auf Seite \pageref{ssec:User_Stories}.
 		
 	\subsubsection{Mobile}
 		Die mobilen Clients sollen denselben Funktionsumfang haben wie auch der
@@ -200,8 +204,8 @@ zu verwenden.
 		Abschnitt vorgestellt wird. 
 		
 	\subsubsection{Web}\label{ssec:web} 
-		Der Web-Client soll ähnlich dem nativen Client dem Benutzer die derzeitig
-		anwesenden Schüler anzeigen, jedoch wird dieser als Webseite bereitgestellt.
+		Der Web-Client soll einen ähnlichen Funktionsumfang wie der nativen Client
+		aufweisen, jedoch diesen als Webseite bereitstellen.
 		Die Daten werden über den vom Backend bereitgestellten \ac{REST}ful-Service
 		abgerufen und per \ac{AJAX} angezeigt. Die zu verwendenden Frameworks wurden
 		im Zuge dieser Arbeit für den Einsatz in diesem Umfeld evaluiert und das am
@@ -212,7 +216,7 @@ zu verwenden.
 		Verbindung mit Visual Studio eine einfache Einbindung des Design-Frameworks
 		"`Bootstrap"'. Der Webclient ermöglicht es die Anwendung sowohl auf einem
 		klassischen Desktop-PC zu verwenden, als auch auf mobilen Endgeräten. Durch
-		die Verwendung eines Webclients ist es dah2er nicht nötig eine Applikation für
+		die Verwendung eines Webclients ist es daher nicht nötig eine Applikation für
 		die unterschiedlichen mobilen Plattformen zu entwickeln, um deren Vorteile für
 		den Anwender zu haben.
 		
