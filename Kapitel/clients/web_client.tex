@@ -10,5 +10,21 @@ Beispiel Incidents anlegen, Datensätze verwalten und andere.\\
 Der eigentliche Funktionsumfang des Web-Clients beschränkt sich auf das Anzeigen
 der Klassen sowie eine List mit allen aktuellen Incidents inklusive Zeitzähler.
 \subsubsection{Design}
-Das Design wurde mit 
-\paragraph{Oberfläche}
+Das Design wurde mit ASP.NET und Bootstrap umgesetzt und an das Design des
+nativen Clients angelehnt. 
+ \begin{figure}[H]
+\begin{minipage}{\linewidth}
+ \includegraphics[width=0.9\linewidth]{grafx/webclient}
+ \caption[design_webclients]{Design des Webclients}
+  \label{fig:webclient_design}
+\end{minipage}
+\end{figure}
+Abbildung  \ref{fig:webclient_design} zeigt das grundlegende Design des
+Webclients. Links wird eine Liste mit Klassen und Schülern angezeigt und in
+der Mitte die Vorfallsliste.\\
+Die Vorfallsliste wurde technisch mit einer GridView umgesetzt, die dynamisch
+Daten nachladen kann ohne die gesamte Seite zu aktualisieren. So können per AJAX
+Daten nachgeladen werden, ohne das der Benutzer davon etwas merkt.
+Anderweitige Funktionen wie das Anlegen eines Incidents oder das Entlassen von
+Schülern aus dem Trainingsraum wurden bis jetzt nicht umgesetzt, sind aber mit
+den vorhandenen Funktionen einfach umsetzbar.
