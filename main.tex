@@ -147,16 +147,16 @@ Ort, Datum \hspace*{4cm}& & Alexandra Neffgen & & Florian Baier\\
 \section*{Zusammenfassung}
 \input{./Kapitel/Zusammenfassung}
 \newpage
-											%WENN EIN ABSTRACT AUF ENGLISCH EXISTIERT
-		\pagestyle{fancy}                         	%Stil der Kopf- und Fußzeilen
-		\lhead [] {\bfseries ABSTRACT} 				%Linker Kopf
-		\rhead[\bfseries ABSTRACT]  				%Rechter Kopf
-		\cfoot{}                                    %Fußzeile
-		\newpage
-\section*{Abstract}
-\input{./Kapitel/abstract}
-\newpage
-\pagestyle{empty} 							%Unterdrücken der Kopf- und Fußzeilen (Leerseite)
+%											%WENN EIN ABSTRACT AUF ENGLISCH EXISTIERT
+%		\pagestyle{fancy}                         	%Stil der Kopf- und Fußzeilen
+%		\lhead [] {\bfseries ABSTRACT} 				%Linker Kopf
+%		\rhead[\bfseries ABSTRACT]  				%Rechter Kopf
+%		\cfoot{}                                    %Fußzeile
+%		\newpage
+%\section*{Abstract}
+%\input{./Kapitel/abstract}
+%\newpage
+%\pagestyle{empty} 							%Unterdrücken der Kopf- und Fußzeilen (Leerseite)
 \cleardoublepage
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -233,18 +233,20 @@ Ort, Datum \hspace*{4cm}& & Alexandra Neffgen & & Florian Baier\\
 \cfoot{}                                                 		%Fußzeile
 %Abkürzungsverzeichnis
 %***********************************************************************************************************************
-\section*{Abkürzungsverzeichnis}
-\addcontentsline{toc}{section}{Abkürzungsverzeichnis} 		%Im Inhaltsverzeichnis aufnehmen
-\addtocounter{table}{-1}									%Tabelle des Abkürzungsverzeichnisses nicht mitzählen
-\input{./Kapitel/Abkurzverzechnis}
-\thispagestyle{fancy}                                		%Stil der Kopf- und Fußzeilen (Abkürzungsverzeichnis)
-\pagestyle{empty}                                     		%Unterdrücken der Kopf- und Fußzeilen (Leerseite)
-\cleardoublepage                                      		%Abkürzungsverzeichnis beenden
 
 \addcontentsline{toc}{section}{Quellcodeverzeichnis}
 \renewcommand\lstlistlistingname{Quellcodeverzeichnis}
 \lstlistoflistings
 \thispagestyle{fancy}                                		%Stil der Kopf- und Fußzeilen 
+\pagestyle{empty}                                     		%Unterdrücken der Kopf- und Fußzeilen (Leerseite)
+\cleardoublepage                                      		%Abkürzungsverzeichnis beenden
+
+
+\section*{Abkürzungsverzeichnis}
+\addcontentsline{toc}{section}{Abkürzungsverzeichnis} 		%Im Inhaltsverzeichnis aufnehmen
+\addtocounter{table}{-1}									%Tabelle des Abkürzungsverzeichnisses nicht mitzählen
+\input{./Kapitel/Abkurzverzechnis}
+\thispagestyle{fancy}                                		%Stil der Kopf- und Fußzeilen (Abkürzungsverzeichnis)
 \pagestyle{empty}                                     		%Unterdrücken der Kopf- und Fußzeilen (Leerseite)
 \cleardoublepage                                      		%Abkürzungsverzeichnis beenden
 
