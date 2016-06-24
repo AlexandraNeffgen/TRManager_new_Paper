@@ -6,7 +6,8 @@ aufgeführt und erläutert.
 
 
 \subsubsection{Design}
-
+Das Kapitel des Designs beschäftigt sich nicht nur mit dem äußerlichen Aspekt
+des nativen Clients. Die Workflows bilden den zweiten Abschnitt dieses Kapitels. 
 \paragraph{Oberfläche}$~~$\\
 Das Hauptaugenmerk in der Gestaltung der Oberfläche liegt wie in Kapitel
 \ref{ssec:Usability} auf Seite \pageref{ssec:Usability} erklärt in der
@@ -148,8 +149,13 @@ aktualisiert.
 \par 
 \vspace{\baselineskip}
 \textbf{Import/Export} \\
-
-
+Um einen Import beziehungsweise Export zu starten (Beide Vorgänge sind
+gekoppelt) muss in den Reiter "`Administration"' gewechselt werden. Die
+Schaltfläche "`Daten importieren"' löst den Import/Export-Vorgang aus. Der
+Benutzer muss nun die Dateien für den Import auswählen (Schülerdaten und
+Lehrerdaten). Die Daten werden daraufhin im Backend gelöscht und die neuen Daten
+eingefügt. Im Hintergrund wird dies über den Backup-Controller des Backends
+gelöst, welcher alle Daten auf einmal enthält.
 \par 
 \vspace{\baselineskip}
 \textbf{Servereinstellungen ändern}\\
@@ -179,10 +185,28 @@ gewechselt werden. Über die Schaltflächen (A),(B),(C) und (D) erreicht man die
 Listen der verschiedenen Elemente. Im Falle der Klasse wäre dies A. Man wählt
 den gewünschten Datensatz aus und betätigt die Schaltfläche "`Verändern"'. Im
 sich öffnenden Fenster kann man die Daten ändern und bestätigen.
-Im 
+Im Hintergrund wird das Klassenobjekt mit den geänderten Daten an das Backend
+geschickt (Über RepositoryUtility.editForm). Falls das Backend die Änderung
+bestätigt, bekommt der Benutzer eine Benachrichtigung über den Erfolg der
+Änderung.
 \vspace{\baselineskip}
 \textbf{Klasse hinzufügen}\\
-
+Um eine Klasse hinzuzufügen muss wie in "`Klasse ändern"' in den Reiter
+"`Datensätze verwalten"' gewechselt  werden. Anstelle des Buttons "`Verändern"'
+wird nun die Schaltfläche "`Hinzufügen"' ausgewählt. Hierfür muss kein Eintrag
+in der Liste ausgewählt werden. Im sich geöffneten Fenster werden nun die Werte
+der Klasse eingetragen und mit "`Hinzufügen"' bestätigt.\\
+Aus den eingegebenen Werten wird ein Klassenobjekt erstellt und an das Backend
+geschickt (Über RepositoryUtility.addForm). Bei Erfolg erhält der Client das
+Objekt mit der vom Backend vergebenen ID zurück und der Benutzer bekommt eine
+Bestätigung.
 \par 
 \vspace{\baselineskip}
 \textbf{Klasse löschen}\\
+Um eine Klasse zu löschen, muss wie in "`Klasse ändern"' in den Reiter
+"`Datensätze verwalten"' gewechselt werden. Die gewünschte Klasse wird aus der
+Liste ausgewählt und betätigt die Schaltfläche "`Löschen"'. Diese Anfrage muss
+noch einmal bestätigt werden, dann wird das Objekt gelöscht.\\
+Im Hintergrund läuft dies über die deleteForm-Methode aus RepositoryUtility. Das
+Objekt wird an das Backend geschickt, dieses schickt ein "`OK"' zurück falls der
+Vorgang erfolgreich war.  
