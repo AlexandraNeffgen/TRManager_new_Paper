@@ -142,18 +142,18 @@ der Mitgestaltung des Systems.
 Steve Krug verfolgt dabei einen deutlich simpleren Ansatz mit seiner Definition
 von Usability: "`Eine Person von durchschnittlicher (oder niederer) Begabung und
 Erfahrung kann sich erschließen, wie sie etwas zum Umsetzen ihrer Aufgabe
-benutzen muss ohne dabei mehr Schwierigkeiten zu haben als es ihr wert ist"'
+benutzen muss, ohne dabei mehr Schwierigkeiten zu haben als es ihr wert ist"'
 \footnote{\bibentry{dont_make_me_think_revisited}, Seite 9}.
 Krug unterstützt deshalb auch nicht die Regeln, die beispielsweise besagen, dass
-jede Seite nur maximal fünf Klicks entfernt sein darf, sondern solange ein Klick
-ohne nachdenken passiert und dem Nutzer anzeigt, dass er auf dem richtigen Weg
-ist, können auch mehr als fünf Klicks in Ordnung sein.
-Die Definition von Krug soll in dieser Arbeit als die Basis genommen werden. 
+jede Seite nur maximal fünf Klicks entfernt sein darf. Er führt an, das auch
+mehr als fünf Klicks in Ordnung sind, solange ein Klick ohne nachdenken passiert
+und dem Nutzer´anzeigt, dass er auf dem richtigen Weg befindet. Die Definition
+von Krug soll in dieser Arbeit als die Basis genommen werden.
 
 \subsection{Backend}
 
 Das Backend dient als Schnittstelle zwischen Datenbank und Frontend und bereitet
-die Daten die von Datenbank und Frontend kommen für den jeweils anderen auf.
+die Daten, die von Datenbank und Frontend kommen, für den jeweils anderen auf.
 Umgesetzt wird das Backend mit Spring. Die Zugriffe erfolgen über einen
 \acs{REST}ful-Service, der laut REST-Spezifikation die normalen HTTP-Methoden
 verwendet (GET, POST etc.). Die Verwendung von \ac{REST} ermöglicht es, die
@@ -164,10 +164,12 @@ zu verwenden.
 
 \subsubsection{Datenbank}
 	Die Datenbank-Struktur wird aus den annotierten Objektklassen generiert.
-	Ermöglicht wird dies durch Hibernate, dies wird im Kapitel \ref{ubackend_database} auf Seite \pageref{ubackend_database} erläutert. Als
+	Ermöglicht wird dies durch Hibernate, dies wird im Kapitel
+	\ref{ubackend_database} auf Seite \pageref{ubackend_database} erläutert. Als
 	Datenbankserver soll MySQL zur Verwendung kommen, da dies für die relativ
 	geringe Datenmenge und die clientseitige Backupstrategie ausreichend sind.
-	Zudem fallen bei MySQL keine Lizenzierungskosten an, da die Community-Version als \ac{OSS} zur Verfügung steht.
+	Zudem fallen bei MySQL keine Lizenzierungskosten an, da die Community-Version
+	als \ac{OSS} zur Verfügung steht.
 	 
 \subsection{Clients}
 	Die Clients haben den Zweck, dem Benutzer die gewünschten Daten
@@ -187,8 +189,8 @@ zu verwenden.
 		Funktionen werden für "`normale"' Benutzer ausgeblendet.
 		
 	\subsubsection{Mobile}
-		Die mobilen Clients sollen den selben Funktionsumfang haben wie auch der
-		native Client. So soll es den Lehrern möglich sein flexibel mit einem Tablett
+		Die mobilen Clients sollen denselben Funktionsumfang haben wie auch der
+		native Client. So soll es den Lehrern möglich sein flexibel mit einem Tablet
 		die Lokation des Trainingsraumes spontan zu wechseln, ohne dabei an einen fest
 		installierten Rechner gebunden zu sein. Beschäftigt man sich allerdings mit
 		mobilen Anwendungen, wird man feststellen, dass man dabei zumindest für die
@@ -211,17 +213,17 @@ zu verwenden.
 		"`Bootstrap"'. Der Webclient ermöglicht es die Anwendung sowohl auf einem
 		klassischen Desktop-PC zu verwenden, als auch auf mobilen Endgeräten. Durch
 		die Verwendung eines Webclients ist es dah2er nicht nötig eine Applikation für
-		die unterschiedlichen mobilen Plattformen zu entwickeln um deren Vorteile für
+		die unterschiedlichen mobilen Plattformen zu entwickeln, um deren Vorteile für
 		den Anwender zu haben.
 		
 	\subsection{VPN}
 		Dadurch, dass wir die Verwaltung der Daten und ihre Darstellung in ein Backend
 		und ein Frontend unterteilt haben, ist es auch möglich das Frontend von einem
 		anderen Gerät aus aufzurufen. Da die Grundfunktionen der Anwendung nicht
-		durch Passwörter geschützt werden sollen muss der Datenschutz an einer anderen
-		Stelle realisiert werden. Es soll verhindert werden, dass das Backend aus dem
-		\ac{WWW} erreichbar ist. Dazu darf das Backend grundsätzlich nur auf einer
-		Maschine in einem geschützten Netz, also etwa hinter einer Firewall,
+		durch Passwörter geschützt werden sollen, muss der Datenschutz an einer
+		anderen Stelle realisiert werden. Es soll verhindert werden, dass das Backend
+		aus dem \ac{WWW} erreichbar ist. Dazu darf das Backend grundsätzlich nur auf
+		einer Maschine in einem geschützten Netz, also etwa hinter einer Firewall,
 		installiert werden. Diese Verantwortung liegt allerdings beim Kunden, da
 		dieses Projekt nur aus der Applikation als solches besteht. Um dennoch auch
 		von außerhalb des geschützten Bereiches mit der Anwendung zu kommunizieren
