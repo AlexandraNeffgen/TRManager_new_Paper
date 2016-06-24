@@ -5,9 +5,12 @@ public T getById(int id)
     WebHeaderCollection header = response.Headers;
     string response_text = "";
     var encoding = ASCIIEncoding.ASCII;
-    using (var reader = new System.IO.StreamReader(response.GetResponseStream(), encoding))
+    using (var reader = new System.IO.StreamReader
+    			(response.GetResponseStream(), encoding))
     {
         response_text = reader.ReadToEnd();
     }
-    return JsonConvert.DeserializeObject<T>(response_text, new IsoDateTimeConverter { DateTimeFormat = "yyyy-MM-dd hh:mm:ss" });
+    return JsonConvert.DeserializeObject<T>
+    		(response_text, new IsoDateTimeConverter 
+    			{ DateTimeFormat = "yyyy-MM-dd hh:mm:ss" });
 }

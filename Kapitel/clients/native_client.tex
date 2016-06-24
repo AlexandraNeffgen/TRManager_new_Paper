@@ -1,7 +1,7 @@
 Der native Client stellt die grafische Benutzeroberfläche dar, die zusätzlich
 auch die Programm-Logik enthält. Der Client ist als \ac{MVC} Anwendung
-konzipiert. Die einzelnen funktionalen Anforderungen an den Client sind im
-Kapitel \ref{Clients} aufgeführt. Im folgenden werden die einzelnen Aspekte und
+konzipiert. Die einzelnen funktionalen Anforderungen an den Client sind in
+Kapitel \ref{ssec:Anforderungen_clients} aufgeführt. Im folgenden werden die einzelnen Aspekte und
 Elemente aufgeführt und erläutert.
 
 
@@ -12,12 +12,12 @@ des nativen Clients. Die Workflows bilden den zweiten Abschnitt dieses Kapitels.
 Das Hauptaugenmerk in der Gestaltung der Oberfläche liegt wie in Kapitel
 \ref{ssec:Usability} auf Seite \pageref{ssec:Usability} erklärt in der
 Benutzerfreundlichkeit. Ebenfalls wichtig ist es aber auch ein ansprechendes und
-modernes Design zu wählen, um die User zum arbeiten mit dem Programm zu
+modernes Design zu wählen, um die User zum Arbeiten mit dem Programm zu
 animieren. Aus diesen Gründen wurde sich für das Material Design von Google
 entschieden. Dieses besticht durch sein minimalistisches Flat Design. Im Grunde
-wird hier auf Ränder und Linien im klassischen Sinne verzichten. Zum hervorheben
-von Interaktiven Schaltflächen werden diese mit einem Schatten versehen.
-Nach dem Login über eine Seite welche sich auf das wesentliche beschränkt, wird
+wird hier auf Ränder und Linien im klassischen Sinne verzichten. Zum Hervorheben
+von interaktiven Schaltflächen werden diese mit einem Schatten versehen.
+Nach dem Login über eine Seite welche sich auf das Wesentliche beschränkt, wird
 man auf eine Oberfläche mit mehreren Reitern geführt. Für den Lehrer, welcher
 Schüler im Trainingsraum betreut (folgend User genannt) steht ein einzelner
 Reiter zur Verfügung. Über diesen lassen sich alle Aufgaben des Users erledigen. 
@@ -25,8 +25,8 @@ Dem Administrator stehen noch weitere Reiter zur Verfügung.
 Unter dem Reiter "`Administration"' wird sowohl der Import, als auch der Export
 der Datei gemanaged. Der Reiter "`Einstellungen"' ermöglicht es die
 Serververbindung (IP, Port) anzugeben. Außerdem kann hier die Länge der
-Unterrichtsstunden und der Pausen angegeben. Dies soll als Grundlage für spätere
-Features dienen. 
+Unterrichtsstunden und der Pausen angegeben werden. Dies soll als Grundlage für
+eine Zeitanzeige verwendet werden.
 Im Reiter "`Datensätze verwalten"' hat der Administrator die Möglichkeit
 zeitunabhängig die Informationen zu Incidents, Lehrern und Schülern zu
 bearbeiten. 
@@ -40,10 +40,10 @@ Hintergrundprozesse. \\
 \textbf{Schülerbesuch eintragen}\\
 Um einen Schülerbesuch einzutragen muss im linken Teil der Oberfläche zu
 nächst die Klasse des Schülers aus der Liste ausgewählt werden. Sobald man sich
-innerhalb der Liste befindet kann der User durch einfaches tippen von Buchstaben
-in der Liste navigieren. Beispielsweise lässt sich durch tippen eines
-Klassennamens zu dieser springen. Sobald eine Klasse ausgewählt wurde, füllt
-sich direkt daneben eine Liste mit den Schülern dieser Klasse. Um bei dem
+innerhalb der Liste befindet kann der User durch einfaches Tippen von Buchstaben
+in der Liste navigieren. Beispielsweise wird durch Eingeben eines
+Klassennamens diese direkt ausgewählt und angezeigt. Sobald eine Klasse
+ausgewählt wurde, füllt sich direkt daneben eine Liste mit den Schülern dieser Klasse. Um bei dem
 navigieren durch die Oberfläche nicht den Überblick zu verlieren wird in dem
 Spaltenkopf der Schülerliste die aktuell ausgewählte Klasse notiert. Im
 Hintergrund wertet das Programm bei jeder Veränderung der Markierung innerhalb
@@ -64,11 +64,11 @@ sämtliche Schüler dem Klassenobjekt der zugehörigen Klasse angehängt. Daher
 kann auf diese über das Klassen-Objekt mit einer foreach-Schleife zugegriffen
 werden. Die Objekte sind den Listen in dem Attribut "`Tag"' hinterlegt, um diese
 für weitere Aktionen verwenden zu können. Da der Tag aber nicht für den Benutzer
-der Anwendung sichtbar ist, werden zusätzlich zu einem Eintrag das Attribut
+der Anwendung sichtbar ist, wird zusätzlich zu einem Eintrag das Attribut
 "`Name"' gesetzt.
-Nach bestätigen des Button "`Vorfall anlegen"' wird ein seperates Fenster
+Nach Betätigung des Buttons "`Vorfall anlegen"' wird ein seperates Fenster
 geöffnet. Um dies hervorzuheben wird die MainForm leicht durchsichtig. Dies
-geschieht über die Methode "`Deactivate"' und den Eigenschaftswerd "`Opacity"'.
+geschieht über die Methode "`Deactivate"' und den Eigenschaftswert "`Opacity"'.
 In der folgenden Form erhält der Nutzer eine Liste mit sämtlichen Lehrern, ein
 Freitextfeld für Bemerkungen und eine Auswahl von der Standard Begründungen.
 Sämtliche hier enthaltenen Daten stehen in der Datenbank und werden durch die
@@ -93,8 +93,8 @@ angezeigt.\par
 \textbf{Details zu einem Incident anzeigen}\\
 Um sich Details zu einem Incident anzeigen zu lassen, muss in der
 Tagesansicht selektiert werden. Sobald dieser ausgewählt ist, werden unten
-rechts in der Detailbox Infos zum betreffenden Incident angezeigt(Benutzerhandbuch, Kapitel 3
-Abbildung 3: 2). Dazu gehören:
+rechts in der Detailbox Infos zum betreffenden Incident
+angezeigt(Anwenderhandbuch, Kapitel 3 Abbildung 3: 2). Dazu gehören:
 \begin{itemize}
   \item Scheinnummer
   \item Name
@@ -138,7 +138,7 @@ den Button "`Eintragen"' eingetragen werden. Die Scheinnummer bleibt hierbei die
 gleiche.\\
 Im Hintergrund wird die Liste mit vergangenen Incidents aus der Liste aller
 Incidents gefüllt. Hierbei werden jedoch nur Incidents übernommen, die ein
-"`Department"'-Datum gesetzt haben und das Department-Datum innerhalb der
+Entlassungs-Datum gesetzt haben und das Datum innerhalb der
 letzten 5 Tage liegt. Das Eintragen erfolgt technisch wie in "`Schülerbesuch
 eintragen"', nur wird hier die Scheinnummer manuell gesetzt. Nach dem Eintragen
 werden die Anzeigedaten über das übliche
@@ -158,6 +158,7 @@ eingefügt. Im Hintergrund wird dies über den Backup-Controller des Backends
 gelöst, welcher alle Daten auf einmal enthält.
 \par 
 \vspace{\baselineskip}
+\newpage
 \textbf{Servereinstellungen ändern}\\
 Die Servereinstellungen werden im Reiter Einstellungen verändert. Durch einen
 Klick in die Textbox können jeweils die folgenden drei Werte bearbeitet werden:
@@ -179,16 +180,23 @@ eigentlichen Methoden zum schrieben in einer Datei in die Klasse
 \pageref{ssec:configuration_store}) ausgelagert. 
 \par 
 \vspace{\baselineskip}
+\newpage
+\textbf{Servereinstellungen ändern (ohne Login)}\\
+Falls der Client beim Starten die Konfigurationsdatei nicht lesen kann, hat der
+Anwender die Möglichkeit, diese wie im vorangegangenen Abschnitt zu ändern, ohne
+sich vorher zu authentifizieren
+\par 
+\vspace{\baselineskip}
 \textbf{Klasse ändern}\\
 Um eine Klasse zu ändern muss zuerst in den Reiter "`Datensätze verwalten"'
-gewechselt werden. Über die Schaltflächen (A),(B),(C) und (D) erreicht man die
-Listen der verschiedenen Elemente. Im Falle der Klasse wäre dies A. Man wählt
+gewechselt werden. Über die Schaltflächen Klasse, Lehrer Schüler und Vorfall
+erreicht man die Listen der verschiedenen Elemente. Im Falle der Klasse wäre dies A. Man wählt
 den gewünschten Datensatz aus und betätigt die Schaltfläche "`Verändern"'. Im
 sich öffnenden Fenster kann man die Daten ändern und bestätigen.
 Im Hintergrund wird das Klassenobjekt mit den geänderten Daten an das Backend
 geschickt (Über RepositoryUtility.editForm). Falls das Backend die Änderung
 bestätigt, bekommt der Benutzer eine Benachrichtigung über den Erfolg der
-Änderung.
+Änderung.\par
 \vspace{\baselineskip}
 \textbf{Klasse hinzufügen}\\
 Um eine Klasse hinzuzufügen muss wie in "`Klasse ändern"' in den Reiter
@@ -210,3 +218,11 @@ noch einmal bestätigt werden, dann wird das Objekt gelöscht.\\
 Im Hintergrund läuft dies über die deleteForm-Methode aus RepositoryUtility. Das
 Objekt wird an das Backend geschickt, dieses schickt ein "`OK"' zurück falls der
 Vorgang erfolgreich war.  
+\enlargethispage{2\baselineskip}
+\newpage
+\par 
+\vspace{\baselineskip}
+\textbf{Änderung anderer Datentypen}\\
+Die Änderungen der anderen Datentypen funktioniert analog zu der beschriebenen
+Methode für die Klassen.
+
