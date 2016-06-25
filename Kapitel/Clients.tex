@@ -78,6 +78,7 @@ im- und exportieren.
 		Die grundsätzliche Funktionsweise der Methoden unterscheidet sich wieder in
 		idempotente und nichtidempotente Methoden, dies wird an Auszügen der Methoden
 		"`getById"' und "`add"' veranschaulicht:\\
+		\newpage
 		\lstinputlisting[label=httpclient_getbyid, caption=getById-Methode des
 		Http-Clients]{listings/httpclient_idem.cs}
 		Listing \ref{httpclient_getbyid} auf Seite \pageref{httpclient_getbyid} zeigt
@@ -92,7 +93,7 @@ im- und exportieren.
 		Informationen an das Backend geschickt werden, da diese Methode nur Daten aus
 		dem Backend holt und sonst keine weiteren Änderungen vornimmt. Die anderen
 		Methoden, die GET verwenden sind sehr ähnlich implementiert, diese
-		unterscheiden sich nur durch einen anderen Einstiegspunkt.\\
+		unterscheiden sich nur durch einen anderen Einstiegspunkt.
 		Anders sieht es bei der Add-Methode aus, hier werden per POST Daten an das
 		Backend übermittelt:
 		 \lstinputlisting[label=httpclient_add, caption=Add-Methode
@@ -130,7 +131,7 @@ im- und exportieren.
 		Rest erfolgt automatisch, solange man die Attribut-Namen einhält, die vom
 		Backend festgelegt wurden. Zudem besteht die Möglichkeit, weitere
 		Konfigurationen wie zum Beispiel erweiterte Mappings und Ähnliches
-		festzulegen.\\
+		festzulegen.\enlargethispage{\baselineskip}
 		Im einfachsten Fall erfolgt die Serialisierung über einen Aufruf an das
 		Framework ohne weitere Einstellungen:
 		\begin{lstlisting}
