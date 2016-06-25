@@ -74,6 +74,7 @@ können.
 	\item[teacher]
 		Die "`teacher"'-Tabelle hält Daten über die Lehrer vor. Dies umfasst den
 		vollen Namen (name), die Abkürzung (abbreviation) und die Anrede (salutation)
+	\newpage
 	\item[form]
 		Die "`form"'-Tabelle hält Daten über die Schulklassen vor, dies beinhaltet die
 		Bezeichnung der Klasse (name) und einen Fremdschlüssel "`teacher\_id"', der
@@ -97,18 +98,20 @@ können.
 		Kommentar vor, der von den Clients abgerufen werden kann.
 	\end{description}
 	\subsubsection{Repositories (Spring Data)}\label{sssec:repositories}
+	\enlargethispage{\baselineskip}
 	Ein Repository stellt im Grunde die Verbindung zwischen der Datenbank
 	(Hibernate) und der Anwendung selbst da. Es ist für die Zusammensetzung der
 	Queries zuständig und liefert Daten zurück und schreibt Daten in die
 	Datenbank. Werden hier Änderungen an einem Objekt vorgenommen, werden diese
-	transparent in der Datenbank geändert, hier ist also Vorsicht geboten.\\
+	
+	transparent in der Datenbank geändert, hier ist also Vorsicht geboten.
 	Um fehlerhafte Änderungen durch unsachgemäßen Gebrauch der Repositories zu
 	vermeiden, wird normalerweise eine Schicht dazwischen geschoben, um davon zu
-	abstrahieren(Siehe Kapitel \ref{sssec:services}). \\
+	abstrahieren(Siehe Kapitel \ref{sssec:services}).
 	Standardmäßig werden die Repositories von Spring mit vordefinierten
 	Zugriffsmethoden generiert, um die Handhabung zu vereinfachen. Es ist aber auch
 	möglich, andere Queries als die von Spring generierten zu verwenden, zum
-	Beispiel falls die per Standarad gegebenen Zugriffsmöglichkeiten von Spring
+	Beispiel falls die per Standard gegebenen Zugriffsmöglichkeiten von Spring
 	Data nicht ausreichen.
 	Dies ist jedoch im Rahmen des TR-Managers nicht notwendig, da der Datenbestand relativ klein
 	und auch keine komplexen Abhängigkeiten im Datenmodell bestehen.\\
@@ -154,7 +157,7 @@ können.
 	Zuordnung zu einer \ac{URI}, unter der sie ansprechbar sind sowie die Zuordnung der Methoden, die die unterschiedlichen Anfragen (zum
 	Beispiel GET, POST, PUT oder DELETE) bearbeiten.\par
 	\vspace{\baselineskip}
-	\textbf{Aufbau der Controller}$~~$\\
+	\noindent\textbf{Aufbau der Controller}$~~$\\
 	Im Allgemeinen gibt es für jede Model-Klasse einen Controller, der Daten zum
 	jeweiligen Model liefern kann. Es können jedoch noch weitere Controller(oder
 	weniger) definiert werden, die mehr oder weniger Funktionalität sowie
@@ -162,6 +165,7 @@ können.
 	zum Beispiel zur generellen Verwaltung des Datenbestandes ein Backup-Controller
 	implementiert, der das clientseitige Backup unterstützt (alle Daten
 	ausliefern, Daten löschen und die Tabellen in den Anfangszustand versetzen)
+	\newpage
 	\lstinputlisting[label=controller_definition,caption=Definition eines Controllers]{listings/controller_definition.java}
 	In Listing \ref{controller_definition} sieht man die einfache Definition eines
 	Controllers. Die Klasse wird mit der "`@RestController"'-Annotation versehen,
@@ -242,6 +246,7 @@ implementierten Logik zurückgeben sowie richtig in die Datenbank übernehmen.
 			\lstinputlisting[label=testGetTeacherById,caption=Test
 			der getById-Methode des
 			Teacher-Controllers]{listings/tcontrollertestidempotent.java} 
+			\enlargethispage{\baselineskip}
 			Listing \ref{testGetTeacherById} auf Seite \pageref{testGetTeacherById} zeigt
 			den Test einer solchen idempotenten Methode. Es wird zuerst ein aus dem
 			MockMVC-Objekt ein RequestBuilder generiert, der für die Erzeugung des
